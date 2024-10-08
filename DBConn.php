@@ -4,12 +4,7 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-<<<<<<< HEAD
-$database = "";
-$database = "login";      // Database name
-=======
 $database = "ClothingStore";
->>>>>>> 34931d6d5a946c8b5e7c7f29c4691403e2899199
 
 //connect to mysql database using PDO connection
 //try to create a new pdo connection using database credentials
