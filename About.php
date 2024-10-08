@@ -53,8 +53,8 @@
                 sustainable fashion experience!
             </p>
             <div class="about-images">
-            <img src="images/bracelets.jpg" alt="hand holding bracelets" class="image"  height="150" width="150">
-            <img src="images/shoes.jpg" alt="shoes being hold by a man" class="image" height="150" width="150">
+            <img src="_images/bracelets.jpg" alt="hand holding bracelets" class="image"  height="150" width="150">
+            <img src="_images/shoes.jpg" alt="shoes being hold by a man" class="image" height="150" width="150">
             </div>
             <p>
                 At Pastimes, you can easily buy and sell preloved clothing. As a seller, create an account,
@@ -62,8 +62,8 @@
             </p>
             <p>
             <div class="about-images">
-            <img src="images/t-shirt.jpg" alt="blue and yellow t-shirts on hangers" class="image" height="150" width="150">
-            <img src="images/glasses.jpg" alt="display of different glasses" class="image" height="150" width="150">
+            <img src="_images/t-shirt.jpg" alt="blue and yellow t-shirts on hangers" class="image" height="150" width="150">
+            <img src="_images/glasses.jpg" alt="display of different glasses" class="image" height="150" width="150">
             </div>
                 Buyers can browse or search for items they love, add them to their cart, and pay securely
                 on our site.

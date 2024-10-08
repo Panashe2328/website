@@ -27,7 +27,7 @@ include("connect.php");
 
     <!-- Logo -->
     <div class="logo">
-    <img src="images/Pastimes_logo.jpg" alt="Pastimes logo image">
+    <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo image">
     </div>
 
     <!-- Navigation menu -->
