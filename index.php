@@ -68,10 +68,16 @@ include("connect.php");
                 <h2>On Sale</h2>
                 <img src="path_to_on_sale_image.jpg" alt="">
             </div>
-            <div class="category">
-                <h2>Shop</h2>
-                <img src="path_to_kids_image.jpg" alt="">
-        </div>
+
+            
+    <div class="category">
+    <a href="Add_Clothing.php">
+        <h2>Shop</h2>
+        <img src="path_to_image.jpg" alt="" >
+        </a>
+    </div>
+
+
         <!-----
         <div class="instant-message-section">
         <div class="instant-message">

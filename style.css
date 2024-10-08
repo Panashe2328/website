@@ -409,3 +409,16 @@ footer {
         padding: 10px 35px;
     }
 }
+
+
+.category a {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherits the color from the surrounding text */
+    display: block; /* Ensures the entire block is clickable */
+}
+
+.category a:hover {
+    text-decoration: none; /* Ensures underline doesn't reappear on hover */
+    color: inherit; /* Prevents color change on hover */
+}
+
