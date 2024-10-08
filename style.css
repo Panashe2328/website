@@ -224,10 +224,10 @@ footer {
 
 /* General styles for the registration and login container */
 .registration-container {
-    max-width: 50px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #c48339;
+    background-color:#ebb578;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-top: 50px;
