@@ -4,6 +4,7 @@ $hostname = "";
 $username = "";
 $password = "";
 $database = "";
+$database = "login";      // Database name
 
 
 ?>
