@@ -440,7 +440,7 @@ add_clothing styling so that scrolling is minimized
     margin: 10px 0;
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #b67373;
     text-align: center;
 }
 
@@ -452,7 +452,7 @@ add_clothing styling so that scrolling is minimized
 .button-style {
     padding: 10px 20px;
     background-color: #007BFF;
-    color: white;
+    color: green;
     border: none;
     cursor: pointer;
 }
