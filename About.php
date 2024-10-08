@@ -20,7 +20,7 @@
         <div></div>
     </label>
 
-    <!-- Logo -->
+    <!-- Logo image -->
     <div class="logo">
     <img src="images/Pastimes.jpg" alt="Pastimes">
     </div>
@@ -53,8 +53,8 @@
                 sustainable fashion experience!
             </p>
             <div class="about-images">
-            <img src="images/bracelets-5538539_1280.jpg" alt="Image 1" class="image"  height="150" width="150">
-            <img src="images/shoes-8212405_1280.jpg" alt="Image 2" class="image" height="150" width="150">
+            <img src="images/bracelets.jpg" alt="hand holding bracelets" class="image"  height="150" width="150">
+            <img src="images/shoes.jpg" alt="shoes being hold by a man" class="image" height="150" width="150">
             </div>
             <p>
                 At Pastimes, you can easily buy and sell preloved clothing. As a seller, create an account,
@@ -62,8 +62,8 @@
             </p>
             <p>
             <div class="about-images">
-            <img src="images/t-shirt-4367577_1280.jpg" alt="Image 3" class="image" height="150" width="150">
-            <img src="images/glasses-5591319_1280.jpg" alt="Image 4" class="image" height="150" width="150">
+            <img src="images/t-shirt.jpg" alt="blue and yellow t-shirts on hangers" class="image" height="150" width="150">
+            <img src="images/glasses.jpg" alt="display of different glasses" class="image" height="150" width="150">
             </div>
                 Buyers can browse or search for items they love, add them to their cart, and pay securely
                 on our site.

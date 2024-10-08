@@ -27,7 +27,7 @@ include("connect.php");
 
     <!-- Logo -->
     <div class="logo">
-    <img src="images/Pastimes.jpg" alt="Pastimes">
+    <img src="images/Pastimes_logo.jpg" alt="Pastimes logo image">
     </div>
 
     <!-- Navigation menu -->
@@ -78,7 +78,7 @@ include("connect.php");
     </div>
 
 
-        <!-----
+        <!----- Leave out for now
         <div class="instant-message-section">
         <div class="instant-message">
             <button>Instant Message</button>
