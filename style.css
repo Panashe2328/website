@@ -2,75 +2,93 @@
 /* Header Styles */
 header {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column; /* Stack logo and navigation vertically */
     align-items: center;
     padding: 10px 20px;
     background-color: antiquewhite;
 }
 
-/* Burger Menu Styles */
-.burger {
-    cursor: pointer;
-    margin-top: 10px; /* Add spacing between logo and burger menu */
-}
+
 
 /* Logo Styling */
 .logo {
-    display: flex;
-    justify-content: center; /* Center the logo */
-    align-items: center;
-    margin-bottom: 10px; /* Space between logo and navigation */
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Vertically center the image */
+    justify-content: flex-start; /* Align the logo to the left */
+    margin-bottom: 10px; /* Space between logo and nav */
+    left: 10;
 }
 
 .logo img {
-    max-width: 150px; /* Set a max-width for the logo image */
+    width: auto; /* Adjust the image size as needed */
+    max-height: 100px; /* Set a maximum height for the logo */
+    object-fit: contain; /* Ensure the image scales without distortion */
+   
 }
+
 
 /* Show navigation when the menu toggle is checked */
 #menu-toggle:checked + .burger + nav {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    position: absolute; /* Optional: to overlay on the content */
-    top: 150px; /* Adjust based on logo size */
+    flex-direction: column; /* Stack menu items vertically */
+    position: absolute;
+    top: 120px; /* Adjusted position based on the header height */
     left: 0;
     right: 0;
-    background-color: rgb(10, 10, 9); /* Same color as header */
+    background-color: antiquewhite;
+    z-index: 1000;
 }
 
-/* Navigation styles */
+/* Navigation menu styles */
 nav ul {
     list-style-type: none;
+    padding: 0;
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    width: 100%; /* Full width */
+    flex-direction: row; /* Display menu items in a row */
+    justify-content: center; /* Center the items horizontally */
+    text-align: center;
+    gap: 20px; /* Optional: Add space between the items */
 }
 
 nav ul li {
-    text-align: center; /* Center text */
-    margin: 10px 0; /* Spacing between items */
+    margin: 0; /* Remove vertical margin */
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #fff; /* Change link color to white for contrast */
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #c97b2d;
+}
+
+
+/* Header container */
+header {
+    position: relative; /* Set position relative for absolute positioning inside */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: antiquewhite;
 }
 
 /* Header icons */
 .header-icons {
+    position: absolute;
+    top: 10px;
+    right: 0; /* Align the icons to the far left of the screen */
     display: flex;
     align-items: center;
-    margin-top: 10px; /* Spacing between burger and icons */
+    padding-right: 10px; /* Add some padding for space from the edge */
 }
 
-
-/* Header icons */
-.header-icons {
-    display: flex; /* Use Flexbox for layout */
-    align-items: center; /* Center the icons vertically */
-}
-
+/* Individual icon styling */
 .header-icons i {
-    margin-left: 20px; /* Space between icons */
+    margin-right: 20px; /* Space between icons */
     font-size: 24px; /* Icon size */
     color: #100e0e; /* Icon color */
     cursor: pointer; /* Change cursor to pointer on hover */
@@ -97,6 +115,7 @@ main {
 .categories {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap; /* Ensure responsiveness on smaller screens */
     margin: 20px 0;
     background-color: bisque;
 }
@@ -118,11 +137,18 @@ main {
     border-radius: 4px; /* Slightly round the image corners */
 }
 
-.instant-message {
-    margin-top: 20px;
+/* Instant Message Section */
+.instant-message-section {
+    margin-top: 40px; /* Space between categories and button */
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center;
 }
 
-/* Button styling */
+.instant-message {
+    margin-top: 40px; /* Space between categories and button */
+}
+
 .instant-message button {
     padding: 10px 20px;
     font-size: 16px;
@@ -135,6 +161,7 @@ main {
 .instant-message button:hover {
     background-color: #555; /* Button hover color */
 }
+
 
 /* Footer Styles */
 footer {

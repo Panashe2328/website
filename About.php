@@ -6,43 +6,43 @@
     <title>About Us - Pastimes</title>
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM16mK1l23n+W1v9Q/RFZ/WVd4F5eDjqzXU9Yw" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header>
-        <!-- Checkbox to toggle the menu -->
-        <input type="checkbox" id="menu-toggle" style="display:none;">
-        
-        <!-- Label for burger icon (connected to checkbox) -->
-        <label for="menu-toggle" class="burger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </label>
+<header>
+    <!-- Checkbox to toggle the menu -->
+    <input type="checkbox" id="menu-toggle" style="display:none;">
+    
+    <!-- Burger icon -->
+    <label for="menu-toggle" class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
 
-        <!-- Logo -->
-        <div class="logo">
-            Pastimes
-        </div>
+    <!-- Logo -->
+    <div class="logo">
+    <img src="images/Pastimes.jpg" alt="Pastimes">
+    </div>
 
-        <!-- Navigation menu -->
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="About.php">About</a></li>
-                <li><a href="Contact.php">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Navigation menu -->
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="About.php">About</a></li>
+            <li><a href="User.php">Register</a></li>
+        </ul>
+    </nav>
 
-        <!-- Header icons -->
-        <div class="header-icons">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-shopping-cart"></i>
-            <i class="fas fa-user"></i>
-        </div>
-    </header>
-
+    <!-- Header icons -->
+    <div class="header-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-user"></i>
+    </div>
+</header>
+   
     <!-- Main Content Section -->
     <main>
         <div class="about-container">
@@ -53,8 +53,8 @@
                 sustainable fashion experience!
             </p>
             <div class="about-images">
-            <img src="images/bracelets-5538539_1280.jpg" alt="Image 1" class="image" >
-            <img src="images/shoes-8212405_1280.jpg" alt="Image 2" class="image">
+            <img src="images/bracelets-5538539_1280.jpg" alt="Image 1" class="image"  height="150" width="150">
+            <img src="images/shoes-8212405_1280.jpg" alt="Image 2" class="image" height="150" width="150">
             </div>
             <p>
                 At Pastimes, you can easily buy and sell preloved clothing. As a seller, create an account,
@@ -62,8 +62,8 @@
             </p>
             <p>
             <div class="about-images">
-            <img src="images/t-shirt-4367577_1280.jpg" alt="Image 3" class="image">
-            <img src="images/glasses-5591319_1280.jpg" alt="Image 4" class="image">
+            <img src="images/t-shirt-4367577_1280.jpg" alt="Image 3" class="image" height="150" width="150">
+            <img src="images/glasses-5591319_1280.jpg" alt="Image 4" class="image" height="150" width="150">
             </div>
                 Buyers can browse or search for items they love, add them to their cart, and pay securely
                 on our site.

@@ -14,39 +14,40 @@ include("connect.php");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header>
-        <!-- Checkbox to toggle the menu -->
-        <input type="checkbox" id="menu-toggle" style="display:none;">
-        
-        <!-- Label for burger icon (connected to checkbox) -->
-        <label for="menu-toggle" class="burger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </label>
+<header>
+    <!-- Checkbox to toggle the menu -->
+    <input type="checkbox" id="menu-toggle" style="display:none;">
+    
+    <!-- Burger icon -->
+    <label for="menu-toggle" class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
 
-        <!-- Logo -->
-        <div class="logo">
-            Pastimes
-        </div>
+    <!-- Logo -->
+    <div class="logo">
+    <img src="images/Pastimes.jpg" alt="Pastimes">
+    </div>
 
-        <!-- Navigation menu -->
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="About.php">About</a></li>
-                <li><a href="User.php">Register</a></li>
-            </ul>
-        </nav>
+    <!-- Navigation menu -->
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="About.php">About</a></li>
+            <li><a href="User.php">Register</a></li>
+        </ul>
+    </nav>
 
-        <!-- Header icons -->
-        <div class="header-icons">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-shopping-cart"></i>
-            <i class="fas fa-user"></i>
-        </div>
-    </header>
+    <!-- Header icons -->
+    <div class="header-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-user"></i>
+    </div>
+</header>
+
 
     <!-- Main Content Section -->
     <main>
@@ -57,33 +58,27 @@ include("connect.php");
         <div class="categories">
             <div class="category">
                 <h2>Fan Favorites</h2>
-                <img src="path_to_fan_favorites_image.jpg" alt="Fan Favorites">
+                <img src="path_to_fan_favorites_image.jpg" alt="">
             </div>
             <div class="category">
                 <h2>Recently Added</h2>
-                <img src="path_to_recently_added_image.jpg" alt="Recently Added">
+                <img src="path_to_recently_added_image.jpg" alt="">
             </div>
             <div class="category">
                 <h2>On Sale</h2>
-                <img src="path_to_on_sale_image.jpg" alt="On Sale">
+                <img src="path_to_on_sale_image.jpg" alt="">
             </div>
             <div class="category">
-                <h2>Kids</h2>
-                <img src="path_to_kids_image.jpg" alt="Kids Clothing">
-            </div>
-            <div class="category">
-                <h2>Women</h2>
-                <img src="path_to_women_image.jpg" alt="Women's Clothing">
-            </div>
-            <div class="category">
-                <h2>Men</h2>
-                <img src="path_to_men_image.jpg" alt="Men's Clothing">
-            </div>
+                <h2>Shop</h2>
+                <img src="path_to_kids_image.jpg" alt="">
         </div>
-
+        <!-----
+        <div class="instant-message-section">
         <div class="instant-message">
             <button>Instant Message</button>
         </div>
+        </div>
+        ---->
     </main>
 
     <footer>
