@@ -31,6 +31,162 @@ $clothing_items = [
         'image' => 'girls-462072_1280.jpg',
         'price' => 350.00,
         'description' => 'A perfect outfit for young girls.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Woman Casual Wear',
+        'image' => 'woman-6771288_1280.jpg',
+        'price' => 400.00,
+        'description' => 'Casual wear perfect for any occasion.'
+    ],
+    [
+        'name' => 'Shirt',
+        'image' => 'shirt-2650677_1280.jpg',
+        'price' => 300.00,
+        'description' => 'Stylish shirt for office or casual wear.'
+    ],
+    [
+        'name' => 'Girls Outfit',
+        'image' => 'girls-462072_1280.jpg',
+        'price' => 350.00,
+        'description' => 'A perfect outfit for young girls.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Woman Casual Wear',
+        'image' => 'woman-6771288_1280.jpg',
+        'price' => 400.00,
+        'description' => 'Casual wear perfect for any occasion.'
+    ],
+    [
+        'name' => 'Shirt',
+        'image' => 'shirt-2650677_1280.jpg',
+        'price' => 300.00,
+        'description' => 'Stylish shirt for office or casual wear.'
+    ],
+    [
+        'name' => 'Girls Outfit',
+        'image' => 'girls-462072_1280.jpg',
+        'price' => 350.00,
+        'description' => 'A perfect outfit for young girls.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
+    ],
+    [
+        'name' => 'Dress',
+        'image' => 'dress-2565292_1280.jpg',
+        'price' => 500.00,
+        'description' => 'A beautiful summer dress.'
     ]
 ];
 
