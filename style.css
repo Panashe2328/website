@@ -451,13 +451,13 @@ add_clothing styling so that scrolling is minimized
 
 .button-style {
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: green;
+    background-color: antiquewhite;
+    color: black;
     border: none;
     cursor: pointer;
 }
 
 .button-style:hover {
-    background-color: #0056b3;
+    background-color: #83a7ce;
 }
 
