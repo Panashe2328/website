@@ -27,7 +27,6 @@ if(isset($_POST['signUp'])){
    
 
 }
-
 if(isset($_POST['signIn'])){
    $email=$_POST['email'];
    $password=$_POST['password'];
