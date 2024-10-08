@@ -9,64 +9,64 @@ if (!isset($_SESSION['cart'])) {
 // Predefined clothing items array with image paths
 $clothing_items = [
     [
-        'name' => 'Dress',
+        'name' => 'Women Shirt',
         'image' => 'black_shirt.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 125.00,
+        'description' => 'Black t-shirt'
     ],
     [
-        'name' => 'Woman Casual Wear',
+        'name' => 'Men Pants',
         'image' => 'men_pants_brown.jpg',
-        'price' => 400.00,
-        'description' => 'Casual wear perfect for any occasion.'
+        'price' => 250.00,
+        'description' => 'Brown formal pants'
     ],
     [
-        'name' => 'Shirt',
+        'name' => 'Kids Dress',
         'image' => 'kids_dress1.jpg',
-        'price' => 300.00,
-        'description' => 'Stylish shirt for office or casual wear.'
+        'price' => 165.00,
+        'description' => 'Colourful dress'
     ],
     [
-        'name' => 'Girls Outfit',
+        'name' => 'Women Dress',
         'image' => 'women_dress_blue.jpg',
-        'price' => 350.00,
-        'description' => 'A perfect outfit for young girls.'
+        'price' => 185.00,
+        'description' => 'Blue summer dress'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Men Shirt',
         'image' => 'men_coca.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 90.00,
+        'description' => 'A white Coca-Cola t-shirt'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women Dress',
         'image' => 'women_dress_pink.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 150.00,
+        'description' => 'Pink summer dress'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids Shirt',
         'image' => 'kids_shirt_grey.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 80.00,
+        'description' => 'Grey t-shirt with animals'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women Skirt',
         'image' => 'women_skirt.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 120.00,
+        'description' => 'Red skirt'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Men Shirt',
         'image' => 'men_shirt_blue.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 150.00,
+        'description' => 'Blue buttoned shirt'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids Skirt',
         'image' => 'kids_skirt_lines.jpg',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'price' => 90.00,
+        'description' => 'Black and white skirt'
     ],
     [
         'name' => 'Dress',
