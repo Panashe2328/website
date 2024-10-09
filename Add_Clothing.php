@@ -7,7 +7,7 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Predefined clothing items array with image paths
+// Predefined clothing items array with image paths and descriptions
 $clothing_items = [
     [
         'name' => 'Women',
@@ -275,6 +275,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Function to show price alert
+        function showPrice(price) {
+            alert('Price: R ' + price.toFixed(2));
+        }
+    </script>
 </head>
 <body>
 <header>
