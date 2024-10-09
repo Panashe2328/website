@@ -1,8 +1,8 @@
---create the database
+
 CREATE DATABASE IF NOT EXISTS ClothingStore;
 USE ClothingStore;
 
---users table
+
 CREATE TABLE IF NOT EXISTS tblUser (
     user_id INT PRIMARY KEY, 
     first_name VARCHAR(50) NOT NULL, 
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS tblUser (
 );
 
 
---admin table
+
 CREATE TABLE IF NOT EXISTS tblAdmin (
     admin_id INT PRIMARY KEY AUTO_INCREMENT, 
     admin_num VARCHAR(10) NOT NULL UNIQUE, 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS tblAdmin (
     password VARCHAR(255) NOT NULL 
 );
 
---clothes table
+
 CREATE TABLE IF NOT EXISTS tblClothes (
     clothes_id INT PRIMARY KEY AUTO_INCREMENT,
     image_url VARCAR(255) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS tblClothes (
     condition ENUM('new', 'used') NOT NULL
 );
 
---order table
+
 CREATE TABLE IF NOT EXISTS tblOrder (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
@@ -84,12 +84,12 @@ INSERT INTO tblUser (user_id, first_name, last_name, username, password, address
 (130, 'Sam', '', 'samsmith', '$2a$04$qrstuv1234567890ZYXWVutsrqponmlkjihgfedcba', '60 Ocean Rd', 'Sandton', '2014', 'pending', 'user');
 
 
---insert data
+
 INSERT INTO tblAdmin (admin_num, first_name, last_name, admin_email, password) VALUES
 ('A1001', 'Alice', 'Brown', 'alice@admin.com', 'hashedpassword1'),
 ('A1002', 'Bob', 'Davis', 'bob@admin.com', 'hashedpassword2');
 
---insert data
+
 INSERT INTO tblClothes (clothes_category, clothes_description, price, size, condition) VALUES
 ('men', 'Men\'s T-Shirt', 19.99, 'M', 'new'),
 ('women', 'Women\'s Dress', 49.99, 'S', 'new'),
@@ -97,7 +97,7 @@ INSERT INTO tblClothes (clothes_category, clothes_description, price, size, cond
 -- Add 27 more entries similarly...
 ('men', 'Men\'s Jacket', 89.99, 'L', 'new');
 
---insert data
+
 INSERT INTO tblOrder (user_id, clothes_id, clothes_purchased, order_date, status, total_price) VALUES
 (1, 1, 'Men\'s T-Shirt', '2024-10-10', 'pending', 19.99),
 (2, 2, 'Women\'s Dress', '2024-10-09', 'shipped', 49.99);
