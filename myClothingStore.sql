@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS tblAdmin (
 
 CREATE TABLE IF NOT EXISTS tblClothes (
     clothes_id INT PRIMARY KEY AUTO_INCREMENT,
-    image_url VARCAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
     clothes_category ENUM('woman', 'men', 'kids') NOT NULL,
     clothes_description VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
