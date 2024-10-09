@@ -1,8 +1,10 @@
 
 <?php
-session_start();
-
- session_start(); // Start the session
+//start the session if not already started
+if (session_status() == PHP_SESSION_NONE) 
+{
+    session_start();
+}
  include 'dbconn.php';
  
 
