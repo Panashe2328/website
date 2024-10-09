@@ -95,7 +95,7 @@ VALUES
 
 
 
-INSERT INTO tblClothes (clothes_id, image_url, clothes_category, clothes_description, price, size, condition) VALUES
+INSERT INTO tblClothes (clothes_id, image_url, clothes_category, clothes_description, price, size, `condition`) VALUES
 (11011, '_images/black_shirt.jpg', 'Women', 'Black t-shirt', 125.00, 'M', 'good'),
 (11012, '_images/men_pants_brown.jpg', 'Men', 'Brown formal pants', 250.00, 'S', 'new'),
 (11013, '_images/kids_dress1.jpg', 'Kids', 'Colourful dress', 115.00, 'S', 'good'),
