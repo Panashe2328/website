@@ -19,7 +19,7 @@ try {
     $query = $db->query("SHOW TABLES LIKE 'tblUser'");
     
     if ($query->rowCount() > 0) {
-        echo "Table 'tblUser' exists in the database.";
+        echo "Table 'tblUser' exists in the database.<br>";
     } else {
         echo "Table 'tblUser' does not exist.<br>";
     }
