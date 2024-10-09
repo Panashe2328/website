@@ -82,4 +82,3 @@ if (isset($_POST['signIn'])) {
         echo "Error: " . $e->getMessage();
     }
 }
-?>
