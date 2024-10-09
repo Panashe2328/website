@@ -1,12 +1,6 @@
 
 <?php
-//start the session if not already started
-if (session_status() == PHP_SESSION_NONE) 
-{
-    session_start();
-}
- include 'dbconn.php';
- 
+session_start();
 
 // Initialize the cart session if it doesn't exist
 if (!isset($_SESSION['cart'])) {
@@ -264,7 +258,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     if (isset($clothing_items[$item_index])) {
         $item = $clothing_items[$item_index];
 
-        //add item to the cart using array_push() function
+        // Add the item to the cart
         array_push($_SESSION['cart'], $item);
 
         // Redirect to avoid form re-submission
@@ -281,31 +275,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /*  pop-up styling */
-        .popup {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -321,58 +290,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 <main>
     <h1>Shop Clothing</h1>
     <div class="clothing-container">
-    <?php foreach ($clothing_items as $index => $item): ?>
-        <div class="clothing-item">
-            <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
-            <h2><?php echo htmlspecialchars($item['name']); ?></h2>
-            <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
-            <p><?php echo htmlspecialchars($item['description']); ?></p>
-            <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
-            <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
+        <?php foreach ($clothing_items as $index => $item): ?>
+            <div class="clothing-item">
+                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
+                <h2><?php echo htmlspecialchars($item['name']); ?></h2>
+                <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
+                <p><?php echo htmlspecialchars($item['description']); ?></p>
+                <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
+                <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
 
-            <form method="post" action="add_clothing.php" onsubmit="showPopup(event, '<?php echo number_format($item['price'], 2); ?>', this);">
-                <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-                <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
-            </form>
-        </div>
-    <?php endforeach; ?>
-</div>
+                <form method="post" action="add_clothing.php">
+                    <input type="hidden" name="item_index" value="<?php echo $index; ?>">
+                    <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </main>
-
-<!-- Pop-up and overlay -->
-<div class="overlay" id="overlay" onclick="hidePopup()"></div>
-<div class="popup" id="popup">
-    <h2>Item Added to Cart!</h2>
-    <p>The price of the item is R <span id="popup-price"></span>.</p>
-    <button onclick="hidePopup()">Close</button>
-</div>
 
 <footer>
     <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
 </footer>
-
-<script>
-    function showPopup(event, price, form) {
-        // Prevent form submission
-        event.preventDefault();
-
-        // Show the overlay and the pop-up
-        document.getElementById('overlay').style.display = 'block';
-        document.getElementById('popup').style.display = 'block';
-        document.getElementById('popup-price').innerText = price;
-
-        // Simulate form submission after showing the pop-up
-        setTimeout(() => {
-            form.submit();
-        }, 3000); // Adjust the delay as needed
-        return false; // Prevent form submission immediately
-    }
-
-    function hidePopup() {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('popup').style.display = 'none';
-    }
-</script>
 
 </body>
 </html>
