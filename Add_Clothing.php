@@ -276,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // Function to show price alert
+        //show pop up message of price item
         function showPrice(price) {
             alert('Price: R ' + price.toFixed(2));
         }
@@ -305,9 +305,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
                 <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
                 <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
 
-                <form method="post" action="add_clothing.php">
-                    <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-                    <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
+                <form method="post" action="add_clothing.php" onsubmit="showPrice(<?php echo $item['price']; ?>);">
+                <input type="hidden" name="item_index" value="<?php echo $index; ?>">
+                <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
                 </form>
             </div>
         <?php endforeach; ?>
