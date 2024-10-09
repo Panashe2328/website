@@ -11,212 +11,242 @@ $clothing_items = [
     [
         'name' => 'Women Shirt',
         'image' => 'black_shirt.jpg',
-        'size' => 'Shirt',
+        'size' => 'M',
         'price' => 125.00,
-        'description' => 'Black t-shirt'
+        'description' => 'Black t-shirt',
+        'condition' => 'M'
     ],
     [
         'name' => 'Men Pants',
         'image' => 'men_pants_brown.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 250.00,
-        'description' => 'Brown formal pants'
+        'description' => 'Brown formal pants',
+        'condition' => 'M'
     ],
     [
         'name' => 'Kids Dress',
         'image' => 'kids_dress1.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 165.00,
-        'description' => 'Colourful dress'
+        'description' => 'Colourful dress',
+        'condition' => 'M'
     ],
     [
         'name' => 'Women Dress',
         'image' => 'women_dress_blue.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 185.00,
-        'description' => 'Blue summer dress'
+        'description' => 'Blue summer dress',
+        'condition' => 'M'
     ],
     [
         'name' => 'Men Shirt',
         'image' => 'men_coca.jpg',
-        'size' => 'Shirt',
+        'size' => 'M',
         'price' => 90.00,
-        'description' => 'A white Coca-Cola t-shirt'
+        'description' => 'A white Coca-Cola t-shirt',
+        'condition' => 'M'
     ],
     [
         'name' => 'Women Dress',
         'image' => 'women_dress_pink.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 150.00,
-        'description' => 'Pink summer dress'
+        'description' => 'Pink summer dress',
+        'condition' => 'M'
     ],
     [
         'name' => 'Kids Shirt',
         'image' => 'kids_shirt_grey.jpg',
-        'size' => 'Shirt',
+        'size' => 'XS',
         'price' => 80.00,
-        'description' => 'Grey t-shirt with animals'
+        'description' => 'Grey t-shirt with animals',
+        'condition' => 'M'
     ],
     [
         'name' => 'Women Skirt',
         'image' => 'women_skirt.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 120.00,
-        'description' => 'Red skirt'
+        'description' => 'Red skirt',
+        'condition' => 'M'
     ],
     [
         'name' => 'Men Shirt',
         'image' => 'men_shirt_blue.jpg',
-        'size' => 'Shirt',
+        'size' => 'M',
         'price' => 150.00,
-        'description' => 'Blue buttoned shirt'
+        'description' => 'Blue buttoned shirt',
+        'condition' => 'M'
     ],
     [
         'name' => 'Kids Skirt',
         'image' => 'kids_skirt_lines.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 90.00,
-        'description' => 'Black and white skirt'
+        'description' => 'Black and white skirt',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women Dress',
         'image' => 'women_dress_dots.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'size' => 'S',
+        'price' => 250.00,
+        'description' => 'Blue dotted dress',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Men Jeans',
         'image' => 'men_jeans.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'size' => 'M',
+        'price' => 180.00,
+        'description' => 'Blue jeans',
+        'condition' => 'M'
     ],
     [
         'name' => 'Woman Casual Wear',
         'image' => 'kids_shirt_hearts.jpg',
         'size' => 'Shirt',
         'price' => 400.00,
-        'description' => 'Casual wear perfect for any occasion.'
+        'description' => 'Casual wear perfect for any occasion.',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Shirt',
+        'name' => 'Women Shirt',
         'image' => 'women_shirt_orange.jpg',
         'size' => 'Shirt',
         'price' => 300.00,
-        'description' => 'Stylish shirt for office or casual wear.'
+        'description' => 'Orange shirt',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Girls Outfit',
+        'name' => 'Kids Dress',
         'image' => 'kids_dress2.jpg',
-        'size' => 'Shirt',
+        'size' => 'XS',
         'price' => 350.00,
-        'description' => 'A perfect outfit for young girls.'
+        'description' => 'White dress',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'men_jacket.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'women_skirt_pink.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'kids_shirt_red.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'kids_pants_green.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'men_shirt_white.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'kids_sirt_orange.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'kids_shirt_white.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
         'name' => 'Woman Casual Wear',
         'image' => 'women_jacket_brown.jpg',
         'size' => 'Shirt',
         'price' => 400.00,
-        'description' => 'Casual wear perfect for any occasion.'
+        'description' => 'Casual wear perfect for any occasion.',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Shirt',
+        'name' => 'Women Shirt',
         'image' => 'woman_shirt_white.jpg',
-        'size' => 'Shirt',
-        'price' => 300.00,
-        'description' => 'Stylish shirt for office or casual wear.'
+        'size' => 'L',
+        'price' => 170.00,
+        'description' => 'White shirt',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Girls Outfit',
+        'name' => 'Women Shirt',
         'image' => 'women_shirt_lines.jpg',
-        'size' => 'Shirt',
-        'price' => 350.00,
-        'description' => 'A perfect outfit for young girls.'
+        'size' => 'M',
+        'price' => 120.00,
+        'description' => 'Shirt with lines',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women Shirt',
         'image' => 'women_shirt_black.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'size' => 'S',
+        'price' => 85.00,
+        'description' => 'Black shirt',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Men Jacket',
         'image' => 'men_jacket_purple.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'size' => 'M',
+        'price' => 450.00,
+        'description' => 'Purple hoodie',
+        'condition' => 'M'
     ],
     [
         'name' => 'Dress',
         'image' => 'women_shirt_grey',
         'size' => 'Shirt',
         'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'description' => 'A beautiful summer dress.',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids shirt',
         'image' => 'kids_shirt_blue.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'size' => 'S',
+        'price' => 95.00,
+        'description' => 'Blue shirt',
+        'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women Shirt',
         'image' => 'women_shirt_white.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.'
+        'size' => 'L',
+        'price' => 250.00,
+        'description' => 'White shirt',
+        'condition' => 'M'
     ]
 ];
 
