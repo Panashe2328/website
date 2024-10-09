@@ -1,6 +1,7 @@
 <?php 
 
-include 'connect.php';
+//include the database connection (DBConn.php)
+include 'dbconn.php';
 
 if(isset($_POST['signIn'])){
     $email = $_POST['email'];
