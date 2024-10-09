@@ -114,9 +114,9 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
-        'name' => 'Women Shirt',
+        'name' => 'Women',
         'image' => 'women_shirt_orange.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 300.00,
         'description' => 'Orange shirt',
         'condition' => 'good'
@@ -140,7 +140,7 @@ $clothing_items = [
     [
         'name' => 'Women',
         'image' => 'women_skirt_pink.jpg',
-        'size' => 'Shirt',
+        'size' => 'M',
         'price' => 140.00,
         'description' => 'Long skirt',
         'condition' => 'good'
@@ -180,10 +180,10 @@ $clothing_items = [
     [
         'name' => 'Kids',
         'image' => 'kids_shirt_white.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
-        'condition' => 'good'
+        'size' => 'S',
+        'price' => 200.00,
+        'description' => 'Grey shirt',
+        'condition' => 'new'
     ],
     [
         'name' => 'Women',
