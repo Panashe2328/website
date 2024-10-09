@@ -1,7 +1,4 @@
-<?php
-session_start();
-include("DBConn.php");
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
