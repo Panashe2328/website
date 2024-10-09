@@ -7,9 +7,6 @@ if (session_status() == PHP_SESSION_NONE)
 }
  include 'dbconn.php';
  
-// Enable error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // Initialize the cart session if it doesn't exist
 if (!isset($_SESSION['cart'])) {
@@ -270,11 +267,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         //add item to the cart using array_push() function
         array_push($_SESSION['cart'], $item);
 
-        // Debugging output to verify cart contents
-        echo "<pre>";
-        print_r($_SESSION['cart']); // Display the cart contents
-        echo "</pre>";
-
         // Redirect to avoid form re-submission
         header("Location: add_clothing.php");
         exit();
@@ -338,7 +330,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
             <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
             <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
 
-            <form method="post" action="add_clothing.php" onsubmit="showPopup('<?php echo number_format($item['price'], 2); ?>', this);">
+            <form method="post" action="add_clothing.php" onsubmit="showPopup(event, '<?php echo number_format($item['price'], 2); ?>', this);">
                 <input type="hidden" name="item_index" value="<?php echo $index; ?>">
                 <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
             </form>
@@ -360,7 +352,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 </footer>
 
 <script>
-    function showPopup(price, form) {
+    function showPopup(event, price, form) {
         // Prevent form submission
         event.preventDefault();
 
