@@ -90,7 +90,7 @@ INSERT INTO tblAdmin (admin_num, first_name, last_name, admin_email, password) V
 ('A1002', 'Bob', 'Davis', 'bob@admin.com', 'hashedpassword2');
 
 
-INSERT INTO tblClothes (clothes_category, clothes_description, price, size, condition) VALUES
+INSERT INTO tblClothes (clothes_id, image_url, clothes_category, clothes_description, price, size, condition) VALUES
 ('men', 'Men\'s T-Shirt', 19.99, 'M', 'new'),
 ('women', 'Women\'s Dress', 49.99, 'S', 'new'),
 ('kids', 'Kids\' Shorts', 12.99, 'XS', 'used'),
