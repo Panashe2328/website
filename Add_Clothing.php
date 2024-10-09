@@ -7,6 +7,9 @@ if (session_status() == PHP_SESSION_NONE)
 }
  include 'dbconn.php';
  
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Initialize the cart session if it doesn't exist
 if (!isset($_SESSION['cart'])) {
@@ -264,8 +267,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     if (isset($clothing_items[$item_index])) {
         $item = $clothing_items[$item_index];
 
-        // Add the item to the cart
+        //add item to the cart using array_push() function
         array_push($_SESSION['cart'], $item);
+
+        // Debugging output to verify cart contents
+        echo "<pre>";
+        print_r($_SESSION['cart']); // Display the cart contents
+        echo "</pre>";
 
         // Redirect to avoid form re-submission
         header("Location: add_clothing.php");
