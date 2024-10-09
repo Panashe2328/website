@@ -102,42 +102,49 @@ $clothing_items = [
     [
         'name' => 'Shirt',
         'image' => 'women_shirt_orange.jpg',
+        'size' => 'Shirt',
         'price' => 300.00,
         'description' => 'Stylish shirt for office or casual wear.'
     ],
     [
         'name' => 'Girls Outfit',
         'image' => 'kids_dress2.jpg',
+        'size' => 'Shirt',
         'price' => 350.00,
         'description' => 'A perfect outfit for young girls.'
     ],
     [
         'name' => 'Dress',
         'image' => 'men_jacket.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
     [
         'name' => 'Dress',
         'image' => 'women_skirt_pink.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
     [
         'name' => 'Dress',
         'image' => 'kids_shirt_red.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
     [
         'name' => 'Dress',
         'image' => 'kids_pants_green.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
     [
         'name' => 'Dress',
         'image' => 'men_shirt_white.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
