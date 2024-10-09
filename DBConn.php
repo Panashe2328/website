@@ -12,6 +12,9 @@ try {
     // Set PDO to throw exceptions on error
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Display connection success message
+    echo "<p>Connection successful!</p>";
+
     // Check if the table 'tblUser' exists
     $query = $db->query("SHOW TABLES LIKE 'tblUser'");
     
