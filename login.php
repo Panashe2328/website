@@ -1,11 +1,6 @@
 <?php
  session_start(); // Start the session
-require_once '<C:>
-<xampp>
-<htdocs>
-<website>
-<includes>dbconn.php'; 
-
+ include 'dbconn.php';
 if (isset($_POST['signIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];

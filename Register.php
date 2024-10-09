@@ -1,6 +1,6 @@
 <?php
-include 'dbconn.php'; // Include your database connection file
 session_start(); // Start the session
+include 'dbconn.php';
 
 if (isset($_POST['signUp'])) {
     $fName = $_POST['fName'];

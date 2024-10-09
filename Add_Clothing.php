@@ -2,6 +2,10 @@
 <?php
 session_start();
 
+ session_start(); // Start the session
+ include 'dbconn.php';
+ 
+
 // Initialize the cart session if it doesn't exist
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
