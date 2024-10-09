@@ -85,7 +85,7 @@ INSERT INTO tblUser (user_id, first_name, last_name, username, password, address
 
 
 
-INSERT INTO tblAdmin (admin_num, first_name, last_name, admin_email, password) VALUES
+INSERT INTO tblAdmin (admin_id, admin_num, first_name, last_name, admin_email, password) VALUES
 ('A1001', 'Alice', 'Brown', 'alice@admin.com', 'hashedpassword1'),
 ('A1002', 'Bob', 'Davis', 'bob@admin.com', 'hashedpassword2');
 
