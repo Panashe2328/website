@@ -42,5 +42,3 @@ CREATE TABLE tblClothes (
     size VARCHAR(10) NOT NULL, -- Size of the clothing item (e.g., S, M, L)
     condition ENUM('new', 'used') NOT NULL -- Condition of the clothing (new or used)
 );
-
-

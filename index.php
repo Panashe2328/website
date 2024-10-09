@@ -43,7 +43,9 @@ include("DBConn.php");
     <div class="header-icons">
         <i class="fas fa-search"></i>
         <i class="fas fa-heart"></i>
+        <a href="cart.php">
         <i class="fas fa-shopping-cart"></i>
+         </a>
         <i class="fas fa-user"></i>
     </div>
 </header>
