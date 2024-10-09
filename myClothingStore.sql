@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS tblUser (
     address VARCHAR(255) NOT NULL, 
     city VARCHAR(100) NOT NULL, 
     code VARCHAR(10), 
-    status ENUM('active', 'pending') NOT NULL, 
+    status ENUM('active', 'pending') NOT NULL,
+    role ENUM('user', 'admin') NOT NULL
 );
 
 --admin table
