@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
                 <tr>
                     <th>Image</th>
                     <th>Item Name</th>
+                    <th>Size</th>
                     <th>Description</th>
                     <th>Price</th>
                     <th>Remove</th>

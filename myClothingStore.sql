@@ -12,9 +12,15 @@ CREATE TABLE IF NOT EXISTS tblUser (
     address VARCHAR(255) NOT NULL, 
     city VARCHAR(100) NOT NULL, 
     code VARCHAR(10), 
+<<<<<<< HEAD
+    status ENUM('active', 'pending') NOT NULL, 
+    role ENUM('user', 'admin') NOT NULL  
+=======
     status ENUM('active', 'pending') NOT NULL,
     role ENUM('user', 'admin') NOT NULL
+>>>>>>> 939ab6bbfd9976343119befcf5eb0379ac55fc40
 );
+
 
 --admin table
 CREATE TABLE IF NOT EXISTS tblAdmin (
@@ -50,6 +56,7 @@ CREATE TABLE IF NOT EXISTS tblOrder (
     FOREIGN KEY (clothes_id) REFERENCES tblClothes(clothes_id)
 );
 
+<<<<<<< HEAD
 --insert data
 INSERT INTO tblUser (user_id, first_name, last_name, username, password, address, city, code, status) VALUES
 (101, 'Carol', 'Heinz', 'carol003', '$2a$04$rDzeLQd3dhzMDucN4zjeZepK1P2Zbj.RCKopn1suo5K2noZ.xDlFS', '111 Nellie Rd', 'Cape Town', '7100', 'active'),
