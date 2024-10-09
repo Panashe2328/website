@@ -226,11 +226,11 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women',
         'image' => 'women_shirt_grey.jpg',
         'size' => 'Shirt',
         'price' => 60.00,
-        'description' => 'A beautiful summer dress.',
+        'description' => 'Grey sirt',
         'condition' => 'good'
     ],
     [
