@@ -49,16 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
         <p>Your cart is empty.</p>
     <?php else: ?>
         <table>
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Item Name</th>
-                    <th>Size</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Remove</th>
-                </tr>
-            </thead>
+           
             <tbody>
                 <?php
                 $total = 0;
@@ -66,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
                     $total += $item['price'];
                 ?>
                     <tr>
-                        <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" width="100"></td>
+                        <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" width="150" height="150"></td>
                         <td><?php echo htmlspecialchars($item['name']); ?></td>
                         <td><?php echo htmlspecialchars($item['description']); ?></td>
                         <td>R <?php echo number_format($item['price'], 2); ?></td>
