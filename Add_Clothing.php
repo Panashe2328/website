@@ -10,7 +10,7 @@ if (!isset($_SESSION['cart'])) {
 // Predefined clothing items array with image paths
 $clothing_items = [
     [
-        'name' => 'Women Shirt',
+        'name' => 'Women',
         'image' => 'black_shirt.jpg',
         'size' => 'M',
         'price' => 125.00,
@@ -18,7 +18,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Men Pants',
+        'name' => 'Men',
         'image' => 'men_pants_brown.jpg',
         'size' => 'S',
         'price' => 250.00,
@@ -26,7 +26,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Kids Dress',
+        'name' => 'Kids',
         'image' => 'kids_dress1.jpg',
         'size' => 'S',
         'price' => 165.00,
@@ -34,7 +34,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Dress',
+        'name' => 'Women',
         'image' => 'women_dress_blue.jpg',
         'size' => 'S',
         'price' => 185.00,
@@ -42,7 +42,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Men Shirt',
+        'name' => 'Men',
         'image' => 'men_coca.jpg',
         'size' => 'M',
         'price' => 90.00,
@@ -50,7 +50,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Dress',
+        'name' => 'Women',
         'image' => 'women_dress_pink.jpg',
         'size' => 'S',
         'price' => 150.00,
@@ -58,7 +58,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Kids Shirt',
+        'name' => 'Kids',
         'image' => 'kids_shirt_grey.jpg',
         'size' => 'XS',
         'price' => 80.00,
@@ -66,7 +66,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Skirt',
+        'name' => 'Women',
         'image' => 'women_skirt.jpg',
         'size' => 'S',
         'price' => 120.00,
@@ -74,7 +74,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Men Shirt',
+        'name' => 'Men',
         'image' => 'men_shirt_blue.jpg',
         'size' => 'M',
         'price' => 150.00,
@@ -82,7 +82,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Kids Skirt',
+        'name' => 'Kids',
         'image' => 'kids_skirt_lines.jpg',
         'size' => 'S',
         'price' => 90.00,
@@ -90,7 +90,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Dress',
+        'name' => 'Women',
         'image' => 'women_dress_dots.jpg',
         'size' => 'S',
         'price' => 250.00,
@@ -98,7 +98,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Men Jeans',
+        'name' => 'Men',
         'image' => 'men_jeans.jpg',
         'size' => 'M',
         'price' => 180.00,
@@ -106,11 +106,11 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Woman Casual Wear',
+        'name' => 'Kids',
         'image' => 'kids_shirt_hearts.jpg',
-        'size' => 'Shirt',
-        'price' => 400.00,
-        'description' => 'Casual wear perfect for any occasion.',
+        'size' => 'S',
+        'price' => 95.00,
+        'description' => 'Shirt with hearts',
         'condition' => 'M'
     ],
     [
@@ -122,7 +122,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Kids Dress',
+        'name' => 'Kids',
         'image' => 'kids_dress2.jpg',
         'size' => 'XS',
         'price' => 350.00,
@@ -130,55 +130,55 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Men',
         'image' => 'men_jacket.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
+        'size' => 'L',
+        'price' => 400.00,
+        'description' => 'Green jacket',
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Women',
         'image' => 'women_skirt_pink.jpg',
         'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
+        'price' => 140.00,
+        'description' => 'Long skirt',
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids',
         'image' => 'kids_shirt_red.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
+        'size' => 'S',
+        'price' => 115.00,
+        'description' => 'Long sleeve red shirt',
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids',
         'image' => 'kids_pants_green.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
+        'size' => 'S',
+        'price' => 125.00,
+        'description' => 'Green pants',
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Men',
         'image' => 'men_shirt_white.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
+        'size' => 'L',
+        'price' => 150.00,
+        'description' => 'White shirt',
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids',
         'image' => 'kids_sirt_orange.jpg',
-        'size' => 'Shirt',
-        'price' => 500.00,
-        'description' => 'A beautiful summer dress.',
+        'size' => 'M',
+        'price' => 90.00,
+        'description' => 'Orange skirt',
         'condition' => 'M'
     ],
     [
-        'name' => 'Dress',
+        'name' => 'Kids Shirt',
         'image' => 'kids_shirt_white.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
@@ -186,15 +186,15 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Woman Casual Wear',
+        'name' => 'Women Jacket',
         'image' => 'women_jacket_brown.jpg',
-        'size' => 'Shirt',
-        'price' => 400.00,
-        'description' => 'Casual wear perfect for any occasion.',
+        'size' => 'M',
+        'price' => 250.00,
+        'description' => 'Light brown jacket',
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Shirt',
+        'name' => 'Women',
         'image' => 'woman_shirt_white.jpg',
         'size' => 'L',
         'price' => 170.00,
@@ -202,7 +202,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Shirt',
+        'name' => 'Women',
         'image' => 'women_shirt_lines.jpg',
         'size' => 'M',
         'price' => 120.00,
@@ -210,7 +210,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Shirt',
+        'name' => 'Women',
         'image' => 'women_shirt_black.jpg',
         'size' => 'S',
         'price' => 85.00,
@@ -218,23 +218,23 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Men Jacket',
+        'name' => 'Men',
         'image' => 'men_jacket_purple.jpg',
         'size' => 'M',
         'price' => 450.00,
-        'description' => 'Purple hoodie',
+        'description' => 'Purple jacket',
         'condition' => 'M'
     ],
     [
         'name' => 'Dress',
-        'image' => 'women_shirt_grey',
+        'image' => 'women_shirt_grey.jpg',
         'size' => 'Shirt',
-        'price' => 500.00,
+        'price' => 60.00,
         'description' => 'A beautiful summer dress.',
         'condition' => 'M'
     ],
     [
-        'name' => 'Kids shirt',
+        'name' => 'Kids',
         'image' => 'kids_shirt_blue.jpg',
         'size' => 'S',
         'price' => 95.00,
@@ -242,7 +242,7 @@ $clothing_items = [
         'condition' => 'M'
     ],
     [
-        'name' => 'Women Shirt',
+        'name' => 'Women',
         'image' => 'women_shirt_white.jpg',
         'size' => 'L',
         'price' => 250.00,
@@ -294,8 +294,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
             <div class="clothing-item">
                 <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
                 <h2><?php echo htmlspecialchars($item['name']); ?></h2>
+                <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
                 <p><?php echo htmlspecialchars($item['description']); ?></p>
                 <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
+                <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
 
                 <form method="post" action="add_clothing.php">
                     <input type="hidden" name="item_index" value="<?php echo $index; ?>">
