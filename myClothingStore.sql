@@ -85,9 +85,14 @@ INSERT INTO tblUser (user_id, first_name, last_name, username, password, address
 
 
 
-INSERT INTO tblAdmin (admin_id, admin_num, first_name, last_name, admin_email, password) VALUES
-('A1001', 'Alice', 'Brown', 'alice@admin.com', 'hashedpassword1'),
-('A1002', 'Bob', 'Davis', 'bob@admin.com', 'hashedpassword2');
+INSERT INTO tblAdmin (admin_id, admin_num, first_name, last_name, admin_email, password) 
+VALUES
+(1, '11011', 'Diana', 'Simpson', 'dianasimpson@yahoo.com', '5d41402abc4b2a76b9719d911017c592'),
+(2, '11012', 'Sam', 'Palmer', 'sampalmer@gmail.com', '098f6bcd4621d373cade4e832627b4f6'),
+(3, '11013', 'Paula', 'Peters', 'paulapeters@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b'),
+(4, '11014', 'Jane', 'Smit', 'janesmit@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(5, '11015', 'Kara', 'Johnson', 'karajohnson@gmail.com', 'e99a18c428cb38d5f260853678922e03');
+
 
 
 INSERT INTO tblClothes (clothes_id, image_url, clothes_category, clothes_description, price, size, condition) VALUES
