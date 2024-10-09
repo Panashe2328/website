@@ -276,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /*  pop-up */
+        /*  pop-up styling */
         .popup {
             display: none;
             position: fixed;
