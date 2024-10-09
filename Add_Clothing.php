@@ -11,78 +11,91 @@ $clothing_items = [
     [
         'name' => 'Women Shirt',
         'image' => 'black_shirt.jpg',
+        'size' => 'Shirt',
         'price' => 125.00,
         'description' => 'Black t-shirt'
     ],
     [
         'name' => 'Men Pants',
         'image' => 'men_pants_brown.jpg',
+        'size' => 'Shirt',
         'price' => 250.00,
         'description' => 'Brown formal pants'
     ],
     [
         'name' => 'Kids Dress',
         'image' => 'kids_dress1.jpg',
+        'size' => 'Shirt',
         'price' => 165.00,
         'description' => 'Colourful dress'
     ],
     [
         'name' => 'Women Dress',
         'image' => 'women_dress_blue.jpg',
+        'size' => 'Shirt',
         'price' => 185.00,
         'description' => 'Blue summer dress'
     ],
     [
         'name' => 'Men Shirt',
         'image' => 'men_coca.jpg',
+        'size' => 'Shirt',
         'price' => 90.00,
         'description' => 'A white Coca-Cola t-shirt'
     ],
     [
         'name' => 'Women Dress',
         'image' => 'women_dress_pink.jpg',
+        'size' => 'Shirt',
         'price' => 150.00,
         'description' => 'Pink summer dress'
     ],
     [
         'name' => 'Kids Shirt',
         'image' => 'kids_shirt_grey.jpg',
+        'size' => 'Shirt',
         'price' => 80.00,
         'description' => 'Grey t-shirt with animals'
     ],
     [
         'name' => 'Women Skirt',
         'image' => 'women_skirt.jpg',
+        'size' => 'Shirt',
         'price' => 120.00,
         'description' => 'Red skirt'
     ],
     [
         'name' => 'Men Shirt',
         'image' => 'men_shirt_blue.jpg',
+        'size' => 'Shirt',
         'price' => 150.00,
         'description' => 'Blue buttoned shirt'
     ],
     [
         'name' => 'Kids Skirt',
         'image' => 'kids_skirt_lines.jpg',
+        'size' => 'Shirt',
         'price' => 90.00,
         'description' => 'Black and white skirt'
     ],
     [
         'name' => 'Dress',
         'image' => 'women_dress_dots.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
     [
         'name' => 'Dress',
         'image' => 'men_jeans.jpg',
+        'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.'
     ],
     [
         'name' => 'Woman Casual Wear',
         'image' => 'kids_shirt_hearts.jpg',
+        'size' => 'Shirt',
         'price' => 400.00,
         'description' => 'Casual wear perfect for any occasion.'
     ],
@@ -149,6 +162,7 @@ $clothing_items = [
     [
         'name' => 'Shirt',
         'image' => 'woman_shirt_white.jpg',
+        'size' => 'Shirt',
         'price' => 300.00,
         'description' => 'Stylish shirt for office or casual wear.'
     ],

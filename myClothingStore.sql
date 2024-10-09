@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS tblAdmin (
 --clothes table
 CREATE TABLE IF NOT EXISTS tblClothes (
     clothes_id INT PRIMARY KEY AUTO_INCREMENT,
+    image_url VARCHAR(100) NOT NULL,
     clothes_category ENUM('woman', 'men', 'kids') NOT NULL,
     clothes_description VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
@@ -49,7 +50,6 @@ CREATE TABLE IF NOT EXISTS tblOrder (
     FOREIGN KEY (clothes_id) REFERENCES tblClothes(clothes_id)
 );
 
-<<<<<<< HEAD
 --insert data
 INSERT INTO tblUser (user_id, first_name, last_name, username, password, address, city, code, status) VALUES
 (101, 'Carol', 'Heinz', 'carol003', '$2a$04$rDzeLQd3dhzMDucN4zjeZepK1P2Zbj.RCKopn1suo5K2noZ.xDlFS', '111 Nellie Rd', 'Cape Town', '7100', 'active'),
@@ -89,7 +89,7 @@ INSERT INTO tblAdmin (admin_num, first_name, last_name, admin_email, password) V
 ('A1002', 'Bob', 'Davis', 'bob@admin.com', 'hashedpassword2');
 
 --insert data
-INSERT INTO tblClothes (clothes_category, clothes_description, price, size, condition) VALUES
+INSERT INTO tblClothes (clothes_category, image_url, clothes_description, price, size, condition) VALUES
 ('men', 'Men\'s T-Shirt', 19.99, 'M', 'new'),
 ('women', 'Women\'s Dress', 49.99, 'S', 'new'),
 ('kids', 'Kids\' Shorts', 12.99, 'XS', 'used'),
@@ -100,13 +100,3 @@ INSERT INTO tblClothes (clothes_category, clothes_description, price, size, cond
 INSERT INTO tblOrder (user_id, clothes_id, clothes_purchased, order_date, status, total_price) VALUES
 (1, 1, 'Men\'s T-Shirt', '2024-10-10', 'pending', 19.99),
 (2, 2, 'Women\'s Dress', '2024-10-09', 'shipped', 49.99),
-=======
-CREATE TABLE tblClothes (
-    clothes_id INT PRIMARY KEY AUTO_INCREMENT, -- Primary Key, auto-incrementing
-    clothes_category ENUM('woman', 'men', 'kids') NOT NULL, -- Category of the clothing
-    clothes_description VARCHAR(255) NOT NULL, -- Description of the clothing item
-    price DECIMAL(10,2) NOT NULL, -- Price of the clothing item
-    size VARCHAR(10) NOT NULL, -- Size of the clothing item (e.g., S, M, L)
-    condition ENUM('new', 'used') NOT NULL -- Condition of the clothing (new or used)
-);
->>>>>>> 81cb65940f2d67456745cce442d02766f55dd773
