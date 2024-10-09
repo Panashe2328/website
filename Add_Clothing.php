@@ -275,6 +275,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /*  pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -308,9 +333,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     </div>
 </main>
 
+<!-- Pop-up and overlay -->
+<div class="overlay" id="overlay" onclick="hidePopup()"></div>
+<div class="popup" id="popup">
+    <h2>Item Added to Cart!</h2>
+    <p>The price of the item is R <span id="popup-price"></span>.</p>
+    <button onclick="hidePopup()">Close</button>
+</div>
+
 <footer>
     <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
 </footer>
+
+<script>
+    function showPopup(price, form) {
+        // Prevent form submission
+        event.preventDefault();
+
+        // Show the overlay and the pop-up
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('popup-price').innerText = price;
+
+        // Simulate form submission after showing the pop-up
+        setTimeout(() => {
+            form.submit();
+        }, 3000); // Adjust the delay as needed
+    }
+
+    function hidePopup() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
