@@ -1,0 +1,30 @@
+1, 101, 11011, Black t-shirt, 2024-10-01, 2, 250.00, delivered
+2, 102, 11012, Brown formal pants, 2024-10-02, 1, 250.00, shipped
+3, 103, 11013, Colourful dress, 2024-10-03, 3, 345.00, delivered
+4, 104, 11014, dress, 2024-10-04, 1, 115.00, pending
+5, 105, 11015, A white Coca-Cola t-shirt, 2024-10-05, 2, 180.00, pending
+6, 106, 11016, Pink summer dress, 2024-10-06, 1, 150.00, delivered
+7, 107, 11017, Grey t-shirt with animals, 2024-10-07, 5, 400.00, shipped
+8, 108, 11018, Red skirt, 2024-10-08, 2, 240.00, pending
+9, 109, 11019, Blue buttoned shirt, 2024-10-09, 3, 450.00, delivered
+10, 110, 11020, Black and white skirt, 2024-10-10, 1, 90.00, pending
+11, 111, 11021, Blue dotted dress, 2024-10-11, 2, 500.00, delivered
+12, 112, 11022, Blue jeans, 2024-10-12, 1, 180.00, shipped
+13, 113, 11023, Shirt with hearts, 2024-10-13, 2, 190.00, pending
+14, 114, 11024, Orange shirt, 2024-10-14, 3, 900.00, delivered
+15, 115, 11025, White dress, 2024-10-15, 1, 350.00, pending
+16, 116, 11026, Green jacket, 2024-10-16, 1, 400.00, delivered
+17, 117, 11027, Long skirt, 2024-10-17, 2, 280.00, shipped
+18, 118, 11028, Long sleeve red shirt, 2024-10-18, 2, 230.00, pending
+19, 119, 11029, Green pants, 2024-10-19, 3, 375.00, delivered
+20, 120, 11030, White shirt, 2024-10-20, 2, 300.00, pending
+21, 121, 11031, Orange skirt, 2024-10-21, 1, 90.00, delivered
+22, 122, 11032, dress, 2024-10-22, 2, 230.00, shipped
+23, 123, 11033, Grey shirt, 2024-10-23, 1, 200.00, pending
+24, 124, 11034, Light brown jacket, 2024-10-24, 3, 510.00, delivered
+25, 125, 11035, White shirt, 2024-10-25, 2, 340.00, pending
+26, 126, 11036, Shirt with lines, 2024-10-26, 1, 85.00, delivered
+27, 127, 11037, Purple jacket, 2024-10-27, 1, 450.00, shipped
+28, 128, 11038, dress, 2024-10-28, 2, 120.00, pending
+29, 129, 11040, Blue shirt, 2024-10-29, 1, 95.00, delivered
+30, 130, 11041, White shirt, 2024-10-30, 1, 250.00, pending
