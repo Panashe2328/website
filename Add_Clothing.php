@@ -315,22 +315,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 <main>
     <h1>Shop Clothing</h1>
     <div class="clothing-container">
-        <?php foreach ($clothing_items as $index => $item): ?>
-            <div class="clothing-item">
-                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
-                <h2><?php echo htmlspecialchars($item['name']); ?></h2>
-                <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
-                <p><?php echo htmlspecialchars($item['description']); ?></p>
-                <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
-                <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
+    <?php foreach ($clothing_items as $index => $item): ?>
+        <div class="clothing-item">
+            <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
+            <h2><?php echo htmlspecialchars($item['name']); ?></h2>
+            <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
+            <p><?php echo htmlspecialchars($item['description']); ?></p>
+            <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
+            <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
 
-                <form method="post" action="add_clothing.php">
-                    <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-                    <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
-                </form>
-            </div>
-        <?php endforeach; ?>
-    </div>
+            <form method="post" action="add_clothing.php" onsubmit="showPopup('<?php echo number_format($item['price'], 2); ?>', this);">
+                <input type="hidden" name="item_index" value="<?php echo $index; ?>">
+                <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
+            </form>
+        </div>
+    <?php endforeach; ?>
+</div>
 </main>
 
 <!-- Pop-up and overlay -->
