@@ -365,6 +365,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         setTimeout(() => {
             form.submit();
         }, 3000); // Adjust the delay as needed
+        return false; // Prevent form submission immediately
     }
 
     function hidePopup() {
