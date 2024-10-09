@@ -1,0 +1,31 @@
+11011, _images/black_shirt.jpg, Women, Black t-shirt, 125.00, M, good
+11012, _images/men_pants_brown.jpg, Men, Brown formal pants, 250.00, S, new
+11013, _images/kids_dress1.jpg, Kids, Colourful dress, 115.00, S, good
+11014, _images/woman_dress_blue.jpg, Women, dress, 115.00, S, good
+11015, _images/men_coca.jpg, Men, A white Coca-Cola t-shirt, 90.00, M, good
+11016, _images/women_dress_pink.jpg, Women, Pink summer dress, 150.00, S, new
+11017, _images/kids_shirt_grey.jpg, Kids, Grey t-shirt with animals, 80.00, XS, new
+11018, _images/women_skirt.jpg, Women, Red skirt, 120.00, S, good
+11019, _images/men_shirt_blue.jpg, Men, Blue buttoned shirt, 150.00, M, new
+11020, _images/kids_skirt_lines.jpg, Kids, Black and white skirt, 90.00, S, good
+11021, _images/women_dress_dots.jpg, Women, Blue dotted dress, 250.00, S, new
+11022, _images/men_jeans.jpg, Men, Blue jeans, 180.00, M, good
+11023, _images/kids_shirt_hearts.jpg, Kids, Shirt with hearts, 95.00, S, new
+11024, _images/women_shirt_orange.jpg, Women, Orange shirt, 300.00, S, good
+11025, _images/kids_dress_2.jpg, Kids, White dress, 350.00, XS, good
+11026, _images/men_jacket.jpg, Men, Green jacket, 400.00, L, new
+11027, _images/women_skirt_pink.jpg, Women, Long skirt,140.00, M, good
+11028, _images/kids_shirt_red.jpg, Kids, Long sleeve red shirt, 115.00, S, new
+11029, _images/kids_pants_green.jpg, Kids, Green pants, 125.00, S, new
+11030, _images/men_shirt_white.jpg, Men, White shirt, 150.00, L, good
+11031, _images/kids_sirt_orange.jpg, Kids, Orange skirt, 90.00, M, new
+11032, _images/kids_shirt_white.jpg, Kids, dress, 115.00, S, good
+11033, _images/women_jacket_brown.jpg, Kids, Grey shirt, 200.00, S, new
+11034, _images/women_shirt_white.jpg, Women, Light brown jacket, 250.00, M, new
+11035, _images/women_shirt_lines.jpg, Women, White shirt, 170.00, L, good
+11036, _images/women_shirt_black.jpg, Women, Shirt with lines, 85.00, S, good
+11037, _images/men_jacket_purple.jpg, Men, Purple jacket, 450.00, M, new
+11038, _images/women_shirt_grey.jpg, women, dress, 60.00, S, good
+11040, _images/kids_shirt_blue.jpg, Kids, Blue shirt, 95.00, S, new
+11041, _images/women_shirt_white.jpg, Women, White shirt, 250.00, L, new
+
