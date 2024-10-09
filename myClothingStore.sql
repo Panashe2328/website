@@ -12,8 +12,13 @@ CREATE TABLE IF NOT EXISTS tblUser (
     address VARCHAR(255) NOT NULL, 
     city VARCHAR(100) NOT NULL, 
     code VARCHAR(10), 
+<<<<<<< HEAD
     status ENUM('active', 'pending') NOT NULL, 
     role ENUM('user', 'admin') NOT NULL  
+=======
+    status ENUM('active', 'pending') NOT NULL,
+    role ENUM('user', 'admin') NOT NULL
+>>>>>>> 939ab6bbfd9976343119befcf5eb0379ac55fc40
 );
 
 
