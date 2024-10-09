@@ -21,7 +21,7 @@ try {
     if ($query->rowCount() > 0) {
         echo "Table 'tblUser' exists in the database.";
     } else {
-        echo "Table 'tblUser' does not exist.";
+        echo "Table 'tblUser' does not exist.<br>";
     }
 
     //check if the table 'tblAdmin' exists
