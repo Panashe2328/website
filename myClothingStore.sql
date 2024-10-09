@@ -19,17 +19,18 @@ CREATE TABLE IF NOT EXISTS tblUser (
 
 --admin table
 CREATE TABLE IF NOT EXISTS tblAdmin (
-    admin_id INT PRIMARY KEY AUTO_INCREMENT, -- Primary Key, auto-incrementing
-    admin_num VARCHAR(10) NOT NULL UNIQUE, -- Unique admin number
-    first_name VARCHAR(50) NOT NULL, -- Admin's first name
-    last_name VARCHAR(50) NOT NULL,  -- Admin's last name
-    admin_email VARCHAR(100) NOT NULL UNIQUE, -- Admin's email address
-    password VARCHAR(255) NOT NULL -- Hashed password for security
+    admin_id INT PRIMARY KEY AUTO_INCREMENT, 
+    admin_num VARCHAR(10) NOT NULL UNIQUE, 
+    first_name VARCHAR(50) NOT NULL, 
+    last_name VARCHAR(50) NOT NULL, 
+    admin_email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL 
 );
 
 --clothes table
 CREATE TABLE IF NOT EXISTS tblClothes (
     clothes_id INT PRIMARY KEY AUTO_INCREMENT,
+    image_url VARCAR(255) NOT NULL,
     clothes_category ENUM('woman', 'men', 'kids') NOT NULL,
     clothes_description VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
@@ -99,4 +100,4 @@ INSERT INTO tblClothes (clothes_category, clothes_description, price, size, cond
 --insert data
 INSERT INTO tblOrder (user_id, clothes_id, clothes_purchased, order_date, status, total_price) VALUES
 (1, 1, 'Men\'s T-Shirt', '2024-10-10', 'pending', 19.99),
-(2, 2, 'Women\'s Dress', '2024-10-09', 'shipped', 49.99),
+(2, 2, 'Women\'s Dress', '2024-10-09', 'shipped', 49.99);

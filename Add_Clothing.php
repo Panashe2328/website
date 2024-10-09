@@ -228,7 +228,7 @@ $clothing_items = [
     [
         'name' => 'Women',
         'image' => 'women_shirt_grey.jpg',
-        'size' => 'Shirt',
+        'size' => 'S',
         'price' => 60.00,
         'description' => 'Grey sirt',
         'condition' => 'good'
