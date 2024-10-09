@@ -15,7 +15,7 @@ $clothing_items = [
         'size' => 'M',
         'price' => 125.00,
         'description' => 'Black t-shirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Men',
@@ -23,7 +23,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 250.00,
         'description' => 'Brown formal pants',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Kids',
@@ -31,7 +31,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 165.00,
         'description' => 'Colourful dress',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Women',
@@ -39,7 +39,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 185.00,
         'description' => 'Blue summer dress',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Men',
@@ -47,7 +47,7 @@ $clothing_items = [
         'size' => 'M',
         'price' => 90.00,
         'description' => 'A white Coca-Cola t-shirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Women',
@@ -55,7 +55,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 150.00,
         'description' => 'Pink summer dress',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Kids',
@@ -63,7 +63,7 @@ $clothing_items = [
         'size' => 'XS',
         'price' => 80.00,
         'description' => 'Grey t-shirt with animals',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Women',
@@ -71,7 +71,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 120.00,
         'description' => 'Red skirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Men',
@@ -79,7 +79,7 @@ $clothing_items = [
         'size' => 'M',
         'price' => 150.00,
         'description' => 'Blue buttoned shirt',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Kids',
@@ -87,7 +87,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 90.00,
         'description' => 'Black and white skirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Women',
@@ -95,7 +95,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 250.00,
         'description' => 'Blue dotted dress',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Men',
@@ -103,7 +103,7 @@ $clothing_items = [
         'size' => 'M',
         'price' => 180.00,
         'description' => 'Blue jeans',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Kids',
@@ -111,7 +111,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 95.00,
         'description' => 'Shirt with hearts',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Women Shirt',
@@ -119,7 +119,7 @@ $clothing_items = [
         'size' => 'Shirt',
         'price' => 300.00,
         'description' => 'Orange shirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Kids',
@@ -127,7 +127,7 @@ $clothing_items = [
         'size' => 'XS',
         'price' => 350.00,
         'description' => 'White dress',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Men',
@@ -135,7 +135,7 @@ $clothing_items = [
         'size' => 'L',
         'price' => 400.00,
         'description' => 'Green jacket',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Women',
@@ -143,7 +143,7 @@ $clothing_items = [
         'size' => 'Shirt',
         'price' => 140.00,
         'description' => 'Long skirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Kids',
@@ -151,7 +151,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 115.00,
         'description' => 'Long sleeve red shirt',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Kids',
@@ -159,7 +159,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 125.00,
         'description' => 'Green pants',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Men',
@@ -167,7 +167,7 @@ $clothing_items = [
         'size' => 'L',
         'price' => 150.00,
         'description' => 'White shirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Kids',
@@ -175,23 +175,23 @@ $clothing_items = [
         'size' => 'M',
         'price' => 90.00,
         'description' => 'Orange skirt',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
-        'name' => 'Kids Shirt',
+        'name' => 'Kids',
         'image' => 'kids_shirt_white.jpg',
         'size' => 'Shirt',
         'price' => 500.00,
         'description' => 'A beautiful summer dress.',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
-        'name' => 'Women Jacket',
+        'name' => 'Women',
         'image' => 'women_jacket_brown.jpg',
         'size' => 'M',
         'price' => 250.00,
         'description' => 'Light brown jacket',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Women',
@@ -199,7 +199,7 @@ $clothing_items = [
         'size' => 'L',
         'price' => 170.00,
         'description' => 'White shirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Women',
@@ -207,7 +207,7 @@ $clothing_items = [
         'size' => 'M',
         'price' => 120.00,
         'description' => 'Shirt with lines',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Women',
@@ -215,7 +215,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 85.00,
         'description' => 'Black shirt',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Men',
@@ -223,7 +223,7 @@ $clothing_items = [
         'size' => 'M',
         'price' => 450.00,
         'description' => 'Purple jacket',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Dress',
@@ -231,7 +231,7 @@ $clothing_items = [
         'size' => 'Shirt',
         'price' => 60.00,
         'description' => 'A beautiful summer dress.',
-        'condition' => 'M'
+        'condition' => 'good'
     ],
     [
         'name' => 'Kids',
@@ -239,7 +239,7 @@ $clothing_items = [
         'size' => 'S',
         'price' => 95.00,
         'description' => 'Blue shirt',
-        'condition' => 'M'
+        'condition' => 'new'
     ],
     [
         'name' => 'Women',
@@ -247,7 +247,7 @@ $clothing_items = [
         'size' => 'L',
         'price' => 250.00,
         'description' => 'White shirt',
-        'condition' => 'M'
+        'condition' => 'new'
     ]
 ];
 
