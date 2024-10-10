@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
         <div>
             <label for="email">Email:</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email">
         </div>
 
         <div>
