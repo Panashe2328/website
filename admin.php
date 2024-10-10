@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('dbconn.php'); // Ensure you include your database connection
+include ('DBConn.php'); // Ensure you include your database connection
 
 // Ensure the user is logged in and is an admin
 if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'Admin') {
