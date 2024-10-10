@@ -1,6 +1,13 @@
 <?php 
 session_start();
+<<<<<<< HEAD
 include 'dbconn.php'; // establishes the database connection
+=======
+
+
+include 'DBConn.php'; // establishes the database connection
+
+>>>>>>> c75cbcb29879bebf9e8397b924e1e839aedcda95
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
@@ -11,24 +18,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $password = $_POST['password'];
     $city = $_POST['city'] ?? ''; // Optional for admin
     $code = $_POST['code'] ?? ''; // Optional for admin
-    $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
     $role = $_POST['role']; // Comes from the form (dropdown)
+    
+    // Set status based on the role
+    $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
 
     // Hash the password for security
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     try {
         // Choose the table based on the role
-        // Choose the table based on the role
-if ($role == 'user') {
-    // Insert into tblUser for regular users
-    $query = "INSERT INTO tblUser (first_name, last_name, email, username, password, city, code, status, role) 
-              VALUES (:fName, :lName, :email, :username, :hashedPassword, :city, :code, :status, :role)";
-} else if ($role == 'admin') {
-    // Insert into tblAdmin for admin users
-    $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
-              VALUES (:fName, :lName, :email, :hashedPassword)";
-}
+        if ($role == 'user') {
+            // Insert into tblUser for regular users
+            $query = "INSERT INTO tblUser (first_name, last_name, email, username, password, city, code, status, role) 
+                      VALUES (:fName, :lName, :email, :username, :hashedPassword, :city, :code, :status, :role)";
+        } else if ($role == 'admin') {
+            // Insert into tblAdmin for admin users
+            $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
+                      VALUES (:fName, :lName, :email, :hashedPassword)";
+        }
 
         $stmt = $db->prepare($query);
 
@@ -40,13 +48,10 @@ if ($role == 'user') {
 
         if ($role == 'user') {
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':address', $address);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
             $stmt->bindParam(':status', $status);
             $stmt->bindParam(':role', $role);
-        } else if ($role == 'admin') {
-            $stmt->bindParam(':admin_num', $admin_num);
         }
 
         // Execute the query
@@ -55,9 +60,9 @@ if ($role == 'user') {
         // Set a session success message and redirect based on role
         $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
         if ($role == 'admin') {
-            header("Location: admin_dashboard.php"); // Redirect to the admin dashboard
+            header("Location: http://localhost/website/admin_dashboard.php"); // Redirect to the admin dashboard
         } else {
-            header("Location:index.php ");
+            header("Location:index.php");
         }
         exit();
 
@@ -66,6 +71,7 @@ if ($role == 'user') {
         $_SESSION['error'] = "Error: " . $e->getMessage();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
