@@ -148,6 +148,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         </div>
 
         <div>
+            <label for="address">Address (for users):</label>
+            <input type="text" name="address">
+        </div>
+
+
+        <div>
             <label for="city">City (for users):</label>
             <input type="text" name="city">
         </div>
