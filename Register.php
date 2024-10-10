@@ -1,8 +1,7 @@
 <?php
 session_start();
-<<<<<<< HEAD
 
-// Database connection using PDO
+include 'dbconn.php';
 $hostname = "localhost";
 $username = "root";
 $password = "";
@@ -38,6 +37,21 @@ try {
                       VALUES (:fName, :lName, :email, :hashedPassword)";
             $stmt = $db->prepare($query);
         }
+        /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    $city = $_POST['city'];
+    $code = $_POST['code'];
+    $status = 'active'; // or set based on your form
+    $role = $_POST['role']; // 'user' or 'admin'
+
+    $stmt = $db->prepare("INSERT INTO tblUser (first_name, last_name, username, password, city, code, status, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$first_name, $last_name, $username, $password, $city, $code, $status, $role]);
+    echo "User registered successfully!";
+}
+*/
 
         // Bind common parameters
         $stmt->bindParam(':role', $role);
@@ -92,8 +106,6 @@ try {
     header("Location: register.php");
     exit();
 }
-=======
->>>>>>> 4b4fbe53b44898b2479212c3e5153f4825700041
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +151,6 @@ try {
     </style>
 </head>
 <body>
-<<<<<<< HEAD
 <header>
     <!-- Navigation and Logo -->
 </header>
@@ -214,12 +225,6 @@ try {
     </form>
 </div>
 
-=======
-    <div class="container">
-        <h1>Choose Registration Type</h1>
-        <button onclick="window.location.href='user_signup.php'">Register as User</button>
-        <button onclick="window.location.href='admin_signup.php'">Register as Admin</button>
->>>>>>> 4b4fbe53b44898b2479212c3e5153f4825700041
     </div>
 </body>
 </html>
