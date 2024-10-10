@@ -1,6 +1,6 @@
 <?php
 //database connection details
-$hostname = "127.0.0.1"; // Use the IP address if localhost doesn't work
+$hostname = "localhost"; // Use the IP address if localhost doesn't work
 $username = "root";
 $password = "";
 $database = "clothingstore";
