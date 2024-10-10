@@ -495,8 +495,7 @@ add_clothing styling so that scrolling is minimized
         flex: 1 1 100%; /* 1 item in a row */
     }
 }
-
-/* General Body Styles */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #e9ecef;
@@ -515,95 +514,97 @@ body {
     margin-top: 50px;
 }
 
-/* Styles for the "Sign Up" and "Sign In" options */
-.switch-option {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.switch-option a {
-    color: #007BFF; /* Link color */
-    text-decoration: none;
-}
-
-.switch-option a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
-/* Form Container */
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Form Title */
 .form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
+    padding: 1.3rem;
+    margin-bottom: 0.4rem;
 }
 
-/* Input Group */
+/* Input Styles */
+input {
+    color: inherit;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #757575;
+    padding-left: 1.5rem;
+    font-size: 15px;
+}
+
 .input-group {
-    margin-bottom: 15px;
+    padding: 1% 0;
     position: relative;
 }
 
-.input-group label {
+.input-group i {
     position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #666;
-    transition: all 0.3s ease;
+    color: black;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    padding-left: 40px; /* Space for the icon */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+/* Input Focus Styles */
+input:focus {
+    background-color: transparent;
+    outline: transparent;
+    border-bottom: 2px solid hsl(327, 90%, 28%);
 }
 
-.input-group input:focus {
-    border-color: #333;
+input::placeholder {
+    color: transparent;
 }
 
-.input-group input:focus + label {
-    top: 0;
-    font-size: 12px;
-    color: #333;
+/* Label Styles */
+label {
+    color: #757575;
+    position: relative;
+    left: 1.2em;
+    top: -1.3em;
+    cursor: auto;
+    transition: 0.3s ease all;
 }
 
-/* Submit Button */
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: -3em;
+    color: hsl(327, 90%, 28%);
+    font-size: 15px;
+}
+
+/* Button Styles */
 .btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
+    font-size: 1.1rem;
+    padding: 8px 0;
+    border-radius: 5px;
+    outline: none;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    width: 100%;
+    background: rgb(125, 125, 235);
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: 0.9s;
 }
 
 .btn:hover {
-    background-color: #555;
+    background: #07001f;
 }
 
-/* Error Message */
-.error-message {
-    color: red;
-    text-align: center;
-    margin-top: 10px;
+/* Recovery Link Styles */
+.recover {
+    text-align: right;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.recover a {
+    text-decoration: none;
+    color: rgb(125, 125, 235);
+}
+
+.recover a:hover {
+    color:#07001f;
+    text-decoration: underline;
 }
 
 /* Responsive design */
@@ -612,11 +613,11 @@ body {
         padding: 15px;
     }
 
-    .input-group input {
-        padding: 10px 35px;
-    }
-
     .form-title {
         font-size: 1.5em; /* Smaller title on small screens */
+    }
+
+    input {
+        padding-left: 1rem; /* Adjust padding for smaller screens */
     }
 }
