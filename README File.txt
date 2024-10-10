@@ -3,10 +3,9 @@ README File:
 # Online Clothing Store - Full PHP & MYSQL Project 
 version: 1.0.0 
 
-### Admin User Name : dianasimpson@yahoo.com
+### Admin User Name : laras@gmail.com
 
-### Admin Password : 5d41402abc4b2a76b9719d911017c592
-
+### Admin Password : 1234
 
 ## Introduction 
 Welcome to the Online Clothing Store Web Application! The Online Clothing Store is called Pastimes that allows users to buy or sell clothing items. This guide will walk you through the steps to run the application using XAMPP. Ensure that you have XAMPP installed on your machine before proceeding. 
