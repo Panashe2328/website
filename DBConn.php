@@ -1,16 +1,18 @@
 <?php
-//get server host, name of user, password, name of database
-//declare varibales for db connection
-$hostname = "localhost";
+// Database connection details
+$hostname = "127.0.0.1"; // Use the IP address if localhost doesn't work
 $username = "root";
 $password = "";
 $database = "clothingstore";
 
 try {
-    $db = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Establish a connection using PDO
+    $db = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
     
-    // Check if a specific table exists
+    // Set PDO to throw exceptions on error
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Check if the table 'tblUser' exists
     $query = $db->query("SHOW TABLES LIKE 'tblUser'");
     
     if ($query->rowCount() > 0) {
@@ -20,6 +22,7 @@ try {
     }
 
 } catch (PDOException $e) {
+    // Output the error message if the connection fails
     die("Error: " . $e->getMessage());
 }
 
