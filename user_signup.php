@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'dbconn.php'; // Assuming your database connection is in this file
+require_once 'dbconn.php'; // establishes the database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $fName = $_POST['fName'];
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     try {
-        $query = "INSERT INTO tblUser (role, first_name, last_name, email, username, password, address, city, code, status) 
+        $query = "INSERT INTO tbluser (role, first_name, last_name, email, username, password, address, city, code, status) 
                   VALUES ('user', :fName, :lName, :email, :username, :hashedPassword, :address, :city, :code, 'pending')";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':fName', $fName);
