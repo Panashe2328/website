@@ -2,7 +2,7 @@
 session_start();
 
 // Database connection using PDO
-$hostname = "127.0.0.1";
+$hostname = "localhost";
 $username = "root";
 $password = "";
 $database = "clothingstore";
