@@ -1,4 +1,4 @@
-include ('dbconn.php');
+
 CREATE DATABASE IF NOT EXISTS ClothingStore;
 USE ClothingStore;
 
