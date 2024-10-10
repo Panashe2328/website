@@ -235,7 +235,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 </footer>
 
 <script>
-
     // Function to show pop-up message when registration is successful
     function showRegistrationMessage() {
         alert('Registration successful. Please wait for admin approval.');
@@ -251,10 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             showRegistrationMessage();
         });
     });
-</script>
-
-
-  
+</script>  
 <script src="script.js"></script>
 </body>
 </html>
