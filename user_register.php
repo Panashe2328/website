@@ -2,6 +2,10 @@
 session_start();
 include 'dbconn.php'; // establishes the database connection
 
+<?php 
+session_start();
+include 'dbconn.php'; // establishes the database connection
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
     $fName = $_POST['fName'];
@@ -11,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $city = $_POST['city'] ?? ''; // Optional for admin
     $code = $_POST['code'] ?? ''; // Optional for admin
     $role = $_POST['role']; // Comes from the form (dropdown)
+
+    // Add this line to handle the address input
+    $address = $_POST['address'] ?? NULL; // Handle the address input
 
     // Set status based on the role
     $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
@@ -22,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Choose the table based on the role
         if ($role == 'user') {
             // Insert into tblUser for regular users
-            $query = "INSERT INTO tblUser (first_name, last_name, username, password, city, code, status, role) 
-                      VALUES (:fName, :lName, :username, :hashedPassword, :city, :code, :status, :role)";
+            $query = "INSERT INTO tblUser (first_name, last_name, username, password, address, city, code, status, role) 
+                      VALUES (:fName, :lName, :username, :hashedPassword, :address, :city, :code, :status, :role)";
         } else if ($role == 'admin') {
             // Insert into tblAdmin for admin users
             $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
@@ -39,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
         if ($role == 'user') {
             $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':address', $address); // Bind the address parameter
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
             $stmt->bindParam(':status', $status);
@@ -65,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         $_SESSION['error'] = "Error: " . $e->getMessage();
     }
 }
+?>
+
 
 
 ?>
