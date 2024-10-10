@@ -26,8 +26,8 @@ if ($role == 'user') {
               VALUES (:fName, :lName, :email, :username, :hashedPassword, :city, :code, :status, :role)";
 } else if ($role == 'admin') {
     // Insert into tblAdmin for admin users
-    $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password, role, status) 
-              VALUES (:fName, :lName, :email, :hashedPassword, :role, :status)";
+    $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
+              VALUES (:fName, :lName, :email, :hashedPassword)";
 }
 
         $stmt = $db->prepare($query);
