@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $password = $_POST['password'];
     $city = $_POST['city'] ?? ''; // Optional for admin
     $code = $_POST['code'] ?? ''; // Optional for admin
-    $role = $_POST['role']; // Comes from the form (dropdown)
     $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
+    $role = $_POST['role']; // Comes from the form (dropdown)
 
     // Hash the password for security
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -37,13 +37,17 @@ if ($role == 'user') {
         $stmt->bindParam(':lName', $lName);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':hashedPassword', $hashedPassword);
+
         if ($role == 'user') {
             $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':address', $address);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':role', $role);
+        } else if ($role == 'admin') {
+            $stmt->bindParam(':admin_num', $admin_num);
         }
-        $stmt->bindParam(':role', $role);
-        $stmt->bindParam(':status', $status);
 
         // Execute the query
         $stmt->execute();
