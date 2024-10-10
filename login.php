@@ -60,19 +60,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post" action="Login.php">
-        <label for="login">Username or Email:</label>
-        <input type="text" id="login" name="login" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required minlength="8">
-        
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/aja

@@ -138,28 +138,28 @@ try {
             <form method="post" action="register.php">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <input type="text" name="username" id="username" placeholder="Username (for login)" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="fName" id="fName" placeholder="First Name" required>
+                    <input type="text" name="fName" id="fName" placeholder="First Name (your given name)" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="lName" id="lName" placeholder="Last Name" required>
+                    <input type="text" name="lName" id="lName" placeholder="Last Name (your family name)" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <input type="email" name="email" id="email" placeholder="Email (your email address)" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="password" name="password" id="password" placeholder="Password (your secure password)" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-user-shield"></i>
                     <select name="role" id="role" required onchange="showAdditionalFields()">
-                        <option value="" disabled selected>Select Role</option>
+                        <option value="" disabled selected>Select Role (user/admin)</option>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
@@ -167,15 +167,15 @@ try {
                 <div id="additionalFields" style="display:none;">
                     <div class="input-group">
                         <i class="fas fa-home"></i>
-                        <input type="text" name="address" id="address" placeholder="Address" required>
+                        <input type="text" name="address" id="address" placeholder="Address (your residence)" required>
                     </div>
                     <div class="input-group">
                         <i class="fas fa-city"></i>
-                        <input type="text" name="city" id="city" placeholder="City" required>
+                        <input type="text" name="city" id="city" placeholder="City (your city of residence)" required>
                     </div>
                     <div class="input-group">
                         <i class="fas fa-code"></i>
-                        <input type="text" name="code" id="code" placeholder="Postal Code" required>
+                        <input type="text" name="code" id="code" placeholder="Postal Code (your postal code)" required>
                     </div>
                 </div>
                 <input type="submit" class="btn" value="Sign Up" name="signUp">
@@ -189,11 +189,11 @@ try {
             <form method="post" action="register.php">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="login" id="login" placeholder="Email or Username" required>
+                    <input type="text" name="login" id="login" placeholder="Email or Username (for login)" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="password" name="password" id="password" placeholder="Password (your secure password)" required>
                 </div>
                 <input type="submit" class="btn" value="Sign In" name="signIn">
                 <p>Don't have an account? <a href="#" onclick="toggleForms();">Sign Up</a></p>
@@ -207,16 +207,17 @@ try {
         <?php 
         if(isset($_SESSION['email'])){
             $email = $_SESSION['email'];
-            $stmt = $db->prepare("SELECT first_name, last_name, username FROM tblUser WHERE email=:email");
+            $stmt = $db->prepare("SELECT first_name, last_name, username FROM tblUser WHERE email = :email");
             $stmt->bindParam(':email', $email);
             $stmt->execute();
-            $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo "<h4>Welcome, {$userDetails['first_name']} {$userDetails['last_name']}!</h4>";
-            echo "<p>Username: {$userDetails['username']}</p>";
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo "<p>Welcome, " . htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']) . " (" . htmlspecialchars($user['username']) . ")</p>";
         }
         ?>
     </div>
+    <div>
+        <p>&copy; 2024 ClothingStore. All rights reserved.</p>
+    </div>
 </footer>
-
 </body>
 </html>
