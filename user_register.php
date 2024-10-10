@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 <body>
     <header>
         <div class="logo">
-            <img src="_images/pastimes_logo.png" alt="" width="150px">
+            <img src="_images/pastimes_logo.png" alt="Pastimes Logo" width="150px">
         </div>
         <nav>
             <ul>
