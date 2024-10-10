@@ -6,13 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
     $fName = $_POST['fName'];
     $lName = $_POST['lName'];
-    $email = $_POST['email'];
     $username = $_POST['username'] ?? ''; // Optional for admin
     $password = $_POST['password'];
     $city = $_POST['city'] ?? ''; // Optional for admin
     $code = $_POST['code'] ?? ''; // Optional for admin
     $role = $_POST['role']; // Comes from the form (dropdown)
-    
+
     // Set status based on the role
     $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
 
@@ -24,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         if ($role == 'user') {
             // Insert into tblUser for regular users
             $query = "INSERT INTO tblUser (first_name, last_name, username, password, city, code, status, role) 
-                      VALUES (:fName, :lName, :email, :username, :hashedPassword, :city, :code, :status, :role)";
+                      VALUES (:fName, :lName, :username, :hashedPassword, :city, :code, :status, :role)";
         } else if ($role == 'admin') {
             // Insert into tblAdmin for admin users
             $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
@@ -36,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Bind parameters
         $stmt->bindParam(':fName', $fName);
         $stmt->bindParam(':lName', $lName);
-        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':hashedPassword', $hashedPassword);
 
         if ($role == 'user') {
@@ -45,6 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             $stmt->bindParam(':code', $code);
             $stmt->bindParam(':status', $status);
             $stmt->bindParam(':role', $role);
+        } else if ($role == 'admin') {
+            $email = $_POST['email']; // Fetch email only for admin
+            $stmt->bindParam(':email', $email);
         }
 
         // Execute the query
@@ -64,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         $_SESSION['error'] = "Error: " . $e->getMessage();
     }
 }
+
 
 ?>
 
