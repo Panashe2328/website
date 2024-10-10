@@ -11,11 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $address = $_POST['address'];
     $city = $_POST['city'];
     $code = $_POST['code'];
+    $role = $_POST['role']; // Get role from the form
+    $status = $_POST['status']; // Get status from the form
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     try {
-        $query = "INSERT INTO tbluser (role, first_name, last_name, email, username, password, address, city, code, status) 
-                  VALUES ('user', :fName, :lName, :email, :username, :hashedPassword, :address, :city, :code, 'pending')";
+        $query = "INSERT INTO tbluser (first_name, last_name, email, username, password, address, city, code, role, status) 
+                  VALUES (:fName, :lName, :email, :username, :hashedPassword, :address, :city, :code, :role, :status)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':fName', $fName);
         $stmt->bindParam(':lName', $lName);
@@ -25,9 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         $stmt->bindParam(':address', $address);
         $stmt->bindParam(':city', $city);
         $stmt->bindParam(':code', $code);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':status', $status);
         $stmt->execute();
 
-        $_SESSION['registration_success'] = "Registration successful. Please login.";
+        $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
         header("Location: login.php");
         exit();
     } catch (PDOException $e) {
@@ -69,6 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
         <label>Postal Code:</label>
         <input type="text" name="code" required><br>
+
+        <!-- Hidden fields for role and status with default values -->
+        <input type="hidden" name="role" value="user">
+        <input type="hidden" name="status" value="pending">
 
         <input type="submit" value="Sign Up" name="signUp">
     </form>
