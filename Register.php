@@ -26,14 +26,14 @@ try {
 
         // SQL query to insert a new user into tblUser or tblAdmin based on the role
         if ($role === 'user') {
-            $query = "INSERT INTO tblUser (role, first_name, last_name, email, username, password, address, city, code, status) 
+            $query = "INSERT INTO tbluser (role, first_name, last_name, email, username, password, address, city, code, status) 
                       VALUES (:role, :fName, :lName, :email, :username, :hashedPassword, :address, :city, :code, 'pending')";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':address', $address);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
         } else {
-            $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
+            $query = "INSERT INTO tbladmin (first_name, last_name, admin_email, password) 
                       VALUES (:fName, :lName, :email, :hashedPassword)";
             $stmt = $db->prepare($query);
         }
@@ -60,7 +60,7 @@ try {
         $password = $_POST['password'];
 
         // Query to find the user by email or username
-        $query = "SELECT * FROM tblUser WHERE email = :login OR username = :login";
+        $query = "SELECT * FROM tbluser WHERE email = :login OR username = :login";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':login', $login);
         $stmt->execute();
@@ -183,22 +183,23 @@ try {
             </form>
         </div>
 
-        <!-- Sign In Form -->
-        <div class="container" id="signIn">
-            <h1 class="form-title">Sign In</h1>
-            <form method="post" action="register.php">
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" name="login" id="login" placeholder="Email or Username (for login)" required>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="password" placeholder="Password (your secure password)" required>
-                </div>
-                <input type="submit" class="btn" value="Sign In" name="signIn">
-                <p>Don't have an account? <a href="#" onclick="toggleForms();">Sign Up</a></p>
-            </form>
+       <!-- Sign In Form -->
+<div class="container" id="signIn">
+    <h1 class="form-title">Sign In</h1>
+    <form method="post" action="login.php"> 
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="login" id="login" placeholder="Email or Username (for login)" required>
         </div>
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="password" id="password" placeholder="Password (your secure password)" required>
+        </div>
+        <input type="submit" class="btn" value="Sign In" name="signIn">
+        <p>Don't have an account? <a href="#" onclick="toggleForms();">Sign Up</a></p>
+    </form>
+</div>
+
     </div>
 </main>
 
