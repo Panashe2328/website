@@ -7,10 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $fName = $_POST['fName'];
     $lName = $_POST['lName'];
     $email = $_POST['email'];
-    $username = $_POST['username'];
+    $username = $_POST['username'] ?? ''; // Optional for admin
     $password = $_POST['password'];
-    $city = $_POST['city'];
-    $code = $_POST['code'];
+    $city = $_POST['city'] ?? ''; // Optional for admin
+    $code = $_POST['code'] ?? ''; // Optional for admin
     $role = $_POST['role']; // Comes from the form (dropdown)
     $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
 
@@ -47,9 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Execute the query
         $stmt->execute();
 
-        // Set a session success message and redirect to the login page
+        // Set a session success message and redirect based on role
         $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
-        header("Location: login.php ");
+        if ($role == 'admin') {
+            header("Location: admin_dashboard.php"); // Redirect to the admin dashboard
+        } else {
+            header("Location: login.php");
+        }
         exit();
 
     } catch (PDOException $e) {
@@ -97,7 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         <i class="fas fa-user"></i>
     </div>
 </header>
-
 
 <main>
     <!-- Display any error messages -->
@@ -210,13 +213,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     </div>
 </footer>
 
-<script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const nav = document.querySelector('nav');
-
-    menuToggle.addEventListener('change', () => {
-        nav.style.display = menuToggle.checked ? 'flex' : 'none';
-    });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
