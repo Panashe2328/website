@@ -1,13 +1,11 @@
 <?php 
 session_start();
-<<<<<<< HEAD
-include 'dbconn.php'; // establishes the database connection
-=======
+
 
 
 include 'DBConn.php'; // establishes the database connection
 
->>>>>>> c75cbcb29879bebf9e8397b924e1e839aedcda95
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
