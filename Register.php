@@ -40,7 +40,7 @@ session_start();
             font-size: 16px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: lightcoral;
         }
     </style>
 </head>
