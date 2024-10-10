@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         if ($role == 'admin') {
             header("Location: admin_dashboard.php"); // Redirect to the admin dashboard
         } else {
-            header("Location: login.php");
+            header("Location:index.php ");
         }
         exit();
 
@@ -90,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About</a></li>
+            <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
             <li><a href="user_register.php">Register</a></li>
         </ul>
     </nav>
