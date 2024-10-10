@@ -14,10 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $password = $_POST['password'];
     $city = $_POST['city'] ?? ''; // Optional for admin
     $code = $_POST['code'] ?? ''; // Optional for admin
+    $address = $_POST['address'] ?? ''; // Optional for users
     $role = $_POST['role']; // Comes from the form (dropdown)
-
-    // Add this line to handle the address input
-    $address = $_POST['address'] ?? NULL; // Handle the address input
 
     // Set status based on the role
     $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
@@ -46,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
         if ($role == 'user') {
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':address', $address); // Bind the address parameter
+            $stmt->bindParam(':address', $address);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
             $stmt->bindParam(':status', $status);
@@ -70,10 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
     } catch (PDOException $e) {
         // Capture and display error message
-        $_SESSION['error'] = "Error: " . $e->getMessage();
+        $_SESSION['error'] = "Registration failed. Please try again.";
+        error_log("Registration error: " . $e->getMessage()); // Log the error for debugging
     }
 }
-?>
 
 
 
