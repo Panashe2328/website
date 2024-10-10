@@ -64,77 +64,158 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Pastimes - User Registration</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="_images/pastimes_logo.png" alt="Pastimes Logo" width="150px">
+<header>
+    <input type="checkbox" id="menu-toggle" style="display:none;"> <!-- Checkbox to toggle the menu -->
+    
+    <label for="menu-toggle" class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+
+    <div class="logo">
+        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo">
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="About.php">About</a></li>
+            <li><a href="user_register.php">Register</a></li>
+        </ul>
+    </nav>
+
+    <div class="header-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-heart"></i>
+        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+        <i class="fas fa-user"></i>
+    </div>
+</header>
+
+<main>
+    <!-- Display any error messages -->
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+    <?php endif; ?>
+    
+    <form method="post" action="user_signup.php">
+        <div>
+            <label for="fName">First Name:</label>
+            <input type="text" name="fName" required><br>
         </div>
-        <nav>
+
+        <div>
+            <label for="lName">Last Name:</label>
+            <input type="text" name="lName" required><br>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+        </div>
+
+        <div>
+            <label for="username">Username (for users):</label>
+            <input type="text" name="username"><br>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+        </div>
+
+        <div>
+            <label for="city">City (for users):</label>
+            <input type="text" name="city"><br>
+        </div>
+
+        <div>
+            <label for="code">Postal Code (for users):</label>
+            <input type="text" name="code"><br>
+        </div>
+
+        <div>
+            <label for="role">Role:</label>
+            <select name="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select><br>
+        </div>
+
+        <input type="submit" value="Sign Up" name="signUp">
+    </form>
+</main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-navigation">
+            <h3>Navigation</h3>
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="browse.php">Browse Clothing</a></li>
-                <li><a href="my_account.php">Account</a></li>
-                <li><a href="sell_clothes.php">Sell Clothing</a></li>
-                <li><a href="contact_us.php">Get in Touch</a></li>
+                <li><a href="index.php">Home Page</a></li>
+                <li><a href="contact.php">Contact Page</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
 
-   <main>
-       <!-- Display any error messages -->
-       <?php if (isset($_SESSION['error'])): ?>
-           <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-       <?php endif; ?>
-       
-       <form method="post" action="user_signup.php">
-           <div>
-               <label for="fName">First Name:</label>
-               <input type="text" name="fName" required><br>
-           </div>
+        <div class="footer-social-media">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+            </ul>
+        </div>
 
-           <div>
-               <label for="lName">Last Name:</label>
-               <input type="text" name="lName" required><br>
-           </div>
+        <div class="footer-newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with the latest news and exclusive offers!</p>
+            <form action="#" method="post">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit">Subscribe Now</button>
+            </form>
+        </div>
 
-           <div>
-               <label for="email">Email:</label>
-               <input type="email" name="email" required><br>
-           </div>
+        <div class="footer-secondary-info">
+            <h3>Additional Links</h3>
+            <ul>
+                <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                <li><a href="terms-of-service.php">Terms of Service</a></li>
+                <li><a href="faq.php">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
 
-           <div>
-               <label for="username">Username (for users):</label>
-               <input type="text" name="username"><br>
-           </div>
+    <div style="text-align:center; padding:15%;">
+        <?php 
+        if (isset($_SESSION['email'])) {
+            $email = $_SESSION['email'];
+            $query = mysqli_query($conn, "SELECT firstName, lastName FROM users WHERE email='$email'");
+            if ($row = mysqli_fetch_assoc($query)) {
+                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']); // Escape user output for security
+            }
+        }
+        ?> 
+        <a href="logout.php">Logout</a>
+    </div>
 
-           <div>
-               <label for="password">Password:</label>
-               <input type="password" name="password" required><br>
-           </div>
+    <div class="footer-branding">
+        <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
+    </div>
+</footer>
 
-           <div>
-               <label for="city">City (for users):</label>
-               <input type="text" name="city"><br>
-           </div>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav');
 
-           <div>
-               <label for="code">Postal Code (for users):</label>
-               <input type="text" name="code"><br>
-           </div>
-
-           <div>
-               <label for="role">Role:</label>
-               <select name="role" required>
-                   <option value="user">User</option>
-                   <option value="admin">Admin</option>
-               </select><br>
-           </div>
-
-           <input type="submit" value="Sign Up" name="signUp">
-       </form>
-   </main>
+    menuToggle.addEventListener('change', () => {
+        nav.style.display = menuToggle.checked ? 'flex' : 'none';
+    });
+</script>
 </body>
 </html>
