@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
     <?php endif; ?>
     
-    <form method="post" action="admin_dashboard.php">
+    <form method="post" action="user_register.php">
         <div>
             <label for="fName">First Name:</label>
             <input type="text" name="fName" required>

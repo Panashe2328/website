@@ -8,29 +8,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Prepare SQL to check admin_email in the tblAdmin table
-    $stmt = $conn->prepare("SELECT * FROM tblAdmin WHERE admin_email = ?");
-    $stmt->bind_param("s", $admin_email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    try {
+        $stmt = $db->prepare("SELECT * FROM tblAdmin WHERE admin_email = :email");
+        $stmt->bindParam(':email', $admin_email);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Check if the email exists in the database
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        // Verify the password hash
-        if (password_verify($password, $row['password'])) {
-            // Admin login success
-            $_SESSION['admin_id'] = $row['admin_id'];
-            $_SESSION['role'] = 'Admin'; // Set role to Admin for session
-            header('Location: admin_dashboard.php'); // Redirect to admin dashboard
-            exit();
+        // Check if the email exists in the database
+        if ($row) {
+            // Verify the password hash
+            if (password_verify($password, $row['password'])) {
+                // Admin login success
+                $_SESSION['admin_id'] = $row['admin_id'];
+                $_SESSION['admin_email'] = $row['admin_email']; // Store email in session
+                $_SESSION['role'] = 'Admin'; // Set role to Admin for session
+                
+                header('Location: admin_dashboard.php'); // Redirect to admin dashboard
+                exit();
+            } else {
+                // Password mismatch
+                $error_message = "Incorrect password. Please try again.";
+            }
         } else {
-            // Password mismatch
-            $error_message = "Incorrect password. Please try again.";
+            // Email does not exist
+            $error_message = "Admin account does not exist. Please check your email.";
         }
-    } else {
-        // Email does not exist
-        $error_message = "Admin account does not exist. Please check your email.";
+    } catch (PDOException $e) {
+        // Handle any database errors
+        $error_message = "Database error: " . $e->getMessage();
     }
 }
 ?>
@@ -92,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <button type="submit">Login as Admin</button>
     </form>
-    </main>
+</main>
 <footer>
     <div class="footer-container">
         <div class="footer-navigation">
@@ -115,39 +120,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="footer-newsletter">
             <h3>Subscribe to Our Newsletter</h3>
-            <p>Stay updated with the latest news and exclusive offers!</p>
-            <form action="#" method="post">
-                <input type="email" placeholder="Your Email Address" required>
-                <button type="submit">Subscribe Now</button>
-            </form>
-        </div>
-
-        <div class="footer-secondary-info">
-            <h3>Additional Links</h3>
-            <ul>
-                <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                <li><a href="terms-of-service.php">Terms of Service</a></li>
-                <li><a href="faq.php">FAQ</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div style="text-align:center; padding:15%;">
-        <?php 
-        if (isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $query = mysqli_query($conn, "SELECT firstName, lastName FROM users WHERE email='$email'");
-            if ($row = mysqli_fetch_assoc($query)) {
-                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']); // Escape user output for security
-            }
-        }
-        ?> 
-        <a href="logout.php">Logout</a>
-    </div>
-
-    <div class="footer-branding">
-        <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
-    </div>
-</footer>
-</body>
-</html>
+            <p>Stay updated with
