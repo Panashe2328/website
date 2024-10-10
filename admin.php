@@ -1,104 +1,47 @@
 <?php
 session_start();
- include 'dbconn.php'; // Database connection
+include 'dbconn.php'; // Ensure you include your database connection
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $admin_email = $_POST['admin_email'];
-    $password = $_POST['password'];
-
-    // Prepare SQL to check admin_email in the tblAdmin table
-    $stmt = $conn->prepare("SELECT * FROM tbladmin WHERE admin_email = ?");
-    $stmt->bind_param("s", $admin_email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        // Verify the password hash
-        if (password_verify($password, $row['password'])) {
-            // Admin login success
-            $_SESSION['admin_id'] = $row['admin_id'];
-            echo "Admin " . htmlspecialchars($row['first_name']) . " " . htmlspecialchars($row['last_name']) . " is logged in.";
-        } else {
-            echo "Incorrect password. Please try again.";
-        }
-    } else {
-        echo "Admin account does not exist. Please check your email.";
-    }
-}
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Admin Login</title>
-</head>
-<body>
-    <h2>Admin Login</h2>
-    <form method="post" action="AdminLogin.php">
-        <label for="admin_email">Admin Email:</label>
-        <input type="email" id="admin_email" name="admin_email" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required minlength="8">
-        
-        <button type="submit">Login as Admin</button>
-    </form>
-</body>
-</html>
-
-<!--
-<?php
-// Start the session and ensure the user is an admin
-session_start();
-$_SESSION['role'] = 'Admin';   // Set user role (e.g., Admin)
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'Admin') {
-   // header('Location: login.php');
+// Ensure the user is logged in and is an admin
+if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: AdminLogin.php'); // Redirect if not an admin
     exit();
 }
-
-// Include database connection
-include('DBConn.php');
 
 $errors = [];
 $success = false;
 
-// Fetch users for verification
+// Fetch unverified users
 $users = [];
-$result = $dbConn->query("SELECT * FROM tblUsers WHERE verified = 'false'");
+$result = $conn->query("SELECT * FROM tblUsers WHERE verified = 'false'");
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $users[] = $row;
     }
 } else {
-    $errors[] = "Error fetching users: " . $dbConn->error;
+    $errors[] = "Error fetching users: " . $conn->error;
 }
 
 // Handle user verification, update, or deletion
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['verify'])) {
         $username = trim($_POST['username']);
-        $stmt = $dbConn->prepare("UPDATE tblUsers SET verified = 'true' WHERE username = ?");
+        $stmt = $conn->prepare("UPDATE tblUsers SET verified = 'true' WHERE username = ?");
         $stmt->bind_param("s", $username);
         if ($stmt->execute()) {
             $success = true;
         } else {
-            $errors[] = "Error verifying user: " . $dbConn->error;
+            $errors[] = "Error verifying user: " . $conn->error;
         }
         $stmt->close();
     } elseif (isset($_POST['delete'])) {
         $username = trim($_POST['username']);
-        $stmt = $dbConn->prepare("DELETE FROM tblUsers WHERE username = ?");
+        $stmt = $conn->prepare("DELETE FROM tblUsers WHERE username = ?");
         $stmt->bind_param("s", $username);
         if ($stmt->execute()) {
             $success = true;
         } else {
-            $errors[] = "Error deleting user: " . $dbConn->error;
+            $errors[] = "Error deleting user: " . $conn->error;
         }
         $stmt->close();
     }
@@ -178,6 +121,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
 </body>
 </html>
-
-
--->

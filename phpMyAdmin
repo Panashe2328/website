@@ -18,7 +18,7 @@ CREATE TABLE tblAdmin (
     FOREIGN KEY (userID) REFERENCES tblUser(userID)
 );
 
--- tblAorder
+-- tblOrder
 CREATE TABLE tblAorder (
     orderID INT PRIMARY KEY AUTO_INCREMENT,
     cartID INT,
@@ -35,41 +35,4 @@ CREATE TABLE tblClothes (
     userID INT,
     ci_Status VARCHAR(50),
     FOREIGN KEY (userID) REFERENCES tblUser(userID)
-);
-
--- tblCart
-CREATE TABLE tblCart (
-    cartID INT PRIMARY KEY AUTO_INCREMENT,
-    userID INT,
-    c_Status VARCHAR(50),
-    FOREIGN KEY (userID) REFERENCES tblUser(userID)
-);
-
--- tblCartItem
-CREATE TABLE tblCartItem (
-    cartItemID INT PRIMARY KEY AUTO_INCREMENT,
-    cartID INT,
-    itemID INT,
-    quantity INT,
-    FOREIGN KEY (cartID) REFERENCES tblCart(cartID),
-    FOREIGN KEY (itemID) REFERENCES tblClothes(itemID)
-);
-
--- tblMessage
-CREATE TABLE tblMessage (
-    messageID INT PRIMARY KEY AUTO_INCREMENT,
-    userID INT,
-    content TEXT,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (userID) REFERENCES tblUser(userID)
-);
-
--- tblManagement
-CREATE TABLE tblManagement (
-    managementID INT PRIMARY KEY AUTO_INCREMENT,
-    adminID INT,
-    itemID INT,
-    actionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (adminID) REFERENCES tblAdmin(adminID),
-    FOREIGN KEY (itemID) REFERENCES tblClothes(itemID)
 );

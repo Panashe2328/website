@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
         // Set a session success message and redirect to the login page
         $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
-        header("Location: login.php");
+        header("Location: login.php ");
         exit();
 
     } catch (PDOException $e) {
