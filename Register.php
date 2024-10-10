@@ -1,7 +1,7 @@
 <?php
 session_start();
+include 'dbconn.php'; 
 
-include 'dbconn.php';
 $hostname = "localhost";
 $username = "root";
 $password = "";
@@ -13,7 +13,7 @@ try {
 
     // Process registration form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
-        $role = $_POST['role']; // User role: user or admin
+        $role = $_POST['role'];
         $fName = $_POST['fName'];
         $lName = $_POST['lName'];
         $email = $_POST['email'];
@@ -22,13 +22,14 @@ try {
         $address = $_POST['address'];
         $city = $_POST['city'];
         $code = $_POST['code'];
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Secure password hashing
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         // SQL query to insert a new user into tblUser or tblAdmin based on the role
         if ($role === 'user') {
             $query = "INSERT INTO tbluser (role, first_name, last_name, email, username, password, address, city, code, status) 
                       VALUES (:role, :fName, :lName, :email, :username, :hashedPassword, :address, :city, :code, 'pending')";
             $stmt = $db->prepare($query);
+            // Bind user-specific parameters
             $stmt->bindParam(':address', $address);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
@@ -37,21 +38,6 @@ try {
                       VALUES (:fName, :lName, :email, :hashedPassword)";
             $stmt = $db->prepare($query);
         }
-        /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
-    $city = $_POST['city'];
-    $code = $_POST['code'];
-    $status = 'active'; // or set based on your form
-    $role = $_POST['role']; // 'user' or 'admin'
-
-    $stmt = $db->prepare("INSERT INTO tblUser (first_name, last_name, username, password, city, code, status, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$first_name, $last_name, $username, $password, $city, $code, $status, $role]);
-    echo "User registered successfully!";
-}
-*/
 
         // Bind common parameters
         $stmt->bindParam(':role', $role);
@@ -60,13 +46,17 @@ try {
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':hashedPassword', $hashedPassword);
-        
-        $stmt->execute();
 
-        // Registration successful
-        $_SESSION['registration_success'] = "Registration successful. Please login.";
-        header("Location: login.php");
-        exit();
+        // Execute and check for success
+        if ($stmt->execute()) {
+            $_SESSION['registration_success'] = "Registration successful. Please login.";
+            header("Location: login.php");
+            exit();
+        } else {
+            $_SESSION['error'] = "Registration failed. Please try again.";
+            header("Location: register.php");
+            exit();
+        }
     }
 
     // Process sign-in form submission
@@ -91,7 +81,7 @@ try {
             if ($user['role'] == 'admin') {
                 header("Location: admin_dashboard.php");
             } else {
-                header("Location:index.php");
+                header("Location: index.php");
             }
             exit();
         } else {
@@ -101,7 +91,7 @@ try {
         }
     }
 } catch (PDOException $e) {
-    // Registration or login failed, handle error
+    // Handle error
     $_SESSION['error'] = "Error: " . $e->getMessage();
     header("Location: register.php");
     exit();
@@ -157,7 +147,6 @@ try {
 
 <main>
     <div class="registration-container">
-        <!-- Registration Form -->
         <div class="container" id="signup" style="display:none;">
             <h1 class="form-title">Register</h1>
             <form method="post" action="register.php">
@@ -208,23 +197,11 @@ try {
             </form>
         </div>
 
-       <!-- Sign In Form -->
-<div class="container" id="signIn">
-    <h1 class="form-title">Sign In</h1>
-    <form method="post" action="login.php"> 
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" name="login" id="login" placeholder="Email or Username (for login)" required>
-        </div>
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" name="password" id="password" placeholder="Password (your secure password)" required>
-        </div>
-        <input type="submit" class="btn" value="Sign In" name="signIn">
-        <p>Don't have an account? <a href="#" onclick="toggleForms();">Sign Up</a></p>
-    </form>
-</div>
-
-    </div>
-</body>
-</html>
+        <!-- Sign In Form -->
+        <div class="container" id="signIn">
+            <h1 class="form-title">Sign In</h1>
+            <form method="post" action="login.php"> 
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="login" id="login" placeholder="Email or Username (for login)" required>
+                </div>
