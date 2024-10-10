@@ -1,5 +1,7 @@
 <?php
 session_start();
+ include 'dbconn.php';
+
 
 // Check if the cart is empty
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {

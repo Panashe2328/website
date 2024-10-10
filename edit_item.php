@@ -1,10 +1,8 @@
 <?php
- session_start(); // Start the session
- require_once '<C:>
- <xampp>
- <htdocs>
- <website>
- <includes>dbconn.php';
+
+session_start(); // Start the session
+include 'dbconn.php';
+
 
 // Check if the user is logged in as an admin
 if (!isset($_SESSION['email']) || $_SESSION['role'] !== 'admin') {
