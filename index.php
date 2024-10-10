@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
 
     <!-- Logo -->
     <div class="logo">
-    <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo image">
+        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo image">
     </div>
 
     <!-- Navigation menu -->
@@ -38,122 +39,108 @@
     <div class="header-icons">
         <i class="fas fa-search"></i>
         <i class="fas fa-heart"></i>
-        <a href="cart.php">
-        <i class="fas fa-shopping-cart"></i>
-         </a>
+        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
         <i class="fas fa-user"></i>
     </div>
 </header>
 
-
-    <!-- Main Content Section -->
-    <main>
-        <div class="main-banner">
-            <h1>We believe in Giving Clothing a Second Chance.</h1>
+<!-- Main Content Section -->
+<main>
+    <div class="main-banner">
+        <h1>We believe in Giving Clothing a Second Chance.</h1>
+    </div>
+    
+    <div class="categories">
+        <div class="category">
+            <h2>Fan Favorites</h2>
+            <img src="path_to_fan_favorites_image.jpg" alt="">
         </div>
-        
-        <div class="categories">
-            <div class="category">
-                <h2>Fan Favorites</h2>
-                <img src="path_to_fan_favorites_image.jpg" alt="">
-            </div>
-            <div class="category">
-                <h2>Recently Added</h2>
-                <img src="path_to_recently_added_image.jpg" alt="">
-            </div>
-            <div class="category">
-                <h2>On Sale</h2>
-                <img src="path_to_on_sale_image.jpg" alt="">
-            </div>
+        <div class="category">
+            <h2>Recently Added</h2>
+            <img src="path_to_recently_added_image.jpg" alt="">
+        </div>
+        <div class="category">
+            <h2>On Sale</h2>
+            <img src="path_to_on_sale_image.jpg" alt="">
+        </div>
+        <div class="category">
+            <a href="Add_Clothing.php">
+                <h2>Shop</h2>
+                <img src="path_to_image.jpg" alt="">
+            </a>
+        </div>
+    </div>
+</main>
 
-            
-    <div class="category">
-    <a href="Add_Clothing.php">
-        <h2>Shop</h2>
-        <img src="path_to_image.jpg" alt="" >
-        </a>
+<footer>
+    <div class="footer-container">
+        <!-- Primary Navigation Links -->
+        <div class="footer-navigation">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.php">Home Page</a></li>
+                <li><a href="contact.php">Contact Page</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Media Integration -->
+        <div class="footer-social-media">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+            </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="footer-newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with the latest news and exclusive offers!</p>
+            <form action="#" method="post">
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit">Subscribe Now</button>
+            </form>
+        </div>
+
+        <!-- Secondary Information -->
+        <div class="footer-secondary-info">
+            <h3>Additional Links</h3>
+            <ul>
+                <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                <li><a href="terms-of-service.php">Terms of Service</a></li>
+                <li><a href="faq.php">FAQ</a></li>
+            </ul>
+        </div>
     </div>
 
+    <div style="text-align:center; padding:15%;">
+        <?php 
+        if (isset($_SESSION['email'])) {
+            $email = $_SESSION['email'];
+            $query = mysqli_query($conn, "SELECT users.firstName, users.lastName FROM users WHERE users.email='$email'");
+            while ($row = mysqli_fetch_array($query)) {
+                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']);  // Escape user output for security
+            }
+        }
+        ?> 
+        <a href="logout.php">Logout</a>
+    </div>
 
-        <!----- Leave out for now
-        <div class="instant-message-section">
-        <div class="instant-message">
-            <button>Instant Message</button>
-        </div>
-        </div>
-        ---->
-    </main>
+    <!-- Footer Branding -->
+    <div class="footer-branding">
+        <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
+    </div>
+</footer>
 
-    <footer>
-        <div class="footer-container">
-            <!-- Primary Navigation Links -->
-            <div class="footer-navigation">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="index.php">Home Page</a></li>
-                    <li><a href="contact.php">Contact Page</a></li>
-                </ul>
-            </div>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav');
 
-            <!-- Social Media Integration -->
-            <div class="footer-social-media">
-                <h3>Follow Us</h3>
-                <ul>
-                    <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                    <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
-                </ul>
-            </div>
-
-            <!-- Newsletter Subscription -->
-            <div class="footer-newsletter">
-                <h3>Subscribe to Our Newsletter</h3>
-                <p>Stay updated with the latest news and exclusive offers!</p>
-                <form action="#" method="post">
-                    <input type="email" placeholder="Your Email Address" required>
-                    <button type="submit">Subscribe Now</button>
-                </form>
-            </div>
-
-            <!-- Secondary Information -->
-            <div class="footer-secondary-info">
-                <h3>Additional Links</h3>
-                <ul>
-                    <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                    <li><a href="terms-of-service.php">Terms of Service</a></li>
-                    <li><a href="faq.php">FAQ</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div style="text-align:center; padding:15%;">
-            <?php 
-                    if(isset($_SESSION['email'])){
-                        $email = $_SESSION['email'];
-                        $query = mysqli_query($conn, "SELECT users.firstName, users.lastName FROM users WHERE users.email='$email'");
-                        while($row = mysqli_fetch_array($query)){
-                            echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']);  // Escape user output for security
-                        }
-                    }
-                ?> 
-            </p>
-            <a href="logout.php">Logout</a>
-        </div>
-
-        <!-- Footer Branding -->
-        <div class="footer-branding">
-            <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const nav = document.querySelector('nav');
-
-        menuToggle.addEventListener('change', () => {
-            nav.style.display = menuToggle.checked ? 'flex' : 'none';
-        });
-    </script>
+    menuToggle.addEventListener('change', () => {
+        nav.style.display = menuToggle.checked ? 'flex' : 'none';
+    });
+</script>
 </body>
 </html>

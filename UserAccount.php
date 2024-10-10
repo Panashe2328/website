@@ -1,4 +1,4 @@
-<?php session_start(); // Start the session ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,13 +48,13 @@
                 </div>
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" id="registerEmail" placeholder="Email" required>
-                    <label for="registerEmail">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <label for="email">Email</label>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="registerPassword" placeholder="Password" required>
-                    <label for="registerPassword">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <label for="password">Password</label>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-user-shield"></i>
@@ -80,16 +80,16 @@
 
         <div class="container" id="signIn">
             <h1 class="form-title">Sign In</h1>
-            <form method="post" action="login.php"> <!-- Changed to a separate login action -->
+            <form method="post" action="register.php">
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" id="loginEmail" placeholder="Email" required>
-                    <label for="loginEmail">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <label for="email">Email</label>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="loginPassword" placeholder="Password" required>
-                    <label for="loginPassword">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <label for="password">Password</label>
                 </div>
                 <p class="recover"><a href="#">Recover Password</a></p>
                 <input type="submit" class="btn" value="Sign In" name="signIn">
@@ -151,8 +151,6 @@
             while($row = mysqli_fetch_array($query)){
                 echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']);  // Escape user output for security
             }
-        } else {
-            echo "Guest User"; // Show a message for guests
         }
         ?>
         <a href="logout.php">Logout</a>

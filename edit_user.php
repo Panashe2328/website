@@ -1,7 +1,11 @@
 <?php
-session_start();
-include 'dbconn.php'; // Include your database connection
-
+// Include your database connection
+session_start(); // Start the session
+require_once '<C:>
+<xampp>
+<htdocs>
+<website>
+<includes>dbconn.php';
 // Check if the user is logged in as an admin
 if (!isset($_SESSION['email']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");

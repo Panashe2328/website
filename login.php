@@ -1,13 +1,17 @@
 <?php
-session_start(); // Start the session
-include 'dbconn.php'; // Include your database connection file
+ session_start(); // Start the session
+require_once '<C:>
+<xampp>
+<htdocs>
+<website>
+<includes>dbconn.php'; 
 
 if (isset($_POST['signIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Prepare the SQL query using prepared statements
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+    $stmt = $conn->prepare("SELECT * FROM user WHERE email=?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();

@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS tblUser (
 );
 
 
-
 CREATE TABLE IF NOT EXISTS tblAdmin (
     admin_id INT PRIMARY KEY AUTO_INCREMENT, 
     admin_num VARCHAR(10) NOT NULL UNIQUE, 
@@ -27,7 +26,6 @@ CREATE TABLE IF NOT EXISTS tblAdmin (
     password VARCHAR(255) NOT NULL 
 );
 
-
 CREATE TABLE IF NOT EXISTS tblClothes (
     clothes_id INT PRIMARY KEY AUTO_INCREMENT,
     image_url VARCHAR(255) NOT NULL,
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS tblClothes (
     clothes_description VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     size VARCHAR(10) NOT NULL,
-    condition ENUM('new', 'used') NOT NULL
+    `condition` ENUM('new', 'used') NOT NULL
 );
 
 
