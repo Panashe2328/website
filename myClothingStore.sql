@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS tblOrder (
     clothes_purchased VARCHAR(255) NOT NULL,
     order_date DATE NOT NULL,
     status ENUM('pending', 'shipped', 'delivered') NOT NULL,
+    quantity INT NOT NULL,
     total_price DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES tblUser(user_id),
     FOREIGN KEY (clothes_id) REFERENCES tblClothes(clothes_id)
