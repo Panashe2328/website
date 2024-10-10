@@ -5,7 +5,7 @@ session_start();
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "ClothingStore";
+$database = "clothingstore";
 
 try {
     $db = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
