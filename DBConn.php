@@ -1,9 +1,10 @@
 <?php
 // Database connection details
-$hostname = "localhost"; // Use the IP address if localhost doesn't work
+$hostname = "localhost"; 
 $username = "root";
 $password = "";
 $database = "ClothingStore";
+
 
 try {
     // Establish a connection using PDO
