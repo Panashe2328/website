@@ -30,7 +30,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             echo "User does not exist.";
+        
         }
+        /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username']; // Capture username/email from login form
+    $password = $_POST['password']; // Capture password from login form
+
+    $stmt = $db->prepare("SELECT * FROM tblUser WHERE username = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        // Password is correct, login the user
+        echo "Login successful!";
+        // Start session and store user info
+    } else {
+        echo "Invalid username or password.";
+    }
+}
+*/
     } elseif ($role === 'admin') {
         // Check if the user is in the tblAdmin table (admin role)
         $stmt = $conn->prepare("SELECT * FROM tbladmin WHERE admin_email = ?");
