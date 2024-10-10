@@ -98,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     </div>
 </header>
 
+
 <main>
     <!-- Display any error messages -->
     <?php if (isset($_SESSION['error'])): ?>
@@ -107,37 +108,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     <form method="post" action="user_signup.php">
         <div>
             <label for="fName">First Name:</label>
-            <input type="text" name="fName" required><br>
+            <input type="text" name="fName" required>
         </div>
 
         <div>
             <label for="lName">Last Name:</label>
-            <input type="text" name="lName" required><br>
+            <input type="text" name="lName" required>
         </div>
 
         <div>
             <label for="email">Email:</label>
-            <input type="email" name="email" required><br>
+            <input type="email" name="email" required>
         </div>
 
         <div>
             <label for="username">Username (for users):</label>
-            <input type="text" name="username"><br>
+            <input type="text" name="username">
         </div>
 
         <div>
             <label for="password">Password:</label>
-            <input type="password" name="password" required><br>
+            <input type="password" name="password" required>
         </div>
 
         <div>
             <label for="city">City (for users):</label>
-            <input type="text" name="city"><br>
+            <input type="text" name="city">
         </div>
 
         <div>
             <label for="code">Postal Code (for users):</label>
-            <input type="text" name="code"><br>
+            <input type="text" name="code">
         </div>
 
         <div>
@@ -145,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             <select name="role" required>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
-            </select><br>
+            </select>
         </div>
 
         <input type="submit" value="Sign Up" name="signUp">

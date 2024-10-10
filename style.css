@@ -262,71 +262,109 @@ footer {
     font-size: 14px; /* Font size for branding */
     color: #777; /* Lighter color for branding text */
 }
-
-/* General styles for the registration and login container */
-.registration-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-top: 50px;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    margin: 0;
+    padding: 0;
 }
 
-/* Styling the form titles */
-.form-title {
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+/* Form Container */
+form {
+    max-width: 400px; /* Set a max width for the form */
+    margin: 40px auto; /* Center the form horizontally */
+    padding: 20px; /* Add padding inside the form */
+    background-color: #f9f9f9; /* Light background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-/* Input fields */
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding inside inputs */
+    margin: 10px 0; /* Margin for spacing */
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    outline: none; /* Remove default outline */
+    transition: border-color 0.3s; /* Smooth transition for focus */
 }
 
-.input-group i {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    color: #999;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #777; /* Change border color on focus */
 }
 
-.input-group input {
-    width: 100%;
-    padding: 10px 40px;
-    font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
-    background-color: #f5f5f5;
-    transition: border-color 0.3s ease;
+/* Labels */
+label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 5px; /* Space between label and input */
+    color: #333; /* Label color */
 }
 
-.input-group input:focus {
-    border-color: #777;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-}
-
-.button-container button {
-    padding: 10px 20px;
+/* Submit Button */
+input[type="submit"] {
     background-color: #333; /* Button background */
     color: white; /* Button text color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    border: none; /* No border */
+    padding: 10px; /* Padding inside the button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
 }
 
-.button-container button:hover {
-    background-color: #555; /* Button hover color */
+input[type="submit"]:hover {
+    background-color: #555; /* Darker background on hover */
+}
+
+/* Error Message */
+.error-message {
+    color: red; /* Red color for error messages */
+    margin-bottom: 20px; /* Space below error messages */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f8f8; /* Light background for the footer */
+    padding: 20px 0; /* Padding around the footer */
+    font-family: Arial, sans-serif; /* Font for the footer */
+}
+
+/* Footer Links */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-around; /* Space between sections */
+    max-width: 1200px; /* Max width of footer content */
+    margin: auto; /* Center the footer */
+}
+
+.footer-navigation,
+.footer-social-media,
+.footer-newsletter,
+.footer-secondary-info {
+    flex: 1; /* Flex grow for equal width */
+    min-width: 200px; /* Minimum width for responsiveness */
+    margin: 10px; /* Margin between sections */
+}
+
+.footer-navigation h3,
+.footer-social-media h3,
+.footer-newsletter h3,
+.footer-secondary-info h3 {
+    margin-bottom: 10px; /* Spacing below headings */
+}
+
+.footer-branding {
+    text-align: center; /* Center branding text */
+    margin-top: 20px; /* Space above branding */
+    font-size: 14px; /* Font size for branding */
+    color: #777; /* Lighter color for branding text */
 }
