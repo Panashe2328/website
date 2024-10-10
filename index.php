@@ -34,7 +34,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About</a></li>
-            <li><a href="UserAccount.php">Register</a></li>
+            <li><a href="login.php">Register</a></li>
         </ul>
     </nav>
 
