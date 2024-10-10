@@ -1,6 +1,15 @@
 <?php 
 session_start();
+<<<<<<< HEAD
 include 'dbconn.php'; // establishes the database connection
+=======
+
+
+
+include 'DBConn.php'; // establishes the database connection
+
+
+>>>>>>> 594d702bdc71b77c252ca4a41dee00130e32fefe
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
@@ -113,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
     <?php endif; ?>
     
-    <form method="post" action="user_signup.php">
+    <form method="post" action="admin_dashboard.php">
         <div>
             <label for="fName">First Name:</label>
             <input type="text" name="fName" required>
