@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'dbconn.php'; // Ensure dbconn.php contains your DB connection logic
+include ('dbconn.php'); // Ensure dbconn.php contains your DB connection logic
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email

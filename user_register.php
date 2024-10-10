@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once 'dbconn.php'; // establishes the database connection
+include ('dbconn.php'); // establishes the database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
