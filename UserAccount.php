@@ -1,7 +1,7 @@
 <?php
- session_start(); // Start the session
- include 'dbconn.php';
- ?>
+session_start(); // Start the session
+include 'dbconn.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,9 @@
         <div></div>
         <div></div>
     </label>
-    <div class="logo">Pastimes</div>
+    <div class="logo">
+        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo image">
+    </div>
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
@@ -39,6 +41,11 @@
         <div class="container" id="signup" style="display:none;">
             <h1 class="form-title">Register</h1>
             <form method="post" action="register.php">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <label for="username">Username</label>
+                </div>
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" name="fName" id="fName" placeholder="First Name" required>
@@ -85,9 +92,9 @@
             <h1 class="form-title">Sign In</h1>
             <form method="post" action="register.php">
                 <div class="input-group">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" id="email" placeholder="Email" required>
-                    <label for="email">Email</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="login" id="login" placeholder="Email or Username" required>
+                    <label for="login">Email or Username</label>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
@@ -150,9 +157,11 @@
         <?php 
         if(isset($_SESSION['email'])){
             $email = $_SESSION['email'];
-            $query = mysqli_query($conn, "SELECT firstName, lastName FROM users WHERE email='$email'");
+            // Update your query to also select username
+            $query = mysqli_query($conn, "SELECT firstName, lastName, username FROM users WHERE email='$email'");
             while($row = mysqli_fetch_array($query)){
-                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']);  // Escape user output for security
+                // Display username along with first and last name
+                echo htmlspecialchars($row['username'] . ' - ' . $row['firstName'] . ' ' . $row['lastName']);  // Escape user output for security
             }
         }
         ?>

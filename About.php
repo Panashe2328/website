@@ -23,12 +23,9 @@
         <div></div>
         <div></div>
     </label>
-
-    <!-- Logo image -->
     <div class="logo">
-    <img src="images/Pastimes.jpg" alt="Pastimes">
+        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo image">
     </div>
-
     <!-- Navigation menu -->
     <nav>
         <ul>
