@@ -1,79 +1,187 @@
 <?php
-session_start(); // Start the session
-include 'dbconn.php'; // Ensure this includes your database connection details
+session_start();
 
-// Registration logic
-if (isset($_POST['signUp'])) {
-    $fName = $_POST['fName'];
-    $lName = $_POST['lName'];
-    $username = $_POST['username']; // Username/email depending on role
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Secure password hash
-    $role = $_POST['role']; // Get the selected role (user/admin)
+// Database connection using PDO
+$hostname = "127.0.0.1";
+$username = "root";
+$password = "";
+$database = "clothingstore";
 
-    try {
-        if ($role === 'user') {
-            // Insert data into tblUser for regular users
-            $stmt = $db->prepare("INSERT INTO tblUser (first_name, last_name, username, password, city, code, status, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $status = 'active'; // Default user status
-            $city = $_POST['city']; // Optional fields can be added as required
-            $code = $_POST['code'];
-            $stmt->execute([$fName, $lName, $username, $password, $city, $code, $status, $role]);
-        } else if ($role === 'admin') {
-            // Insert data into tblAdmin for admin users
-            $adminNum = uniqid('admin'); // Generate a unique admin number
-            $stmt = $db->prepare("INSERT INTO tblAdmin (admin_num, first_name, last_name, admin_email, password) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$adminNum, $fName, $lName, $username, $password]); // Use username/email for admin
-        }
+try {
+    $db = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        echo "Registration successful!";
-        header("Location: login.php"); // Redirect to login page
+    // Process registration form submission
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
+        $role = $_POST['role']; // User role: user or admin
+        $fName = $_POST['fName'];
+        $lName = $_POST['lName'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Secure password hashing
+
+        // SQL query to insert a new user into tblUser
+        $query = "INSERT INTO tblUser (role, first_name, last_name, email, username, password, status) 
+                  VALUES (:role, :fName, :lName, :email, :username, :hashedPassword, 'pending')";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':fName', $fName);
+        $stmt->bindParam(':lName', $lName);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':hashedPassword', $hashedPassword);
+        $stmt->execute();
+
+        // Registration successful
+        $_SESSION['registration_success'] = "Registration successful. Please login.";
+        header("Location: login.php");
         exit();
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
     }
-}
 
-// Login logic
-if (isset($_POST['signIn'])) {
-    $username = $_POST['username']; // Login using username/email
-    $password = $_POST['password'];
+    // Process sign-in form submission
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signIn'])) {
+        $login = $_POST['login']; // Email or username
+        $password = $_POST['password'];
 
-    try {
-        // Check in tblUser (for users)
-        $stmtUser = $db->prepare("SELECT * FROM tblUser WHERE username=?");
-        $stmtUser->execute([$username]);
-        $userRow = $stmtUser->fetch(PDO::FETCH_ASSOC);
+        // Query to find the user by email or username
+        $query = "SELECT * FROM tblUser WHERE email = :login OR username = :login";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':login', $login);
+        $stmt->execute();
 
-        // Check in tblAdmin (for admins)
-        $stmtAdmin = $db->prepare("SELECT * FROM tblAdmin WHERE admin_email=?");
-        $stmtAdmin->execute([$username]);
-        $adminRow = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($user && password_verify($password, $user['password'])) {
+            // Set session variables
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
 
-        if ($userRow) {
-            // Verify user password
-            if (password_verify($password, $userRow['password'])) {
-                $_SESSION['username'] = $userRow['username'];
-                $_SESSION['role'] = $userRow['role'];
-                header("Location: homepage.php"); // Redirect to user homepage
-                exit();
+            // Redirect based on role
+            if ($user['role'] == 'admin') {
+                header("Location: admin.php");
             } else {
-                echo "Incorrect Username or Password for User";
+                header("Location: user.php");
             }
-        } else if ($adminRow) {
-            // Verify admin password
-            if (password_verify($password, $adminRow['password'])) {
-                $_SESSION['username'] = $adminRow['admin_email'];
-                $_SESSION['role'] = 'admin';
-                header("Location: admin_dashboard.php"); // Redirect to admin dashboard
-                exit();
-            } else {
-                echo "Incorrect Admin Username or Password";
-            }
+            exit();
         } else {
-            echo "Incorrect Username or Password";
+            $_SESSION['login_error'] = "Invalid email/username or password.";
+            header("Location: login.php");
+            exit();
         }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
     }
+} catch (PDOException $e) {
+    // Registration or login failed, handle error
+    $_SESSION['error'] = "Error: " . $e->getMessage();
+    header("Location: register.php");
+    exit();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register & Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function toggleForms() {
+            const signUpContainer = document.getElementById('signup');
+            const signInContainer = document.getElementById('signIn');
+            if (signUpContainer.style.display === "none") {
+                signUpContainer.style.display = "block";
+                signInContainer.style.display = "none";
+            } else {
+                signUpContainer.style.display = "none";
+                signInContainer.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+<header>
+    <!-- Navigation and Logo -->
+</header>
+
+<main>
+    <div class="registration-container">
+        <!-- Registration Form -->
+        <div class="container" id="signup" style="display:none;">
+            <h1 class="form-title">Register</h1>
+            <form method="post" action="register.php">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="fName" id="fName" placeholder="First Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="lName" id="lName" placeholder="Last Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-user-shield"></i>
+                    <select name="role" id="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <input type="submit" class="btn" value="Sign Up" name="signUp">
+                <p>Already have an account? <a href="#" onclick="toggleForms();">Sign In</a></p>
+            </form>
+        </div>
+
+        <!-- Sign In Form -->
+        <div class="container" id="signIn">
+            <h1 class="form-title">Sign In</h1>
+            <form method="post" action="register.php">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="login" id="login" placeholder="Email or Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <input type="submit" class="btn" value="Sign In" name="signIn">
+                <p>Don't have an account? <a href="#" onclick="toggleForms();">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div style="text-align:center;">
+        <?php 
+        if(isset($_SESSION['email'])){
+            $email = $_SESSION['email'];
+            $stmt = $db->prepare("SELECT first_name, last_name, username FROM tblUser WHERE email=:email");
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if($user){
+                echo htmlspecialchars($user['username'] . ' - ' . $user['first_name'] . ' ' . $user['last_name']);  // Escaping output
+            }
+        }
+        ?>
+        <a href="logout.php">Logout</a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

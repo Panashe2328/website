@@ -1,39 +1,55 @@
 <?php
 session_start();
-include 'dbconn.php'; // Include database connection
+require_once 'db_connect.php'; // Database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usernameOrEmail = $_POST['username']; // Username or email entered in the form
-    $password = $_POST['password']; // Password entered in the form
+    $login = $_POST['login']; // Can be username or admin_email
+    $password = $_POST['password'];
 
-    // Query to check for user by username or email
-    $query = "SELECT * FROM tblUser WHERE username = :usernameOrEmail OR email = :usernameOrEmail";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':usernameOrEmail', $usernameOrEmail);
+    // Check if the user is in the tblUser table (user role)
+    $stmt = $conn->prepare("SELECT * FROM tblUser WHERE username = ? OR status = 'active'");
+    $stmt->bind_param("s", $login);
     $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Check if user exists
-    if ($stmt->rowCount() > 0) {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        // Verify the hashed password
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Check if the password matches the hash
         if (password_verify($password, $row['password'])) {
-            // Set session variables
-            $_SESSION['userId'] = $row['userId'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['email'] = $row['email']; // Store email in session
-            $_SESSION['fName'] = $row['fName'];
-            $_SESSION['lName'] = $row['lName'];
-            $_SESSION['role'] = $row['role']; // Store user role
-            
-            // Redirect to user account page
-            header("Location: useraccount.php");
-            exit();
+            $_SESSION['user_id'] = $row['user_id']; // Set session ID
+            echo "User " . htmlspecialchars($row['first_name']) . " " . htmlspecialchars($row['last_name']) . " is logged in.";
+
+            // Display user details
+            echo "<table>
+                    <tr><td>First Name:</td><td>" . htmlspecialchars($row['first_name']) . "</td></tr>
+                    <tr><td>Last Name:</td><td>" . htmlspecialchars($row['last_name']) . "</td></tr>
+                    <tr><td>Username:</td><td>" . htmlspecialchars($row['username']) . "</td></tr>
+                    <tr><td>City:</td><td>" . htmlspecialchars($row['city']) . "</td></tr>
+                  </table>";
         } else {
-            $error = "Invalid username/email or password";
+            echo "Invalid password. Please try again.";
         }
     } else {
-        $error = "Invalid username/email or password";
+        // Check if the user is in the tblAdmin table (admin role)
+        $stmt = $conn->prepare("SELECT * FROM tblAdmin WHERE admin_email = ?");
+        $stmt->bind_param("s", $login);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // Check the password
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['admin_id'] = $row['admin_id']; // Set session ID for admin
+                echo "Admin " . htmlspecialchars($row['first_name']) . " " . htmlspecialchars($row['last_name']) . " is logged in.";
+            } else {
+                echo "Invalid admin password. Please try again.";
+            }
+        } else {
+            echo "User does not exist.";
+        }
     }
 }
 ?>
@@ -43,127 +59,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pastimes - Login</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Login</title>
 </head>
 <body>
-<header>
-    <input type="checkbox" id="menu-toggle" style="display:none;">
-    <label for="menu-toggle" class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-    </label>
-
-    <div class="logo">
-        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo image">
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="About.php">About</a></li>
-            <li><a href="register.php">Register</a></li>
-        </ul>
-    </nav>
-
-    <div class="header-icons">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-heart"></i>
-        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
-        <i class="fas fa-user"></i>
-    </div>
-</header>
-
-<!-- Main Content Section -->
-<main>
-    <div class="login-container">
-        <h1>Login</h1>
-        <?php if (isset($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
-
-        <form method="POST" action="login.php">
-            <div class="input-group">
-                <label for="username">Username or Email</label>
-                <input type="text" id="username" name="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <button type="submit">Login</button>
-        </form>
-
-        <p>Don't have an account? <a href="Register.php">Register here</a>.</p>
-    </div>
-</main>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-navigation">
-            <h3>Navigation</h3>
-            <ul>
-                <li><a href="index.php">Home Page</a></li>
-                <li><a href="contact.php">Contact Page</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-social-media">
-            <h3>Follow Us</h3>
-            <ul>
-                <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-                <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-newsletter">
-            <h3>Subscribe to Our Newsletter</h3>
-            <p>Stay updated with the latest news and exclusive offers!</p>
-            <form action="#" method="post">
-                <input type="email" placeholder="Your Email Address" required>
-                <button type="submit">Subscribe Now</button>
-            </form>
-        </div>
-
-        <div class="footer-secondary-info">
-            <h3>Additional Links</h3>
-            <ul>
-                <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                <li><a href="terms-of-service.php">Terms of Service</a></li>
-                <li><a href="faq.php">FAQ</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div style="text-align:center; padding:15%; ">
-        <?php 
-        if (isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $query = mysqli_query($conn, "SELECT firstName, lastName FROM users WHERE email='$email'");
-            while ($row = mysqli_fetch_array($query)) {
-                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']);
-            }
-        }
-        ?> 
-        <a href="logout.php">Logout</a>
-    </div>
-
-    <div class="footer-branding">
-        <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
-    </div>
-</footer>
-
-<script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const nav = document.querySelector('nav');
-
-    menuToggle.addEventListener('change', () => {
-        nav.style.display = menuToggle.checked ? 'flex' : 'none';
-    });
-</script>
+    <h2>Login</h2>
+    <form method="post" action="Login.php">
+        <label for="login">Username or Email:</label>
+        <input type="text" id="login" name="login" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required minlength="8">
+        
+        <button type="submit">Login</button>
+    </form>
 </body>
 </html>
