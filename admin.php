@@ -10,10 +10,9 @@ if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'Admin') {
 
 $errors = [];
 $success = false;
-
 // Fetch unverified users
 $users = [];
-$result = $conn->query("SELECT * FROM tblUsers WHERE verified = 'false'");
+$result = $conn->query("SELECT * FROM tblUser WHERE status = 'pending'"); // Adjusted to your table name
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $users[] = $row;
@@ -22,29 +21,28 @@ if ($result) {
     $errors[] = "Error fetching users: " . $conn->error;
 }
 
-// Handle user verification, update, or deletion
+// Handle user verification or deletion
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = trim($_POST['username']);
+    
     if (isset($_POST['verify'])) {
-        $username = trim($_POST['username']);
-        $stmt = $conn->prepare("UPDATE tblUsers SET verified = 'true' WHERE username = ?");
+        $stmt = $conn->prepare("UPDATE tblUser SET status = 'verified' WHERE username = ?");
         $stmt->bind_param("s", $username);
         if ($stmt->execute()) {
             $success = true;
         } else {
             $errors[] = "Error verifying user: " . $conn->error;
         }
-        $stmt->close();
     } elseif (isset($_POST['delete'])) {
-        $username = trim($_POST['username']);
-        $stmt = $conn->prepare("DELETE FROM tblUsers WHERE username = ?");
+        $stmt = $conn->prepare("DELETE FROM tblUser WHERE username = ?");
         $stmt->bind_param("s", $username);
         if ($stmt->execute()) {
             $success = true;
         } else {
             $errors[] = "Error deleting user: " . $conn->error;
         }
-        $stmt->close();
     }
+
 }
 ?>
 
