@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Set a session success message and redirect based on role
         $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
         if ($role == 'admin') {
-            header("Location: http://localhost/admin_dashboard.php"); // Redirect to the admin dashboard
+            header("Location: http://localhost/website/admin_dashboard.php"); // Redirect to the admin dashboard
         } else {
             header("Location:index.php");
         }
