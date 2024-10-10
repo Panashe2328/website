@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Choose the table based on the role
         if ($role == 'user') {
             // Insert into tblUser for regular users
-            $query = "INSERT INTO tblUser (first_name, last_name, email, username, password, city, code, status, role) 
+            $query = "INSERT INTO tblUser (first_name, last_name, username, password, city, code, status, role) 
                       VALUES (:fName, :lName, :email, :username, :hashedPassword, :city, :code, :status, :role)";
         } else if ($role == 'admin') {
             // Insert into tblAdmin for admin users
