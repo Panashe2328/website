@@ -21,10 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['admin_id'] = $row['admin_id'];
             echo "Admin " . htmlspecialchars($row['first_name']) . " " . htmlspecialchars($row['last_name']) . " is logged in.";
         } else {
-            echo "Incorrect password.";
+            echo "Incorrect password. Please try again.";
         }
     } else {
-        echo "Admin account does not exist.";
+        echo "Admin account does not exist. Please check your email.";
     }
 }
 ?>

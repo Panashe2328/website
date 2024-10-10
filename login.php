@@ -1,14 +1,14 @@
 <?php
 session_start();
-'db_connect.php'; // Database connection
+include 'db_connect.php'; // Correctly include your database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['login']; // Can be username or admin_email
     $password = $_POST['password'];
 
     // Check if the user is in the tblUser table (user role)
-    $stmt = $conn->prepare("SELECT * FROM tblUser WHERE username = ? OR status = 'active'");
-    $stmt->bind_param("s", $login);
+    $stmt = $conn->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
+    $stmt->bind_param("ss", $login, $login); // Bind for both username and email
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Check if the password matches the hash
         if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['user_id']; // Set session ID
+            $_SESSION['user_id'] = $row['user_id']; // Set session ID for user
             echo "User " . htmlspecialchars($row['first_name']) . " " . htmlspecialchars($row['last_name']) . " is logged in.";
 
             // Display user details

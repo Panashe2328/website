@@ -19,18 +19,33 @@ try {
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $code = $_POST['code'];
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Secure password hashing
 
-        // SQL query to insert a new user into tblUser
-        $query = "INSERT INTO tblUser (role, first_name, last_name, email, username, password, status) 
-                  VALUES (:role, :fName, :lName, :email, :username, :hashedPassword, 'pending')";
-        $stmt = $db->prepare($query);
+        // SQL query to insert a new user into tblUser or tblAdmin based on the role
+        if ($role === 'user') {
+            $query = "INSERT INTO tblUser (role, first_name, last_name, email, username, password, address, city, code, status) 
+                      VALUES (:role, :fName, :lName, :email, :username, :hashedPassword, :address, :city, :code, 'pending')";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':address', $address);
+            $stmt->bindParam(':city', $city);
+            $stmt->bindParam(':code', $code);
+        } else {
+            $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
+                      VALUES (:fName, :lName, :email, :hashedPassword)";
+            $stmt = $db->prepare($query);
+        }
+
+        // Bind common parameters
         $stmt->bindParam(':role', $role);
         $stmt->bindParam(':fName', $fName);
         $stmt->bindParam(':lName', $lName);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':hashedPassword', $hashedPassword);
+        
         $stmt->execute();
 
         // Registration successful
@@ -61,7 +76,7 @@ try {
             if ($user['role'] == 'admin') {
                 header("Location: admin_dashboard.php");
             } else {
-                header("Location:index.php ");
+                header("Location:index.php");
             }
             exit();
         } else {
@@ -96,6 +111,16 @@ try {
             } else {
                 signUpContainer.style.display = "none";
                 signInContainer.style.display = "block";
+            }
+        }
+
+        function showAdditionalFields() {
+            const role = document.getElementById('role').value;
+            const additionalFields = document.getElementById('additionalFields');
+            if (role === 'user') {
+                additionalFields.style.display = 'block';
+            } else {
+                additionalFields.style.display = 'none';
             }
         }
     </script>
@@ -133,14 +158,28 @@ try {
                 </div>
                 <div class="input-group">
                     <i class="fas fa-user-shield"></i>
-                    <select name="role" id="role" required>
+                    <select name="role" id="role" required onchange="showAdditionalFields()">
                         <option value="" disabled selected>Select Role</option>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
+                <div id="additionalFields" style="display:none;">
+                    <div class="input-group">
+                        <i class="fas fa-home"></i>
+                        <input type="text" name="address" id="address" placeholder="Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-city"></i>
+                        <input type="text" name="city" id="city" placeholder="City" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-code"></i>
+                        <input type="text" name="code" id="code" placeholder="Postal Code" required>
+                    </div>
+                </div>
                 <input type="submit" class="btn" value="Sign Up" name="signUp">
-                <p>Already have an account? <a href="#" onclick="toggleForms();">Sign In</a></p>
+                <p>Already have an account? <a href="login.php">Sign In</a></p>
             </form>
         </div>
 
@@ -171,17 +210,13 @@ try {
             $stmt = $db->prepare("SELECT first_name, last_name, username FROM tblUser WHERE email=:email");
             $stmt->bindParam(':email', $email);
             $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if($user){
-                echo htmlspecialchars($user['username'] . ' - ' . $user['first_name'] . ' ' . $user['last_name']);  // Escaping output
-            }
+            $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo "<h4>Welcome, {$userDetails['first_name']} {$userDetails['last_name']}!</h4>";
+            echo "<p>Username: {$userDetails['username']}</p>";
         }
         ?>
-        <a href="logout.php">Logout</a>
     </div>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
