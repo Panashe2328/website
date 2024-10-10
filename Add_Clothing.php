@@ -2,12 +2,12 @@
 <?php
 session_start();
 
-// Initialize the cart session if it doesn't exist
+//initialize the cart session if it doesn't exist
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Predefined clothing items array with image paths and descriptions
+//predefined clothing items array with image paths and descriptions
 $clothing_items = [
     [
         'name' => 'Women',
@@ -251,7 +251,7 @@ $clothing_items = [
     ]
 ];
 
-// Add an item to the cart
+//add an item to the cart using array_push() function
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     $item_index = $_POST['item_index'];
     

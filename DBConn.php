@@ -3,7 +3,7 @@
 $hostname = "localhost"; // Use the IP address if localhost doesn't work
 $username = "root";
 $password = "";
-$database = "clothingstore";
+$database = "ClothingStore";
 
 try {
     // Establish a connection using PDO

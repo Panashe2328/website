@@ -3,14 +3,14 @@ session_start();
  include 'dbconn.php';
 
 
-// Check if the cart is empty
+//Check if the cart is empty
 if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     $cart_empty = true;
 } else {
     $cart_empty = false;
 }
 
-// Remove an item from the cart
+//remove an item from the cart 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
     $item_index = $_POST['item_index'];
 
