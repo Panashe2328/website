@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db_connect.php'; // Database connection
+'db_connect.php'; // Database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['login']; // Can be username or admin_email
