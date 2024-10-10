@@ -14,8 +14,10 @@ Our main focus was to create an aesthetically pleasing Website with the followin
 How to run the website:
 1. download xampp
 2. unzip submission folder
-3. copy folder "website"
-4. in the xampp folder go to htdocs
-5. paste the folder "website" into htdocs
-6. now start running xampp
-7. go to web browser and enter "localhost/website" to run the website
+4. inside the folder "website" contains the website folders and _images and _resources. 
+5. _resources folder contains all the text data and word documents
+6. copy folder "website"
+7. in the xampp folder go to htdocs
+8. paste the folder "website" into htdocs
+9. now start running xampp
+10. go to web browser and enter "localhost/website" to run the website
