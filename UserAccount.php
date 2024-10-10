@@ -38,43 +38,72 @@ include 'dbconn.php';
 </header>
 <main>
     <div class="registration-container">
-        <div class="container" id="signup" style="display:none;">
+        <div class="container" id="signup">
             <h1 class="form-title">Register</h1>
             <form method="post" action="register.php">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" id="username" placeholder="Username" required>
-                    <label for="username">Username</label>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" name="fName" id="fName" placeholder="First Name" required>
-                    <label for="fName">First Name</label>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" name="lName" id="lName" placeholder="Last Name" required>
-                    <label for="lName">Last Name</label>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" id="email" placeholder="Email" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="password" placeholder="Password" required>
-                    <label for="password">Password</label>
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-user-shield"></i>
-                    <select name="role" id="role" required>
+                    <select name="role" id="role" required onchange="toggleFields()">
                         <option value="" disabled selected>Select Role</option>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
                     <label for="role">Role</label>
                 </div>
+
+                <!-- User specific fields -->
+                <div class="user-fields" style="display:none;">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="username" id="username" placeholder="Username" required>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="fName" id="fName" placeholder="First Name" required>
+                        <label for="fName">First Name</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="lName" id="lName" placeholder="Last Name" required>
+                        <label for="lName">Last Name</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+
+                <!-- Admin specific fields -->
+                <div class="admin-fields" style="display:none;">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="fName" id="fNameAdmin" placeholder="First Name" required>
+                        <label for="fNameAdmin">First Name</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="lName" id="lNameAdmin" placeholder="Last Name" required>
+                        <label for="lNameAdmin">Last Name</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" id="emailAdmin" placeholder="Email" required>
+                        <label for="emailAdmin">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" id="passwordAdmin" placeholder="Password" required>
+                        <label for="passwordAdmin">Password</label>
+                    </div>
+                </div>
+
                 <input type="submit" class="btn" value="Sign Up" name="signUp">
             </form>
             <p class="or">----------or----------</p>
@@ -117,6 +146,25 @@ include 'dbconn.php';
     </div>
 </main>
 
+<script>
+function toggleFields() {
+    var role = document.getElementById('role').value;
+    var userFields = document.querySelector('.user-fields');
+    var adminFields = document.querySelector('.admin-fields');
+
+    if (role === 'user') {
+        userFields.style.display = 'block';
+        adminFields.style.display = 'none';
+    } else if (role === 'admin') {
+        adminFields.style.display = 'block';
+        userFields.style.display = 'none';
+    } else {
+        userFields.style.display = 'none';
+        adminFields.style.display = 'none';
+    }
+}
+</script>
+
 <footer>
     <div class="footer-container">
         <div class="footer-navigation">
@@ -157,11 +205,9 @@ include 'dbconn.php';
         <?php 
         if(isset($_SESSION['email'])){
             $email = $_SESSION['email'];
-            // Update your query to also select username
-            $query = mysqli_query($conn, "SELECT firstName, lastName, username FROM users WHERE email='$email'");
+            $query = mysqli_query($conn, "SELECT firstName, lastName, username FROM tblUser WHERE email='$email'");
             while($row = mysqli_fetch_array($query)){
-                // Display username along with first and last name
-                echo htmlspecialchars($row['username'] . ' - ' . $row['firstName'] . ' ' . $row['lastName']);  // Escape user output for security
+                echo htmlspecialchars($row['username'] . ' - ' . $row['firstName'] . ' ' . $row['lastName']);
             }
         }
         ?>

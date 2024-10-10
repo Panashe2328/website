@@ -1,37 +1,44 @@
 <?php
- session_start(); // Start the session
- include 'dbconn.php';
+session_start(); // Start the session
+include 'dbconn.php';
+
 if (isset($_POST['signIn'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    // Check if the necessary POST data is set
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    // Prepare the SQL query using prepared statements
-    $stmt = $conn->prepare("SELECT * FROM user WHERE email=?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        // Prepare the SQL query using prepared statements
+        $stmt = $conn->prepare("SELECT * FROM user WHERE email=?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        // Verify the password against the hash
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['role'] = $row['role']; // Store the role in session
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            // Verify the password against the hash
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['role'] = $row['role']; // Store the role in session
 
-            // Check role and redirect accordingly
-            if ($row['role'] === 'admin') {
-                header("Location: /path-to-admin-dashboard.php");
+                // Check role and redirect accordingly
+                if ($row['role'] === 'admin') {
+                    header("Location: /path-to-admin-dashboard.php");
+                } else {
+                    header("Location: homepage.php");
+                }
+                exit();
             } else {
-                header("Location: homepage.php");
+                echo "Incorrect email or password.";
             }
-            exit();
         } else {
             echo "Incorrect email or password.";
         }
+
+        $stmt->close(); // Close the statement
     } else {
-        echo "Incorrect email or password.";
+        echo "Email and Password are required.";
     }
-    $stmt->close(); // Close the statement
 }
 ?>
 
