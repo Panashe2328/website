@@ -4,7 +4,7 @@ include ('dbconn.php'); // Ensure you include your database connection
 
 // Ensure the user is logged in and is an admin
 if (!isset($_SESSION['admin_id']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: AdminLogin.php'); // Redirect if not an admin
+    header('Location:index.php '); // Redirect if not an admin
     exit();
 }
 
