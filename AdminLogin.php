@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db_connect.php'; // Database connection
+ include 'db_conn.php'; // Database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_email = $_POST['admin_email'];
@@ -34,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Admin Login</title>
 </head>
 <body>
