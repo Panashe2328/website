@@ -3,9 +3,9 @@ README File:
 # Online Clothing Store - Full PHP & MYSQL Project 
 version: 1.0.0 
 
-### Admin User Name : sodwasoso@gmail.com
+### Admin User Name : dianasimpson@yahoo.com
 
-### Admin Password : 12345 
+### Admin Password : 5d41402abc4b2a76b9719d911017c592
 
 
 ## Introduction 
