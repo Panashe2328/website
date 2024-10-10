@@ -59,9 +59,9 @@ try {
 
             // Redirect based on role
             if ($user['role'] == 'admin') {
-                header("Location: admin.php");
+                header("Location: admin_dashboard.php");
             } else {
-                header("Location: user.php");
+                header("Location:index.php ");
             }
             exit();
         } else {
