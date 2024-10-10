@@ -82,3 +82,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     </form>
 </body>
 </html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pastimes - User Registration</title>
+</head>
+
+<body>
+    <header>
+        <!-- nav bar -->
+        <div class="logo">
+            <img src="_images/pastimes_logo.png" alt="" width="150px">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="browse.php">Browse Clothing</a></li>
+                <li><a href="my_account.php">Account</a></li>
+                <li><a href="sell_clothes.php">Sell Clothing</a></li>
+                <li><a href="contact_us.php">Get in Touch</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="registration-form">
+        <h1>User Registration</h1>
+        <form action="register.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo isset($name) ? $name : ''; ?>" required>
+
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" value="<?php echo isset($surname) ? $surname : ''; ?>"
+                required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<?php echo isset($username) ? $username : ''; ?>"
+                required>
+
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" value="<?php echo isset($password) ? $password : ''; ?>"
+                required>
+
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" value="<?php echo isset($address) ? $address : ''; ?>"
+                required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo isset($email) ? $email : ''; ?>" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" value="<?php echo isset($phone) ? $phone : ''; ?>" required
+                pattern="[0-9]{10}" placeholder="Enter 10 digits">
+
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+
+    </section>
+
+
+</body>
+
+</html>
+-->

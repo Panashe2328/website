@@ -71,3 +71,84 @@ try {
 }
 
 ?>
+
+
+<!--
+<?php
+// Include the DB connection script
+include 'DBConn.php';
+
+// Start by disabling foreign key checks
+$dbConn->query("SET FOREIGN_KEY_CHECKS = 0;");
+
+// SQL query to check if the table exists
+$tableName = "tbluser";
+$tableExistsQuery = "SHOW TABLES LIKE '$tableName'";
+$result = $dbConn->query($tableExistsQuery);
+
+if ($result && $result->num_rows > 0) {
+    // If the table exists, drop it
+    $dropTableQuery = "DROP TABLE `$tableName`";
+    if ($dbConn->query($dropTableQuery) === TRUE) {
+        echo "<p>Table $tableName dropped successfully.</p>";
+    } else {
+        echo "<p>Error dropping table: " . $dbConn->error . "</p>";
+    }
+}
+
+// SQL to create the tbluser table
+$createTableQuery = "
+CREATE TABLE `$tableName` (
+    `UserName` VARCHAR(50) NOT NULL,
+    `Name` VARCHAR(50) DEFAULT NULL,
+    `Surname` VARCHAR(50) DEFAULT NULL,
+    `email` VARCHAR(50) DEFAULT NULL,
+    `password` VARCHAR(100) DEFAULT NULL,
+    `Verified` TINYINT(1) DEFAULT NULL,
+    PRIMARY KEY (`UserName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+";
+
+if ($dbConn->query($createTableQuery) === TRUE) {
+    echo "<p>Table $tableName created successfully.</p>";
+} else {
+    echo "<p>Error creating table: " . $dbConn->error . "</p>";
+}
+
+// Load data from userData.txt
+$dataFile = 'userData.txt';
+if (file_exists($dataFile)) {
+    $fileContent = file_get_contents($dataFile);
+    
+    // Split the content into lines and prepare for insertion
+    $lines = explode(PHP_EOL, trim($fileContent));
+    
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if (!empty($line)) {
+            $data = array_map('trim', explode(",", $line)); // Trim each element
+            if (count($data) === 6) {
+                $data[5] = ($data[5] === 'true') ? 1 : 0; // Convert boolean to integer
+                $insertQuery = "INSERT INTO `$tableName` (`UserName`, `Name`, `Surname`, `email`, `password`, `Verified`) VALUES ('" . implode("', '", $data) . "')";
+                
+                if ($dbConn->query($insertQuery) === TRUE) {
+                    echo "<p>Data inserted successfully: $insertQuery</p>";
+                } else {
+                    echo "<p>Error inserting data: " . $dbConn->error . "</p>";
+                }
+            } else {
+                echo "<p>Invalid data format for line: $line</p>";
+            }
+        }
+    }
+} else {
+    echo "<p>Data file $dataFile not found.</p>";
+}
+
+// Re-enable foreign key checks
+$dbConn->query("SET FOREIGN_KEY_CHECKS = 1;");
+
+
+?>
+
+-->
