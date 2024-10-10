@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Prepare SQL to check admin_email in the tblAdmin table
-    $stmt = $conn->prepare("SELECT * FROM tblAdmin WHERE admin_email = ?");
+    $stmt = $conn->prepare("SELECT * FROM tbladmin WHERE admin_email = ?");
     $stmt->bind_param("s", $admin_email);
     $stmt->execute();
     $result = $stmt->get_result();
