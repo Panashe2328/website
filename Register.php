@@ -1,5 +1,6 @@
 <?php
 session_start();
+<<<<<<< HEAD
 
 // Database connection using PDO
 $hostname = "localhost";
@@ -91,41 +92,54 @@ try {
     header("Location: register.php");
     exit();
 }
+=======
+>>>>>>> 4b4fbe53b44898b2479212c3e5153f4825700041
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register & Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script>
-        function toggleForms() {
-            const signUpContainer = document.getElementById('signup');
-            const signInContainer = document.getElementById('signIn');
-            if (signUpContainer.style.display === "none") {
-                signUpContainer.style.display = "block";
-                signInContainer.style.display = "none";
-            } else {
-                signUpContainer.style.display = "none";
-                signInContainer.style.display = "block";
-            }
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-
-        function showAdditionalFields() {
-            const role = document.getElementById('role').value;
-            const additionalFields = document.getElementById('additionalFields');
-            if (role === 'user') {
-                additionalFields.style.display = 'block';
-            } else {
-                additionalFields.style.display = 'none';
-            }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-    </script>
+        h1 {
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+<<<<<<< HEAD
 <header>
     <!-- Navigation and Logo -->
 </header>
@@ -200,25 +214,12 @@ try {
     </form>
 </div>
 
+=======
+    <div class="container">
+        <h1>Choose Registration Type</h1>
+        <button onclick="window.location.href='user_signup.php'">Register as User</button>
+        <button onclick="window.location.href='admin_signup.php'">Register as Admin</button>
+>>>>>>> 4b4fbe53b44898b2479212c3e5153f4825700041
     </div>
-</main>
-
-<footer>
-    <div style="text-align:center;">
-        <?php 
-        if(isset($_SESSION['email'])){
-            $email = $_SESSION['email'];
-            $stmt = $db->prepare("SELECT first_name, last_name, username FROM tblUser WHERE email = :email");
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo "<p>Welcome, " . htmlspecialchars($user['first_name']) . " " . htmlspecialchars($user['last_name']) . " (" . htmlspecialchars($user['username']) . ")</p>";
-        }
-        ?>
-    </div>
-    <div>
-        <p>&copy; 2024 ClothingStore. All rights reserved.</p>
-    </div>
-</footer>
 </body>
 </html>
