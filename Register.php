@@ -126,7 +126,7 @@ try {
         button {
             margin: 10px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: lightcoral;
             color: white;
             border: none;
             border-radius: 5px;
@@ -134,7 +134,7 @@ try {
             font-size: 16px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: lightcyan;
         }
     </style>
 </head>
