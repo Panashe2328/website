@@ -32,7 +32,7 @@ session_start();
         button {
             margin: 10px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: lightcoral;
             color: white;
             border: none;
             border-radius: 5px;
@@ -40,7 +40,7 @@ session_start();
             font-size: 16px;
         }
         button:hover {
-            background-color: lightcoral;
+            background-color: lightcyan;
         }
     </style>
 </head>

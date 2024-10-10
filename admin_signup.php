@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db_connection.php'; // Assuming your database connection is in this file
+require_once 'dbconn.php'; // Assuming your database connection is in this file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     $fName = $_POST['fName'];
