@@ -462,3 +462,38 @@ add_clothing styling so that scrolling is minimized
     background-color: #83a7ce;
 }
 
+/* the shop page styling */
+
+.clothing-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Ensures even spacing between items */
+    margin: 0 -10px; /* Negative margin to counter the padding on clothing items */
+}
+.clothing-item {
+    flex: 1 1 18%; /* Allows for growth and shrinking with a base of 18% */
+    margin: 10px; /* Keep margin for spacing */
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #b67373;
+    text-align: center;
+}
+@media (max-width: 900px) {
+    .clothing-item {
+        flex: 1 1 30%; /* 3 items in a row */
+    }
+}
+
+@media (max-width: 600px) {
+    .clothing-item {
+        flex: 1 1 45%; /* 2 items in a row */
+    }
+}
+
+@media (max-width: 400px) {
+    .clothing-item {
+        flex: 1 1 100%; /* 1 item in a row */
+    }
+}
+
+

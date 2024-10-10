@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -291,7 +292,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <div class="clothing-container">
         <?php foreach ($clothing_items as $index => $item): ?>
             <div class="clothing-item">
-                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
                 <h2><?php echo htmlspecialchars($item['name']); ?></h2>
                 <p><?php echo htmlspecialchars($item['description']); ?></p>
                 <p>Price: R <?php echo number_format($item['price'], 2); ?></p>

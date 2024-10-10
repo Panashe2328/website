@@ -1,8 +1,3 @@
-<?php
-session_start();
-include("DBConn.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +30,7 @@ include("DBConn.php");
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About</a></li>
-            <li><a href="User.php">Register</a></li>
+            <li><a href="UserAccount.php">Register</a></li>
         </ul>
     </nav>
 
