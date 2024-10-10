@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         function showSuccessMessage(event) {
             <?php if (isset($_SESSION['registration_success'])): ?>
                 alert("Registration successful. Please wait for admin approval.");
-                <?php unset($_SESSION['registration_success']); // Unset after showing ?>
+                
             <?php endif; ?>
             
             // Continue with form submission
