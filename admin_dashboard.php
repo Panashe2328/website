@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('dbconn.php'); // Database connection
+include 'DBConn.php'; // Database connection
 
 // Check if the request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

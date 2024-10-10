@@ -1,6 +1,6 @@
 <?php
 // Include the database connection (DBConn.php)
-include 'dbconn.php';
+include 'DBConn.php';
 
 try {
     // Disable foreign key checks
