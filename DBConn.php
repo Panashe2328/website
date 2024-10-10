@@ -16,19 +16,19 @@ try {
     echo "<p>Connection successful!</p>";
 
     // Check if the table 'tblUser' exists
-    $query = $db->query("SHOW TABLES LIKE 'tblUser'");
+    $query = $db->query("SHOW TABLES LIKE 'tbluser'");
     echo ($query->rowCount() > 0) ? "Table 'tblUser' exists in the database.<br>" : "Table 'tblUser' does not exist.<br>";
 
     // Check if the table 'tblAdmin' exists
-    $query = $db->query("SHOW TABLES LIKE 'tblAdmin'");
+    $query = $db->query("SHOW TABLES LIKE 'tbladmin'");
     echo ($query->rowCount() > 0) ? "Table 'tblAdmin' exists in the database.<br>" : "Table 'tblAdmin' does not exist.<br>";
 
     // Check if the table 'tblClothes' exists
-    $query = $db->query("SHOW TABLES LIKE 'tblClothes'");
+    $query = $db->query("SHOW TABLES LIKE 'tblclothes'");
     echo ($query->rowCount() > 0) ? "Table 'tblClothes' exists in the database.<br>" : "Table 'tblClothes' does not exist.<br>";
 
     // Check if the table 'tblOrder' exists
-    $query = $db->query("SHOW TABLES LIKE 'tblOrder'");
+    $query = $db->query("SHOW TABLES LIKE 'tblorder'");
     echo ($query->rowCount() > 0) ? "Table 'tblOrder' exists in the database.<br>" : "Table 'tblOrder' does not exist.<br>";
 
 } catch (PDOException $e) {
