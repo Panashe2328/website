@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start the session
-include ('dbconn.php'); // Include database connection
+include 'DBConn.php';// Include database connection
 ?>
 <!DOCTYPE html>
 <html lang="en">
