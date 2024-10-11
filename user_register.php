@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         function attachFormSubmitListener() {
             var form = document.getElementById('registrationForm');
             form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent immediate form submission
+               //S event.preventDefault(); // Prevent immediate form submission
                 showSuccessMessage(event); // Show the pop-up and then submit the form
             });
         }
