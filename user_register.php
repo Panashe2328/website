@@ -235,6 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 </footer>
 
 <script>
+<<<<<<< HEAD
     // Function to show pop-up message when registration is successful
     function showRegistrationMessage() {
         alert('Registration successful. Please wait for admin approval.');
@@ -252,6 +253,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     });
 </script>
 
+=======
+        // Show the success message on form submission
+        function showSuccessMessage(event) {
+            <?php if (isset($_SESSION['registration_success'])): ?>
+                alert("Registration successful. Please wait for admin approval.");
+                
+            <?php endif; ?>
+            
+            // Continue with form submission
+            document.getElementById('registrationForm').submit();
+        }
+
+        // Attach event listener to the form's submit event
+        function attachFormSubmitListener() {
+            var form = document.getElementById('registrationForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent immediate form submission
+                showSuccessMessage(event); // Show the pop-up and then submit the form
+            });
+        }
+    </script>
+>>>>>>> 325bf444577963939a0e8f36a31e987a1ecaa802
   
 <script src="script.js"></script>
 </body>
