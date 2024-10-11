@@ -2,42 +2,25 @@
 session_start();
 include 'DBConn.php'; // Database connection
 
-// Check if the request method is POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $admin_email = trim($_POST['admin_email']); // Trim whitespace
-    $password = $_POST['password'];
-
-    // Prepare SQL to check admin_email in the tblAdmin table
-    try {
-        $stmt = $db->prepare("SELECT * FROM tblAdmin WHERE admin_email = :email");
-        $stmt->bindParam(':email', $admin_email);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Check if the email exists in the database
-        if ($row) {
-            // Verify the password hash
-            if (password_verify($password, $row['password'])) {
-                // Admin login success
-                $_SESSION['admin_id'] = $row['admin_id'];
-                $_SESSION['admin_email'] = $row['admin_email']; // Store email in session
-                $_SESSION['role'] = 'Admin'; // Set role to Admin for session
-                
-                header('Location: admin_dashboard.php'); // Redirect to admin dashboard
-                exit();
-            } else {
-                // Password mismatch
-                $error_message = "Incorrect password. Please try again.";
-            }
-        } else {
-            // Email does not exist
-            $error_message = "Admin account does not exist. Please check your email.";
-        }
-    } catch (PDOException $e) {
-        // Handle any database errors
-        $error_message = "Database error: " . $e->getMessage();
-    }
+// Check if the user is logged in as admin
+if (!isset($_SESSION['admin_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: AdminLogin.php'); // Redirect to login page if not an admin
+    exit();
 }
+
+// Fetch users needing approval and all customers
+try {
+    $stmt = $db->prepare("SELECT * FROM tblUser WHERE status = 'pending'"); // Users needing approval
+    $stmt->execute();
+    $pending_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    $stmt = $db->prepare("SELECT * FROM tblUser WHERE status = 'approved'"); // Approved users
+    $stmt->execute();
+    $approved_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $error_message = "Database error: " . $e->getMessage();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,77 +30,205 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Admin Login</title>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .user-list {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+        }
+
+        .user-list th, .user-list td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .user-list th {
+            background-color: #f2f2f2;
+        }
+
+        .approve-button,
+        .edit-button,
+        .delete-button,
+        .add-button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .delete-button {
+            background-color: red;
+        }
+
+        .approve-button:hover,
+        .edit-button:hover,
+        .delete-button:hover,
+        .add-button:hover {
+            opacity: 0.8;
+        }
+
+        .form-container {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
 <header>
-    <input type="checkbox" id="menu-toggle" style="display:none;"> <!-- Checkbox to toggle the menu -->
-    
-    <label for="menu-toggle" class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-    </label>
-
     <div class="logo">
-        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo">
+        <img src="Pastimes" alt="">
     </div>
 
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About</a></li>
-            <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
+            <li><a href="admin_dashboard.php" class="Current">Dashboard</a></li>
             <li><a href="user_register.php">Register</a></li>
         </ul>
     </nav>
-
-    <div class="header-icons">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-heart"></i>
-        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
-        <i class="fas fa-user"></i>
-    </div>
 </header>
 
 <main>
-    <h2>Admin Login</h2>
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['admin_email']); ?>!</h2>
     
     <!-- Display any error messages -->
     <?php if (isset($error_message)): ?>
-        <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div> <!-- Escape output for security -->
+        <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
     <?php endif; ?>
     
-    <form method="post" action="AdminLogin.php">
-        <label for="admin_email">Admin Email:</label>
-        <input type="email" id="admin_email" name="admin_email" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required minlength="8">
-        
-        <button type="submit">Login as Admin</button>
-    </form>
+    <h3>Users Needing Approval</h3>
+    <table class="user-list">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($pending_users)): ?>
+                <?php foreach ($pending_users as $user): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($user['first_name']); ?></td>
+                        <td><?php echo htmlspecialchars($user['last_name']); ?></td>
+                        <td><?php echo htmlspecialchars($user['username']); ?></td>
+                        <td>
+                            <form method="post" action="approve_user.php" style="display:inline;">
+                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                <button type="submit" class="approve-button">Approve</button>
+                            </form>
+                            <form method="post" action="edit_user.php" style="display:inline;">
+                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                <button type="submit" class="edit-button">Edit</button>
+                            </form>
+                            <form method="post" action="delete_user.php" style="display:inline;">
+                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4">No users needing approval.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <h3>Approved Customers</h3>
+    <table class="user-list">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($approved_users)): ?>
+                <?php foreach ($approved_users as $user): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($user['first_name']); ?></td>
+                        <td><?php echo htmlspecialchars($user['last_name']); ?></td>
+                        <td><?php echo htmlspecialchars($user['username']); ?></td>
+                        <td>
+                            <form method="post" action="edit_user.php" style="display:inline;">
+                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                <button type="submit" class="edit-button">Edit</button>
+                            </form>
+                            <form method="post" action="delete_user.php" style="display:inline;">
+                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4">No approved customers.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <div class="form-container">
+        <h3>Add New Customer</h3>
+        <form method="post" action="add_customer.php">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" class="add-button">Add Customer</button>
+        </form>
+    </div>
 </main>
-<footer>
-    <div class="footer-container">
-        <div class="footer-navigation">
-            <h3>Navigation</h3>
-            <ul>
-                <li><a href="index.php">Home Page</a></li>
-                <li><a href="contact.php">Contact Page</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-social-media">
-            <h3>Follow Us</h3>
-            <ul>
-                <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-                <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-newsletter">
-            <h3>Subscribe to Our Newsletter</h3>
-            <p>Stay updated with
+</body>
+</html>

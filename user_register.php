@@ -55,22 +55,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Execute the query
         $stmt->execute();
 
-        // Set a session success message and redirect based on role
         $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
         if ($role == 'admin') {
+            // Set session variables for the admin
+            $_SESSION['admin_id'] = $email; // or any unique admin identifier (e.g., admin ID)
+            $_SESSION['role'] = 'Admin'; // Set the role for the session
             header("Location: http://localhost/website/admin_dashboard.php"); // Redirect to the admin dashboard
         } else {
             header("Location:index.php");
         }
         exit();
-
+    
     } catch (PDOException $e) {
         // Capture and display error message
-        $_SESSION['error'] = "Registration failed. Please try again.";
-        error_log("Registration error: " . $e->getMessage()); // Log the error for debugging
+        $_SESSION['error'] = "Error: " . $e->getMessage();
     }
 }
-
 
 
 ?>
