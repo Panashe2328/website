@@ -1,8 +1,6 @@
 <?php 
 session_start();
- include 'DBConn.php'; // establishes the database connection
-
-
+include 'DBConn.php'; // Establishes the database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
@@ -55,24 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Execute the query
         $stmt->execute();
 
-        $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
-        if ($role == 'admin') {
-            // Set session variables for the admin
-            $_SESSION['admin_id'] = $email; // or any unique admin identifier (e.g., admin ID)
-            $_SESSION['role'] = 'Admin'; // Set the role for the session
-            header("Location: http://localhost/website/admin_dashboard.php"); // Redirect to the admin dashboard
-        } else {
-            header("Location:index.php");
-        }
+        // Set session variable for success message
+        $_SESSION['registration_success'] = true;
+        header("Location: user_register.php"); // Reload the page to show the message
         exit();
-    
+
     } catch (PDOException $e) {
         // Capture and display error message
         $_SESSION['error'] = "Error: " . $e->getMessage();
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -83,155 +73,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     <title>Pastimes - User Registration</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        // JavaScript to display the pop-up message
+        window.onload = function() {
+            <?php if (isset($_SESSION['registration_success'])): ?>
+                alert("Registration received. Please wait for admin approval.");
+                <?php unset($_SESSION['registration_success']); // Unset after showing ?>
+            <?php endif; ?>
+        };
+    </script>
 </head>
 <body>
-<header>
-    <input type="checkbox" id="menu-toggle" style="display:none;"> <!-- Checkbox to toggle the menu -->
-    
-    <label for="menu-toggle" class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-    </label>
-
-    <div class="logo">
-        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo">
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="About.php">About</a></li>
-            <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
-            <li><a href="user_register.php">Register</a></li>
-        </ul>
-    </nav>
-
-    <div class="header-icons">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-heart"></i>
-        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
-        <i class="fas fa-user"></i>
-    </div>
-</header>
-
-<main>
-    <!-- Display any error messages -->
-    <?php if (isset($_SESSION['error'])): ?>
-        <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-    <?php endif; ?>
-    
-    <form method="post" action="user_register.php">
-        <div>
-            <label for="fName">First Name:</label>
-            <input type="text" name="fName" required>
-        </div>
-
-        <div>
-            <label for="lName">Last Name:</label>
-            <input type="text" name="lName" required>
-        </div>
-
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email">
-        </div>
-
-        <div>
-            <label for="username">Username (for users):</label>
-            <input type="text" name="username">
-        </div>
-
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-        </div>
-
-        <div>
-            <label for="address">Address (for users):</label>
-            <input type="text" name="address">
-        </div>
-
-
-        <div>
-            <label for="city">City (for users):</label>
-            <input type="text" name="city">
-        </div>
-
-        <div>
-            <label for="code">Postal Code (for users):</label>
-            <input type="text" name="code">
-        </div>
-
-        <div>
-            <label for="role">Role:</label>
-            <select name="role" required>
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
-
-        <input type="submit" value="Sign Up" name="signUp">
-    </form>
-</main>
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-navigation">
-            <h3>Navigation</h3>
-            <ul>
-                <li><a href="index.php">Home Page</a></li>
-                <li><a href="contact.php">Contact Page</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-social-media">
-            <h3>Follow Us</h3>
-            <ul>
-                <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-                <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-newsletter">
-            <h3>Subscribe to Our Newsletter</h3>
-            <p>Stay updated with the latest news and exclusive offers!</p>
-            <form action="#" method="post">
-                <input type="email" placeholder="Your Email Address" required>
-                <button type="submit">Subscribe Now</button>
-            </form>
-        </div>
-
-        <div class="footer-secondary-info">
-            <h3>Additional Links</h3>
-            <ul>
-                <li><a href="privacy-policy.php">Privacy Policy</a></li>
-                <li><a href="terms-of-service.php">Terms of Service</a></li>
-                <li><a href="faq.php">FAQ</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div style="text-align:center; padding:15%;">
-        <?php 
-        if (isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $query = mysqli_query($conn, "SELECT firstName, lastName FROM users WHERE email='$email'");
-            if ($row = mysqli_fetch_assoc($query)) {
-                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']); // Escape user output for security
-            }
-        }
-        ?> 
-        <a href="logout.php">Logout</a>
-    </div>
-
-    <div class="footer-branding">
-        <p>&copy; 2024 Pastimes. All Rights Reserved.</p>
-    </div>
-</footer>
-
-<script src="script.js"></script>
+<!-- Your form and other content here -->
 </body>
 </html>
