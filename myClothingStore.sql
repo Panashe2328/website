@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS tblUser (
 
 CREATE TABLE IF NOT EXISTS tblAdmin (
     admin_id INT PRIMARY KEY AUTO_INCREMENT, 
-    admin_num VARCHAR(10) NOT NULL UNIQUE, 
+    admin_num  INT(10), 
     first_name VARCHAR(50) NOT NULL, 
     last_name VARCHAR(50) NOT NULL, 
     admin_email VARCHAR(100) NOT NULL UNIQUE, 

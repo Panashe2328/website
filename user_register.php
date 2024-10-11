@@ -2,17 +2,19 @@
 session_start();
  include 'DBConn.php'; // establishes the database connection
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Fetch data from the form
     $fName = $_POST['fName'];
     $lName = $_POST['lName'];
-    $email = $_POST['email'];
     $username = $_POST['username'] ?? ''; // Optional for admin
     $password = $_POST['password'];
     $city = $_POST['city'] ?? ''; // Optional for admin
     $code = $_POST['code'] ?? ''; // Optional for admin
+    $address = $_POST['address'] ?? ''; // Optional for users
     $role = $_POST['role']; // Comes from the form (dropdown)
-    
+
     // Set status based on the role
     $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
 
@@ -23,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Choose the table based on the role
         if ($role == 'user') {
             // Insert into tblUser for regular users
-            $query = "INSERT INTO tblUser (first_name, last_name, email, username, password, city, code, status, role) 
-                      VALUES (:fName, :lName, :email, :username, :hashedPassword, :city, :code, :status, :role)";
+            $query = "INSERT INTO tblUser (first_name, last_name, username, password, address, city, code, status, role) 
+                      VALUES (:fName, :lName, :username, :hashedPassword, :address, :city, :code, :status, :role)";
         } else if ($role == 'admin') {
             // Insert into tblAdmin for admin users
             $query = "INSERT INTO tblAdmin (first_name, last_name, admin_email, password) 
@@ -36,15 +38,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Bind parameters
         $stmt->bindParam(':fName', $fName);
         $stmt->bindParam(':lName', $lName);
-        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':hashedPassword', $hashedPassword);
 
         if ($role == 'user') {
             $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':address', $address);
             $stmt->bindParam(':city', $city);
             $stmt->bindParam(':code', $code);
             $stmt->bindParam(':status', $status);
             $stmt->bindParam(':role', $role);
+        } else if ($role == 'admin') {
+            $email = $_POST['email']; // Fetch email only for admin
+            $stmt->bindParam(':email', $email);
         }
 
         // Execute the query
@@ -61,9 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
     } catch (PDOException $e) {
         // Capture and display error message
-        $_SESSION['error'] = "Error: " . $e->getMessage();
+        $_SESSION['error'] = "Registration failed. Please try again.";
+        error_log("Registration error: " . $e->getMessage()); // Log the error for debugging
     }
 }
+
+
 
 ?>
 
@@ -113,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
     <?php endif; ?>
     
-    <form method="post" action="admin_dashboard.php">
+    <form method="post" action="user_register.php">
         <div>
             <label for="fName">First Name:</label>
             <input type="text" name="fName" required>
@@ -126,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
         <div>
             <label for="email">Email:</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email">
         </div>
 
         <div>
@@ -138,6 +146,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             <label for="password">Password:</label>
             <input type="password" name="password" required>
         </div>
+
+        <div>
+            <label for="address">Address (for users):</label>
+            <input type="text" name="address">
+        </div>
+
 
         <div>
             <label for="city">City (for users):</label>
