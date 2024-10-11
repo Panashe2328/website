@@ -250,9 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             showRegistrationMessage();
         });
     });
-</script>
-
-  
+</script>  
 <script src="script.js"></script>
 </body>
 </html>
