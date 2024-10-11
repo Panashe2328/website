@@ -62,7 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             $_SESSION['role'] = 'Admin'; // Set the role for the session
             header("Location: http://localhost/website/admin_dashboard.php"); // Redirect to the admin dashboard
         } else {
-            header("Location:index.php");
+            // Show the success message for users
+            echo "<script>alert('Successful registration, waiting for approval.');</script>";
+            header("Location: index.php");
         }
         exit();
     
