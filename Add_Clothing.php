@@ -288,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="cart.php">View Cart (<?php echo count($_SESSION['cart']); ?>)</a></li>
+            <li><a href="cart.php">Show Cart (<?php echo count($_SESSION['cart']); ?>)</a></li>
         </ul>
     </nav>
 </header>
