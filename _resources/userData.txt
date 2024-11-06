@@ -26,4 +26,4 @@
 127, Rose, Williams, roseW, $2a$04$ghijkl1234567890ZYXWVutsrqponmlkjihgfedcba, 55 High St, Pretoria, 0007, active
 128, Nelly, Korda, nellyK, $2a$04$lmnopq1234567890ZYXWVutsrqponmlkjihgfedcba, 73 Park Lane, Johannesburg, 2006, pending
 129, Lexi, Thompson, lexithom, $2a$04$abcdef1234567890ZYXWVutsrqponmlkjihgfedcba, 47 Golf St, Roodepoort, 2169, active
-130, Sam, , samsmith, $2a$04$qrstuv1234567890ZYXWVutsrqponmlkjihgfedcba, 60 Ocean Rd, Sandton, 2014, pending
+130, Sam, , samsmith, $2a$04$qrstuv1234567890ZYXWVutsrqponmlkjihgfedcba, 60 Ocean Rd, Sandton, 2014, pending 
