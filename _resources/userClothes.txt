@@ -27,5 +27,5 @@
 11037, _images/men_jacket_purple.jpg, Men, Purple jacket, 450.00, M, new
 11038, _images/women_shirt_grey.jpg, women, dress, 60.00, S, good
 11040, _images/kids_shirt_blue.jpg, Kids, Blue shirt, 95.00, S, new
-11041, _images/women_shirt_white.jpg, Women, White shirt, 250.00, L, new
+11041, _images/women_shirt_white.jpg, Women, White shirt, 250.00, L, new 
 
