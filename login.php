@@ -6,24 +6,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
 
-    // Query to check if login is an Admin (email) or User (username)
-    $stmt = $db->prepare("SELECT * FROM tblUser WHERE (role = 'Admin' AND email = ?) OR (role = 'User' AND username = ?)");
-    $stmt->execute([$login, $login]); // Bind the same login value for both email and username
+    // First, check if it's an Admin (email) or User (username)
+    // Determine the query based on whether it's an email or username
+    if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+        // It's an Admin, query by email
+        $stmt = $db->prepare("SELECT * FROM tblUser WHERE role = 'Admin' AND email = ?");
+    } else {
+        // It's a User, query by username
+        $stmt = $db->prepare("SELECT * FROM tblUser WHERE role = 'User' AND username = ?");
+    }
+
+    $stmt->execute([$login]); // Execute query
 
     // Fetch the result
-    $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single result as an associative array
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Check if the user exists
+    // Check if the user exists and verify the password
     if ($result) {
-        // Verify the password
         if (password_verify($password, $result['password'])) {
-            // Check role and set appropriate session variables and redirect
+            // Set session variables and redirect based on role
             if ($result['role'] === 'Admin') {
                 $_SESSION['admin_id'] = $result['user_id'];
                 $_SESSION['role'] = 'Admin';
                 header("Location: admin_dashboard.php");
             } else {
-                // Regular user login
                 $_SESSION['user_id'] = $result['user_id'];
                 $_SESSION['first_name'] = $result['first_name'];
                 $_SESSION['role'] = 'User';
