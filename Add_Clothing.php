@@ -267,7 +267,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -276,10 +275,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        //show pop up message of price item
+        // Show pop up message of price item
         function showPrice(price) {
             alert('Price: R ' + price.toFixed(2));
         }
+
+        // Search function
+        function searchFunction() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let results = document.getElementById("results");
+            results.innerHTML = ""; // Clear previous results
+
+            // Filter clothing items based on search input
+            const filteredItems = clothing_items.filter(item => 
+                item.name.toLowerCase().includes(input) || 
+                item.description.toLowerCase().includes(input)
+            );
+
+            filteredItems.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = `${item.name} - ${item.description} - R ${item.price.toFixed(2)}`;
+                results.appendChild(li);
+            });
+        }
+
+        // Sample clothing items data (can be dynamically generated from PHP)
+        const clothing_items = <?php echo json_encode($clothing_items); ?>;
     </script>
 </head>
 <body>
@@ -295,6 +316,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 
 <main>
     <h1>Shop Clothing</h1>
+
+    <!-- Search Bar -->
+    <div>
+        <input type="text" id="searchInput" placeholder="Search clothing..." oninput="searchFunction()">
+        <ul id="results"></ul>
+    </div>
+
+    <!-- Clothing Items Display -->
     <div class="clothing-container">
         <?php foreach ($clothing_items as $index => $item): ?>
             <div class="clothing-item">
@@ -306,8 +335,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
                 <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
 
                 <form method="post" action="add_clothing.php" onsubmit="showPrice(<?php echo $item['price']; ?>);">
-                <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-                <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
+                    <input type="hidden" name="item_index" value="<?php echo $index; ?>">
+                    <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
                 </form>
             </div>
         <?php endforeach; ?>
