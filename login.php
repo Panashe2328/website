@@ -16,13 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         // Verify the password
         if (password_verify($password, $result['password'])) {
-            // Set session variables
-            $_SESSION['user_id'] = $result['user_id'];
-            $_SESSION['first_name'] = $result['first_name'];
-            $_SESSION['last_name'] = $result['last_name'];
-
-            // Redirect user to index.php or user dashboard
-            header("Location: index.php");
+            // Check if the user is an admin
+            if ($result['role'] === 'Admin') { // assuming 'role' column specifies if the user is an Admin
+                $_SESSION['admin_id'] = $result['user_id'];
+                $_SESSION['role'] = 'Admin';
+                header("Location: admin_dashboard.php");
+            } else {
+                // Regular user login
+                $_SESSION['user_id'] = $result['user_id'];
+                $_SESSION['first_name'] = $result['first_name'];
+                $_SESSION['last_name'] = $result['last_name'];
+                header("Location: index.php");
+            }
             exit();
         } else {
             $message = "Invalid password. Please try again.";
