@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         if (in_array($imageType, $allowedTypes)) {
             // Move the image to a desired folder
-            $imagePath = 'uploads/' . $imageName;
+            $imagePath = '_images/' . $imageName;
             move_uploaded_file($imageTmp, $imagePath);
         } else {
             $error_message = "Invalid image type. Please upload a JPEG, PNG, or GIF image.";
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert the clothing item into the database
     if (!isset($error_message)) {
         try {
-            $stmt = $db->prepare("INSERT INTO tblClothes (clothes_description, price, clothes_category, size, condition, image_url) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt = $db->prepare("INSERT INTO tblClothes (clothes_description, price, clothes_category, size, `condition`, image_url) VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->execute([$description, $price, $category, $size, $condition, $imagePath]);
 
             // Redirect to dashboard with success message
