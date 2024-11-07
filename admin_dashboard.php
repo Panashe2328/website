@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['role']) || $_SESSION['rol
 
 // Fetch all clothing items from the database
 try {
-    $stmt =$db->prepare("SELECT * FROM tblClothes");
+    $stmt = $db->prepare("SELECT * FROM tblClothes");
     $stmt->execute();
     $clothes_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -27,7 +27,6 @@ try {
     <link rel="stylesheet" href="style.css">
     <title>Admin Dashboard</title>
     <style>
-        /* Existing styles */
         .clothes-list th, .clothes-list td {
             border: 1px solid #ccc;
             padding: 10px;
@@ -60,6 +59,15 @@ try {
         .add-button:hover {
             opacity: 0.8;
         }
+
+        .success-message {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -80,6 +88,11 @@ try {
 
 <main>
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION['admin_email']); ?>!</h2>
+
+    <!-- Display success message if an item was deleted -->
+    <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+        <div class="success-message">Item deleted successfully.</div>
+    <?php endif; ?>
 
     <!-- Display any error messages -->
     <?php if (isset($error_message)): ?>
@@ -112,11 +125,11 @@ try {
                         <td><?php echo htmlspecialchars($item['size']); ?></td>
                         <td><?php echo htmlspecialchars($item['condition']); ?></td>
                         <td>
-                            <form method="post" action="edit_item.php" style="display:inline;">
+                            <form method="post" action="editItem.php" style="display:inline;">
                                 <input type="hidden" name="clothes_id" value="<?php echo $item['clothes_id']; ?>">
                                 <button type="submit" class="edit-button">Edit</button>
                             </form>
-                            <form method="post" action="delete_item.php" style="display:inline;">
+                            <form method="post" action="removeItem.php" style="display:inline;">
                                 <input type="hidden" name="clothes_id" value="<?php echo $item['clothes_id']; ?>">
                                 <button type="submit" class="delete-button">Delete</button>
                             </form>
@@ -133,7 +146,7 @@ try {
 
     <div class="form-container">
         <h3>Add New Clothing Item</h3>
-        <form method="post" action="add_item.php" enctype="multipart/form-data">
+        <form method="post" action="addItem.php" enctype="multipart/form-data">
             <label for="name">Item Name:</label>
             <input type="text" id="name" name="name" required>
             <label for="description">Description:</label>
