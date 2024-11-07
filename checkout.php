@@ -54,6 +54,7 @@ $sessionId = $_SESSION['session_id'];
     
     
     <div class="checkout-summary">
+        <a href="index.php" class="button-style">Complete</a>
         <a href="login.php" class="button-style">Login/Register</a>
     </div>
 </main>
