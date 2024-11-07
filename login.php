@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the input looks like an email (basic email validation using regex)
     if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
         // It's an email, so check the Admin table
-        $stmt = $db->prepare("SELECT * FROM tblAdmin WHERE email = ?");
+        $stmt = $db->prepare("SELECT * FROM tblAdmin WHERE admin_email = ?");
     } else {
         // It's a username, so check the User table
         $stmt = $db->prepare("SELECT * FROM tblUser WHERE username = ?");
