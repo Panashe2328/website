@@ -31,7 +31,7 @@ include 'DBConn.php';
             <li><a href="About.php">About</a></li>
             <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
             <li><a href="user_register.php">Register</a></li>
-            <li><a href="login.php">Admin</a></li>
+            <li><a href="loginAdmin.php">Admin</a></li>
             <li><a href="loginUser.php">User</a></li>
         </ul>
     </nav>
