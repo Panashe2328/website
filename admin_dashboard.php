@@ -24,7 +24,6 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Admin Dashboard</title>
     <style>
@@ -81,7 +80,7 @@ try {
 
 <main>
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION['admin_email']); ?>!</h2>
-    
+
     <!-- Display any error messages -->
     <?php if (isset($error_message)): ?>
         <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
@@ -91,10 +90,13 @@ try {
     <table class="clothes-list">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
                 <th>Category</th>
+                <th>Size</th>
+                <th>Condition</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -102,17 +104,20 @@ try {
             <?php if (!empty($clothes_items)): ?>
                 <?php foreach ($clothes_items as $item): ?>
                     <tr>
+                        <td><img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="Clothing Image" style="width: 50px;"></td>
                         <td><?php echo htmlspecialchars($item['name']); ?></td>
-                        <td><?php echo htmlspecialchars($item['description']); ?></td>
+                        <td><?php echo htmlspecialchars($item['clothes_description']); ?></td>
                         <td><?php echo htmlspecialchars($item['price']); ?></td>
-                        <td><?php echo htmlspecialchars($item['category']); ?></td>
+                        <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
+                        <td><?php echo htmlspecialchars($item['size']); ?></td>
+                        <td><?php echo htmlspecialchars($item['condition']); ?></td>
                         <td>
                             <form method="post" action="edit_item.php" style="display:inline;">
-                                <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
+                                <input type="hidden" name="clothes_id" value="<?php echo $item['clothes_id']; ?>">
                                 <button type="submit" class="edit-button">Edit</button>
                             </form>
                             <form method="post" action="delete_item.php" style="display:inline;">
-                                <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
+                                <input type="hidden" name="clothes_id" value="<?php echo $item['clothes_id']; ?>">
                                 <button type="submit" class="delete-button">Delete</button>
                             </form>
                         </td>
@@ -120,7 +125,7 @@ try {
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5">No clothing items available.</td>
+                    <td colspan="8">No clothing items available.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
@@ -136,7 +141,18 @@ try {
             <label for="price">Price:</label>
             <input type="number" id="price" name="price" required step="0.01">
             <label for="category">Category:</label>
-            <input type="text" id="category" name="category" required>
+            <select id="category" name="category" required>
+                <option value="woman">Woman</option>
+                <option value="men">Men</option>
+                <option value="kids">Kids</option>
+            </select>
+            <label for="size">Size:</label>
+            <input type="text" id="size" name="size" required>
+            <label for="condition">Condition:</label>
+            <select id="condition" name="condition" required>
+                <option value="new">New</option>
+                <option value="used">Used</option>
+            </select>
             <label for="image">Image:</label>
             <input type="file" id="image" name="image" accept="image/*" required>
             <button type="submit" class="add-button">Add Item</button>
