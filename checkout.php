@@ -22,12 +22,27 @@ $sessionId = $_SESSION['session_id'];
 </head>
 <body>
 <header>
+   
+    <div class="logo">
+        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo">
+    </div>
+
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="add_clothing.php">Shop More</a></li>
+            <li><a href="About.php">About</a></li>
+            <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
+            <li><a href="user_register.php">Register</a></li>
+            <li><a href="login.php">Admin</a></li>
         </ul>
     </nav>
+
+    <div class="header-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-heart"></i>
+        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+        <i class="fas fa-user"></i>
+    </div>
 </header>
 
 <main>
