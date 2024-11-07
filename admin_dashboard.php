@@ -8,15 +8,11 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['role']) || $_SESSION['rol
     exit();
 }
 
-// Fetch users needing approval and all customers
+// Fetch all clothing items from the database
 try {
-    $stmt = $db->prepare("SELECT * FROM tblUser WHERE status = 'pending'"); // Users needing approval
+    $stmt = $db->prepare("SELECT * FROM tblClothes");
     $stmt->execute();
-    $pending_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    $stmt = $db->prepare("SELECT * FROM tblUser WHERE status = 'approved'"); // Approved users
-    $stmt->execute();
-    $approved_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $clothes_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $error_message = "Database error: " . $e->getMessage();
 }
@@ -32,56 +28,14 @@ try {
     <link rel="stylesheet" href="style.css">
     <title>Admin Dashboard</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        .error-message {
-            color: red;
-        }
-
-        .user-list {
-            margin-top: 20px;
-            border-collapse: collapse;
-            width: 100%;
-            background-color: white;
-        }
-
-        .user-list th, .user-list td {
+        /* Existing styles */
+        .clothes-list th, .clothes-list td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
         }
 
-        .user-list th {
+        .clothes-list th {
             background-color: #f2f2f2;
         }
 
@@ -106,10 +60,6 @@ try {
         .delete-button:hover,
         .add-button:hover {
             opacity: 0.8;
-        }
-
-        .form-container {
-            margin: 20px 0;
         }
     </style>
 </head>
@@ -136,72 +86,33 @@ try {
     <?php if (isset($error_message)): ?>
         <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
     <?php endif; ?>
-    
-    <h3>Users Needing Approval</h3>
-    <table class="user-list">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($pending_users)): ?>
-                <?php foreach ($pending_users as $user): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($user['first_name']); ?></td>
-                        <td><?php echo htmlspecialchars($user['last_name']); ?></td>
-                        <td><?php echo htmlspecialchars($user['username']); ?></td>
-                        <td>
-                            <form method="post" action="approve_user.php" style="display:inline;">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                                <button type="submit" class="approve-button">Approve</button>
-                            </form>
-                            <form method="post" action="edit_user.php" style="display:inline;">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                                <button type="submit" class="edit-button">Edit</button>
-                            </form>
-                            <form method="post" action="delete_user.php" style="display:inline;">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="4">No users needing approval.</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
 
-    <h3>Approved Customers</h3>
-    <table class="user-list">
+    <h3>Clothing Items</h3>
+    <table class="clothes-list">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($approved_users)): ?>
-                <?php foreach ($approved_users as $user): ?>
+            <?php if (!empty($clothes_items)): ?>
+                <?php foreach ($clothes_items as $item): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($user['first_name']); ?></td>
-                        <td><?php echo htmlspecialchars($user['last_name']); ?></td>
-                        <td><?php echo htmlspecialchars($user['username']); ?></td>
+                        <td><?php echo htmlspecialchars($item['name']); ?></td>
+                        <td><?php echo htmlspecialchars($item['description']); ?></td>
+                        <td><?php echo htmlspecialchars($item['price']); ?></td>
+                        <td><?php echo htmlspecialchars($item['category']); ?></td>
                         <td>
-                            <form method="post" action="edit_user.php" style="display:inline;">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                            <form method="post" action="edit_item.php" style="display:inline;">
+                                <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
                                 <button type="submit" class="edit-button">Edit</button>
                             </form>
-                            <form method="post" action="delete_user.php" style="display:inline;">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                            <form method="post" action="delete_item.php" style="display:inline;">
+                                <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
                                 <button type="submit" class="delete-button">Delete</button>
                             </form>
                         </td>
@@ -209,24 +120,26 @@ try {
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="4">No approved customers.</td>
+                    <td colspan="5">No clothing items available.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
 
     <div class="form-container">
-        <h3>Add New Customer</h3>
-        <form method="post" action="add_customer.php">
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" required>
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" required>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit" class="add-button">Add Customer</button>
+        <h3>Add New Clothing Item</h3>
+        <form method="post" action="add_item.php" enctype="multipart/form-data">
+            <label for="name">Item Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required step="0.01">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit" class="add-button">Add Item</button>
         </form>
     </div>
 </main>
