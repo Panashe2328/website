@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
 
     if (isset($_SESSION['cart'][$item_index])) {
         unset($_SESSION['cart'][$item_index]);
-        $_SESSION['cart'] = array_values($_SESSION['cart']); // Reindex the array after removal
+        $_SESSION['cart'] = array_values($_SESSION['cart']); 
     }
 
     // Redirect to avoid form re-submission
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
 
         <div class="cart-summary">
             <h3>Total: R <?php echo number_format($total, 2); ?></h3>
-            <a href="checkout.php" class="button-style">Proceed to Checkout</a>
+            <a href="checkout_redirect.php" class="button-style">Proceed to Checkout</a>
         </div>
     <?php endif; ?>
 </main>

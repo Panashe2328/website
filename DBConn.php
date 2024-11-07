@@ -11,7 +11,9 @@ $showMessages = false; // Set to 'true' for development and 'false' for producti
 
 try {
     // Establish a connection using PDO
+    
     $db = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
+
     
     // Use PDO to throw exceptions on error
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
