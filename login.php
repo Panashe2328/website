@@ -3,33 +3,32 @@ session_start();
 include 'DBConn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $_POST['email']; // Can be username or email
+    $login = $_POST['email']; // This can be either email or username
     $password = $_POST['password'];
 
-    // First, check if it's an Admin (email) or User (username)
-    // Determine the query based on whether it's an email or username
-    if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-        // It's an Admin, query by email
-        $stmt = $db->prepare("SELECT * FROM tblUser WHERE role = 'Admin' AND email = ?");
-    } else {
-        // It's a User, query by username
-        $stmt = $db->prepare("SELECT * FROM tblUser WHERE role = 'User' AND username = ?");
-    }
-
-    $stmt->execute([$login]); // Execute query
+    // Query to check if login is an Admin (email) or User (username)
+    $stmt = $db->prepare("
+        SELECT * FROM tblUser 
+        WHERE (role = 'Admin' AND email = :login) 
+        OR (role = 'User' AND username = :login)
+    ");
+    $stmt->bindParam(':login', $login);  // Bind the login value to the query
+    $stmt->execute();  // Execute the query
 
     // Fetch the result
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single result as an associative array
 
-    // Check if the user exists and verify the password
+    // Check if the user exists
     if ($result) {
+        // Verify the password
         if (password_verify($password, $result['password'])) {
-            // Set session variables and redirect based on role
+            // Check role and set appropriate session variables and redirect
             if ($result['role'] === 'Admin') {
                 $_SESSION['admin_id'] = $result['user_id'];
                 $_SESSION['role'] = 'Admin';
                 header("Location: admin_dashboard.php");
             } else {
+                // Regular user login
                 $_SESSION['user_id'] = $result['user_id'];
                 $_SESSION['first_name'] = $result['first_name'];
                 $_SESSION['role'] = 'User';
@@ -43,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "User does not exist.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
