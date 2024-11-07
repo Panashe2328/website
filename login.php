@@ -1,27 +1,25 @@
 <?php
 session_start();
-include 'DBConn.php'; // Ensure dbconn.php contains your DB connection logic
+include 'DBConn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
 
-    // Query to find user by username or email
-    $stmt = $conn->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
-    $stmt->bind_param("ss", $login, $login); // Bind both username and email to the same query
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt =$conn->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
+    $stmt->execute([$login, $login]); // Directly pass both parameters
+
+    // Fetch the result
+    $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single result as an associative array
 
     // Check if the user exists
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
+    if ($result) {
         // Verify the password
-        if (password_verify($password, $row['password'])) {
+        if (password_verify($password, $result['password'])) {
             // Set session variables
-            $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['first_name'] = $row['first_name'];
-            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['user_id'] = $result['user_id'];
+            $_SESSION['first_name'] = $result['first_name'];
+            $_SESSION['last_name'] = $result['last_name'];
 
             // Redirect user to index.php or user dashboard
             header("Location: index.php");
@@ -34,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,17 +130,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div style="text-align:center; padding:15%;">
-        <?php 
-        if (isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $query = mysqli_query($conn, "SELECT firstName, lastName FROM users WHERE email='$email'");
-            if ($row = mysqli_fetch_assoc($query)) {
-                echo htmlspecialchars($row['firstName'] . ' ' . $row['lastName']); // Escape user output for security
-            }
+    
+    <?php 
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+        $stmt = $conn->prepare("SELECT first_name, last_name FROM tblUser WHERE user_id = ?");
+        $stmt->execute([$user_id]);
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo htmlspecialchars($row['first_name'] . ' ' . $row['last_name']); // Escape output for security
         }
-        ?> 
-        <a href="logout.php">Logout</a>
-    </div>
+    }
+    ?> 
+    <a href="logout.php">Logout</a>
+</div>
 
     <div class="footer-branding">
         <p>&copy; 2024 Pastimes. All Rights Reserved.</p>

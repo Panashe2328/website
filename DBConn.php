@@ -5,6 +5,7 @@ $username = "root";
 $password = "";
 $database = "ClothingStore";
 
+
 // Enable this to show connection messages only in a development environment
 $showMessages = false; // Set to 'true' for development and 'false' for production
 

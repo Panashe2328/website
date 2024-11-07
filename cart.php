@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
                             <form method="post" action="cart.php">
                                 <input type="hidden" name="item_index" value="<?php echo $index; ?>">
                                 <input type="submit" name="remove_item" value="Remove" class="button-style">
+                                <input type="submit" name="ADD" value="Add" class="button-style">
                             </form>
                         </td>
                     </tr>
