@@ -87,7 +87,7 @@ try {
 </header>
 
 <main>
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['admin_email']); ?>!</h2>
+<h2>Welcome, <?php echo isset($_SESSION['admin_email']) ? htmlspecialchars($_SESSION['admin_email']) : 'Admin'; ?>!</h2>
 
     <!-- Display success message if an item was deleted -->
     <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
@@ -104,10 +104,9 @@ try {
         <thead>
             <tr>
                 <th>Image</th>
-                <th>Name</th>
+                <th>Category</th> <!-- This will display the category instead of name -->
                 <th>Description</th>
                 <th>Price</th>
-                <th>Category</th>
                 <th>Size</th>
                 <th>Condition</th>
                 <th>Action</th>
@@ -118,10 +117,9 @@ try {
                 <?php foreach ($clothes_items as $item): ?>
                     <tr>
                         <td><img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="Clothing Image" style="width: 50px;"></td>
-                        <td><?php echo htmlspecialchars($item['name']); ?></td>
+                        <td><?php echo htmlspecialchars($item['clothes_category']); ?></td> <!-- Display category here -->
                         <td><?php echo htmlspecialchars($item['clothes_description']); ?></td>
                         <td><?php echo htmlspecialchars($item['price']); ?></td>
-                        <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
                         <td><?php echo htmlspecialchars($item['size']); ?></td>
                         <td><?php echo htmlspecialchars($item['condition']); ?></td>
                         <td>
@@ -138,7 +136,7 @@ try {
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="8">No clothing items available.</td>
+                    <td colspan="7">No clothing items available.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
@@ -147,8 +145,6 @@ try {
     <div class="form-container">
         <h3>Add New Clothing Item</h3>
         <form method="post" action="addItem.php" enctype="multipart/form-data">
-            <label for="name">Item Name:</label>
-            <input type="text" id="name" name="name" required>
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
             <label for="price">Price:</label>
