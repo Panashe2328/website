@@ -47,28 +47,18 @@ include 'DBConn.php';
 <div class="main-banner">
          <h1>Welcome to our Sustainable Fashion eShop</h1>
         <h1>Where we believe in Giving Clothing a Second Chance.</h1>
-        <p class="slideshow-paragraph">
-        <span>We want to promote Sustainable Shopping</span>
-        <span>Offer Unique, Affordable Styles</span>
-        <span>Reduce Fashion Waste</span>
-        <span>Support a Circular Economy</span>
-        <span>Build an Eco-Conscious Community</span>
-        </p>
+        
     </div>
+    <div class="slideshow-paragraph">
+    <span>We want to promote Sustainable Shopping</span>
+    <span>Offer Unique, Affordable Styles</span>
+    <span>Reduce Fashion Waste</span>
+    <span>Support a Circular Economy</span>
+    <span>Build an Eco-Conscious Community</span>
+      </div>
+
     
     <div class="categories">
-        <div class="category">
-            <h2>Fan Favorites</h2>
-            <img src="path_to_fan_favorites_image.jpg" alt="">
-        </div>
-        <div class="category">
-            <h2>Recently Added</h2>
-            <img src="path_to_recently_added_image.jpg" alt="">
-        </div>
-        <div class="category">
-            <h2>On Sale</h2>
-            <img src="path_to_on_sale_image.jpg" alt="">
-        </div>
         <div class="category">
             <a href="Add_Clothing.php">
                 <h2>Shop</h2>
