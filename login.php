@@ -2,34 +2,40 @@
 session_start();
 include 'DBConn.php';
 
+session_start();
+include 'DBConn.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $_POST['email']; // This can be either email or username
+    $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
 
-    // Query to check if login is an Admin (email) or User (username)
-    $stmt = $db->prepare("
-        SELECT * FROM tblUser 
-        WHERE (role = 'Admin' AND email = :login) 
-        OR (role = 'User' AND username = :login)
-    ");
-    $stmt->bindParam(':login', $login);  // Bind the login value to the query
-    $stmt->execute();  // Execute the query
+    // Check if the input looks like an email (basic email validation using regex)
+    if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+        // It's an email, so check the Admin table
+        $stmt = $db->prepare("SELECT * FROM tblAdmin WHERE email = ?");
+    } else {
+        // It's a username, so check the User table
+        $stmt = $db->prepare("SELECT * FROM tblUser WHERE username = ?");
+    }
+
+    // Execute the query with the login (email or username)
+    $stmt->execute([$login]);
 
     // Fetch the result
-    $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single result as an associative array
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Check if the user exists
     if ($result) {
         // Verify the password
         if (password_verify($password, $result['password'])) {
             // Check role and set appropriate session variables and redirect
-            if ($result['role'] === 'Admin') {
-                $_SESSION['admin_id'] = $result['user_id'];
+            if (isset($result['email'])) {  // This indicates it's an Admin
+                $_SESSION['admin_id'] = $result['admin_id']; // Assuming 'admin_id' is the column in tblAdmin
                 $_SESSION['role'] = 'Admin';
                 header("Location: admin_dashboard.php");
             } else {
                 // Regular user login
-                $_SESSION['user_id'] = $result['user_id'];
+                $_SESSION['user_id'] = $result['user_id']; // Assuming 'user_id' is the column in tblUser
                 $_SESSION['first_name'] = $result['first_name'];
                 $_SESSION['role'] = 'User';
                 header("Location: index.php");
@@ -42,8 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "User does not exist.";
     }
 }
-
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
