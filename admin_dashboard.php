@@ -89,6 +89,12 @@ try {
 <main>
 <h2>Welcome, <?php echo isset($_SESSION['admin_email']) ? htmlspecialchars($_SESSION['admin_email']) : 'Admin'; ?>!</h2>
 
+    <!-- Display success message if an item was updated -->
+    <?php if (isset($_GET['item_updated']) && $_GET['item_updated'] == 1): ?>
+        <div class="success-message">Item updated successfully.</div>
+    <?php endif; ?>
+
+
     <!-- Display success message if an item was added -->
     <?php if (isset($_GET['item_added']) && $_GET['item_added'] == 1): ?>
         <div class="success-message">Item added successfully.</div>
