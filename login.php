@@ -6,8 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
 
-    $stmt =$db->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
-    $stmt->execute([$login, $login]); // Directly pass both parameters
+    // Query to check if login is an Admin (email) or User (username)
+    $stmt = $db->prepare("SELECT * FROM tblUser WHERE (role = 'Admin' AND email = ?) OR (role = 'User' AND username = ?)");
+    $stmt->execute([$login, $login]); // Bind the same login value for both email and username
 
     // Fetch the result
     $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single result as an associative array
@@ -16,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         // Verify the password
         if (password_verify($password, $result['password'])) {
-            // Check if the user is an admin
-            if ($result['role'] === 'Admin') { // assuming 'role' column specifies if the user is an Admin
+            // Check role and set appropriate session variables and redirect
+            if ($result['role'] === 'Admin') {
                 $_SESSION['admin_id'] = $result['user_id'];
                 $_SESSION['role'] = 'Admin';
                 header("Location: admin_dashboard.php");
@@ -25,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Regular user login
                 $_SESSION['user_id'] = $result['user_id'];
                 $_SESSION['first_name'] = $result['first_name'];
-                $_SESSION['last_name'] = $result['last_name'];
+                $_SESSION['role'] = 'User';
                 header("Location: index.php");
             }
             exit();
