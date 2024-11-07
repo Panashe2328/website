@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verify the password
         if (password_verify($password, $result['password'])) {
             // Check role and set appropriate session variables and redirect
-            if (isset($result['email'])) {  // This indicates it's an Admin
+            if (isset($result['admin_email'])) {  // This indicates it's an Admin
                 $_SESSION['admin_id'] = $result['admin_id']; // Assuming 'admin_id' is the column in tblAdmin
                 $_SESSION['role'] = 'Admin';
                 header("Location: admin_dashboard.php");
