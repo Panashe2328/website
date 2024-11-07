@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
 
-    $stmt =$conn->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
+    $stmt =$db->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
     $stmt->execute([$login, $login]); // Directly pass both parameters
 
     // Fetch the result
