@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['role']) || $_SESSION['rol
 
 // Fetch all clothing items from the database
 try {
-    $stmt =$conn->prepare("SELECT * FROM tblClothes");
+    $stmt =$db->prepare("SELECT * FROM tblClothes");
     $stmt->execute();
     $clothes_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
