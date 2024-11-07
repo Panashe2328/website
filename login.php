@@ -3,9 +3,6 @@ session_start();
 include 'DBConn.php'; // Include the database connection file
 
 
-session_start();
-include 'DBConn.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
