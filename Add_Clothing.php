@@ -280,8 +280,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
                 'quantity' => 1,
                 'unit_price' => $price,
                 'total_price' => $price,
-                'description' => $item['description'], // Add description here
-                'image' => $item['image'] // Add image here
+                'description' => $description, // Add description here
+                'image' => $image_url // Add image here
             ]);
         }
 
