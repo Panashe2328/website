@@ -10,6 +10,7 @@ if (!isset($_SESSION['cart'])) {
 //predefined clothing items array with image paths and descriptions
 $clothing_items = [
     [
+        'clothes_id' => 11011,
         'name' => 'Women',
         'image' => 'black_shirt.jpg',
         'size' => 'M',
@@ -18,6 +19,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11012,
         'name' => 'Men',
         'image' => 'men_pants_brown.jpg',
         'size' => 'S',
@@ -26,6 +28,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11013,
         'name' => 'Kids',
         'image' => 'kids_dress1.jpg',
         'size' => 'S',
@@ -34,6 +37,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11014,
         'name' => 'Women',
         'image' => 'women_dress_blue.jpg',
         'size' => 'S',
@@ -42,6 +46,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11015,
         'name' => 'Men',
         'image' => 'men_coca.jpg',
         'size' => 'M',
@@ -50,6 +55,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11016,
         'name' => 'Women',
         'image' => 'women_dress_pink.jpg',
         'size' => 'S',
@@ -58,6 +64,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11017,
         'name' => 'Kids',
         'image' => 'kids_shirt_grey.jpg',
         'size' => 'XS',
@@ -66,6 +73,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11018,
         'name' => 'Women',
         'image' => 'women_skirt.jpg',
         'size' => 'S',
@@ -74,6 +82,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11019,
         'name' => 'Men',
         'image' => 'men_shirt_blue.jpg',
         'size' => 'M',
@@ -82,6 +91,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11020,
         'name' => 'Kids',
         'image' => 'kids_skirt_lines.jpg',
         'size' => 'S',
@@ -90,6 +100,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11021,
         'name' => 'Women',
         'image' => 'women_dress_dots.jpg',
         'size' => 'S',
@@ -98,6 +109,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11022,
         'name' => 'Men',
         'image' => 'men_jeans.jpg',
         'size' => 'M',
@@ -106,6 +118,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11023,
         'name' => 'Kids',
         'image' => 'kids_shirt_hearts.jpg',
         'size' => 'S',
@@ -114,6 +127,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11024,
         'name' => 'Women',
         'image' => 'women_shirt_orange.jpg',
         'size' => 'S',
@@ -122,6 +136,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11025,
         'name' => 'Kids',
         'image' => 'kids_dress2.jpg',
         'size' => 'XS',
@@ -130,6 +145,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11026,
         'name' => 'Men',
         'image' => 'men_jacket.jpg',
         'size' => 'L',
@@ -138,6 +154,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11027,
         'name' => 'Women',
         'image' => 'women_skirt_pink.jpg',
         'size' => 'M',
@@ -146,6 +163,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11028,
         'name' => 'Kids',
         'image' => 'kids_shirt_red.jpg',
         'size' => 'S',
@@ -154,6 +172,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11029,
         'name' => 'Kids',
         'image' => 'kids_pants_green.jpg',
         'size' => 'S',
@@ -162,6 +181,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11030,
         'name' => 'Men',
         'image' => 'men_shirt_white.jpg',
         'size' => 'L',
@@ -170,6 +190,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11031,
         'name' => 'Kids',
         'image' => 'kids_sirt_orange.jpg',
         'size' => 'M',
@@ -178,6 +199,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11032,
         'name' => 'Kids',
         'image' => 'kids_shirt_white.jpg',
         'size' => 'S',
@@ -186,6 +208,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11033,
         'name' => 'Women',
         'image' => 'women_jacket_brown.jpg',
         'size' => 'M',
@@ -194,6 +217,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11034,
         'name' => 'Women',
         'image' => 'woman_shirt_white.jpg',
         'size' => 'L',
@@ -202,6 +226,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11035,
         'name' => 'Women',
         'image' => 'women_shirt_lines.jpg',
         'size' => 'M',
@@ -210,6 +235,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11036,
         'name' => 'Women',
         'image' => 'women_shirt_black.jpg',
         'size' => 'S',
@@ -218,6 +244,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11037,
         'name' => 'Men',
         'image' => 'men_jacket_purple.jpg',
         'size' => 'M',
@@ -226,6 +253,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11038,
         'name' => 'Women',
         'image' => 'women_shirt_grey.jpg',
         'size' => 'S',
@@ -234,6 +262,7 @@ $clothing_items = [
         'condition' => 'good'
     ],
     [
+        'clothes_id' => 11040,
         'name' => 'Kids',
         'image' => 'kids_shirt_blue.jpg',
         'size' => 'S',
@@ -242,6 +271,7 @@ $clothing_items = [
         'condition' => 'new'
     ],
     [
+        'clothes_id' => 11041,
         'name' => 'Women',
         'image' => 'women_shirt_white.jpg',
         'size' => 'L',
