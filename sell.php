@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if an image file was uploaded
     if ($image && $image['tmp_name']) {
-        $imagePath = 'uploads/' . basename($image['name']);
+        $imagePath = '_images/' . basename($image['name']);
         move_uploaded_file($image['tmp_name'], $imagePath);
     } else {
         $imagePath = null;
