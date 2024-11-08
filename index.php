@@ -10,7 +10,7 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
     <script>
         // Show the popup
         window.onload = function() {
-            let popup = confirm("I want to");
+            let popup = confirm("I want to...");
             if (popup) {
                 let action = confirm("Choose an action:\nOK to buy / Cancel to sell");
                 if (action) {
