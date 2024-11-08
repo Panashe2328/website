@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert the new item into the database
     try {
-        $stmt = $db->prepare("INSERT INTO tblClothes (clothes_description, price, clothes_category, size, condition, image_url) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO tblClothes (clothes_description, price, clothes_category, size, 'condition', image_url) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$description, $price, $category, $size, $condition, $imagePath]);
         header("Location: sell.php?item_added=1");
         exit();
