@@ -23,6 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
     header("Location: cart.php");
     exit();
 }
+// Increase item quantity
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
+    $item_index = $_POST['item_index'];
+
+    if (isset($_SESSION['cart'][$item_index])) {
+        // Increase the quantity of the item by 1 (or another logic based on your needs)
+        $_SESSION['cart'][$item_index]['quantity'] += 1;
+    }
+
+    // Redirect to avoid form re-submission
+    header("Location: cart.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +64,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
         <p>Your cart is empty.</p>
     <?php else: ?>
         <table>
-           
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
             <tbody>
                 <?php
                 $total = 0;
                 foreach ($_SESSION['cart'] as $index => $item): 
-                    $total += $item['price'];
+                    $total += $item['price'] * $item['quantity'];  // Assuming 'quantity' is now set
                 ?>
                     <tr>
                         <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" width="150" height="150"></td>
@@ -64,10 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
                         <td><?php echo htmlspecialchars($item['description']); ?></td>
                         <td>R <?php echo number_format($item['price'], 2); ?></td>
                         <td>
+                            <?php echo $item['quantity']; ?>  <!-- Display current quantity -->
+                        </td>
+                        <td>
                             <form method="post" action="cart.php">
                                 <input type="hidden" name="item_index" value="<?php echo $index; ?>">
                                 <input type="submit" name="remove_item" value="Remove" class="button-style">
-                                <input type="submit" name="ADD" value="Add" class="button-style">
+                                <input type="submit" name="add_item" value="Add Quantity" class="button-style">
                             </form>
                         </td>
                     </tr>

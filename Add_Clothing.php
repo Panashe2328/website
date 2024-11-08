@@ -369,7 +369,7 @@ foreach ($_SESSION['cart'] as $item) {
     <div class="clothing-container">
     <?php foreach ($clothing_items as $index => $item): ?>
     <div class="clothing-item">
-        <img src="_images/<?php echo $item['image']; ?>" alt="<?php echo $item['description']; ?>">
+        <img src="_images/<?php echo $item['image']; ?>" alt="<?php echo $item['description']; ?>" height="160" width="140">
         <h3><?php echo $item['description']; ?></h3>
         <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
         <form action="add_clothing.php" method="POST">
