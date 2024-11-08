@@ -51,7 +51,7 @@ $sessionId = $_SESSION['session_id'];
     <p>Your order number is: <strong><?php echo htmlspecialchars($orderNum); ?></strong></p>
     <p>Your session ID is: <strong><?php echo htmlspecialchars($sessionId); ?></strong></p>
 
-    <!-- You can add more checkout steps here, such as payment options, delivery details, etc. -->
+    
     
     <div class="checkout-summary">
         <a href="login.php" class="button-style">Login/Register</a>
