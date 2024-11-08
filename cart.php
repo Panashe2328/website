@@ -24,12 +24,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_item'])) {
     exit();
 }
 // Increase item quantity
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['increaseQuantity'])) {
     $item_index = $_POST['item_index'];
 
     if (isset($_SESSION['cart'][$item_index])) {
         // Increase the quantity of the item by 1 (or another logic based on your needs)
         $_SESSION['cart'][$item_index]['quantity'] += 1;
+    }
+
+    // Redirect to avoid form re-submission
+    header("Location: cart.php");
+    exit();
+}
+// Decrease item quantity
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
+    $item_index = $_POST['item_index'];
+
+    if (isset($_SESSION['cart'][$item_index]) && $_SESSION['cart'][$item_index]['quantity'] > 1) {
+        // Decrease the quantity of the item by 1 (but prevent going below 1)
+        $_SESSION['cart'][$item_index]['quantity'] -= 1;
     }
 
     // Redirect to avoid form re-submission
@@ -95,8 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
                         <td>
                             <form method="post" action="cart.php">
                                 <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-                                <input type="submit" name="remove_item" value="Remove" class="button-style">
-                                <input type="submit" name="add_item" value="Add one more" class="button-style">
+                                <input type="submit" name="remove_item" value="Remove Item" class="button-style">
+                                <input type="submit" name="increaseQuantity" value="+" class="button-style">
+                                <input type="submit" name="decreaseQuantity" value="-" class="button-style">
                             </form>
                         </td>
                     </tr>
