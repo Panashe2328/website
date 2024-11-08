@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
                     $total += $item['unit_price'] * $item['quantity'];  // Assuming 'quantity' is now set
                 ?>
                     <tr>
-                        <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" width="150" height="150"></td>
+                        <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['clothes_category']); ?>" width="150" height="150"></td>
                         <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
                         <td><?php echo htmlspecialchars($item['description']); ?></td>
                         <td>R <?php echo number_format($item['unit_price'], 2); ?></td>
