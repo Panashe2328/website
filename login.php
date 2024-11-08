@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $result['user_id']; // Assuming 'user_id' is the column in tblUser
                 $_SESSION['first_name'] = $result['first_name'];
                 $_SESSION['role'] = 'User';
+                $_SESSION['show_popup'] = true;  // Set session variable to show the pop-up
                 header("Location: index.php");
             }
             exit();

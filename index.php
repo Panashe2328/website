@@ -1,7 +1,30 @@
 <?php
 session_start(); // Start the session
 include 'DBConn.php';
+
+// Show the popup only once
+if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
+    // Unset the session variable so the pop-up shows only once
+    unset($_SESSION['show_popup']);
 ?>
+    <script>
+        // Show the popup
+        window.onload = function() {
+            let popup = confirm("I want to");
+            if (popup) {
+                let action = confirm("Choose an action:\nBuy / Sell");
+                if (action) {
+                    window.location.href = "add_clothing.php";  // Redirect to buy page
+                } else {
+                    window.location.href = "sell.php";  // Redirect to sell page
+                }
+            }
+        }
+    </script>
+<?php
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +55,6 @@ include 'DBConn.php';
             <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
             <li><a href="user_register.php">Register</a></li>
             <li><a href="login.php">Login</a></li>
-           
         </ul>
     </nav>
 
@@ -45,20 +67,18 @@ include 'DBConn.php';
 </header>
 
 <main>
-<div class="main-banner">
-         <h1>Welcome to our Sustainable Fashion eShop</h1>
+    <div class="main-banner">
+        <h1>Welcome to our Sustainable Fashion eShop</h1>
         <h1>Where we believe in Giving Clothing a Second Chance.</h1>
-        
     </div>
     <div class="slideshow-paragraph">
-    <span>We want to promote Sustainable Shopping</span>
-    <span>Offer Unique, Affordable Styles</span>
-    <span>Reduce Fashion Waste</span>
-    <span>Support a Circular Economy</span>
-    <span>Build an Eco-Conscious Community</span>
-      </div>
+        <span>We want to promote Sustainable Shopping</span>
+        <span>Offer Unique, Affordable Styles</span>
+        <span>Reduce Fashion Waste</span>
+        <span>Support a Circular Economy</span>
+        <span>Build an Eco-Conscious Community</span>
+    </div>
 
-    
     <div class="categories">
         <div class="category">
             <a href="Add_Clothing.php">
@@ -69,7 +89,7 @@ include 'DBConn.php';
         <div class="category">
             <a href="Cart.php">
                 <h2>View Cart</h2>
-                <img src="path.jpgth_to_imag" alt="">
+                <img src="path_to_image.jpg" alt="">
             </a>
         </div>
     </div>
