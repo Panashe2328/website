@@ -279,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
                 'clothes_category' => $item['name'], // Using category as name
                 'quantity' => 1,
                 'unit_price' => $price,
-                'total_price' => $product_price
+                'total_price' => $price
             ]);
         }
 
@@ -369,7 +369,7 @@ foreach ($_SESSION['cart'] as $item) {
     <div class="clothing-container">
     <?php foreach ($clothing_items as $index => $item): ?>
     <div class="clothing-item">
-        <img src="images/<?php echo $item['image']; ?>" alt="<?php echo $item['description']; ?>">
+        <img src="_images/<?php echo $item['image']; ?>" alt="<?php echo $item['description']; ?>">
         <h3><?php echo $item['description']; ?></h3>
         <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
         <form action="add_clothing.php" method="POST">
