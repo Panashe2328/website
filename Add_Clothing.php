@@ -306,12 +306,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 <body>
 <header>
     <!-- Navigation -->
+    <div class="logo">
+        <img src="_images/Pastimes_logo.jpg" alt="Pastimes logo">
+    </div>
+    
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="cart.php">Show Cart (<?php echo count($_SESSION['cart']); ?>)</a></li>
+            <li><a href="user_register.php">Register</a></li>
+            <li><a href="login.php">Admin</a></li>
         </ul>
     </nav>
+    <div class="header-icons">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-heart"></i>
+        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+        <i class="fas fa-user"></i>
+    </div>
 </header>
 
 <main>
@@ -327,7 +339,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     <div class="clothing-container">
         <?php foreach ($clothing_items as $index => $item): ?>
             <div class="clothing-item">
-                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="150" width="140">
+                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="160" width="140">
                 <h2><?php echo htmlspecialchars($item['name']); ?></h2>
                 <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
                 <p><?php echo htmlspecialchars($item['description']); ?></p>

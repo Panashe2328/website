@@ -65,6 +65,12 @@ include 'DBConn.php';
                 <img src="path_to_image.jpg" alt="">
             </a>
         </div>
+        <div class="category">
+            <a href="Cart.php">
+                <h2>View Cart</h2>
+                <img src="path.jpgth_to_imag" alt="">
+            </a>
+        </div>
     </div>
 </main>
 
