@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
                     <tr>
                         <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['clothes_category']); ?>" width="150" height="150"></td>
                         <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
-                        <td><?php echo htmlspecialchars($item['description']); ?></td>
+                        <td><?php echo isset($item['description']) ? htmlspecialchars($item['description']) : 'No description available'; ?></td>
                         <td>R <?php echo number_format($item['unit_price'], 2); ?></td>
                         <td>
                             <?php echo $item['quantity']; ?>  <!-- Display current quantity -->
