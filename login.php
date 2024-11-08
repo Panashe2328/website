@@ -3,12 +3,23 @@ session_start();
 include 'DBConn.php'; // Include the database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $_POST['email']; // Can be username or email
+    $login = $_POST['email']; // This can be either email or username
     $password = $_POST['password'];
 
+<<<<<<< HEAD
     // Use $db (not $conn) as your database connection
     $stmt = $db->prepare("SELECT * FROM tblUser WHERE username = ? OR email = ?");
     $stmt->execute([$login, $login]); // Directly pass both parameters
+=======
+    // Query to check if login is an Admin (email) or User (username)
+    $stmt = $db->prepare("
+        SELECT * FROM tblUser 
+        WHERE (role = 'Admin' AND email = :login) 
+        OR (role = 'User' AND username = :login)
+    ");
+    $stmt->bindParam(':login', $login);  // Bind the login value to the query
+    $stmt->execute();  // Execute the query
+>>>>>>> a8fa4a1d85d5cd93177ca5137c8ddb06dd8a14df
 
     // Fetch the result
     $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single result as an associative array
@@ -18,13 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         // Verify the password
         if (password_verify($password, $result['password'])) {
-            // Set session variables
-            $_SESSION['user_id'] = $result['user_id'];
-            $_SESSION['first_name'] = $result['first_name'];
-            $_SESSION['last_name'] = $result['last_name'];
-
-            // Redirect user to index.php or user dashboard
-            header("Location: index.php");
+            // Check role and set appropriate session variables and redirect
+            if ($result['role'] === 'Admin') {
+                $_SESSION['admin_id'] = $result['user_id'];
+                $_SESSION['role'] = 'Admin';
+                header("Location: admin_dashboard.php");
+            } else {
+                // Regular user login
+                $_SESSION['user_id'] = $result['user_id'];
+                $_SESSION['first_name'] = $result['first_name'];
+                $_SESSION['role'] = 'User';
+                header("Location: index.php");
+            }
             exit();
         } else {
             $message = "Invalid password. Please try again.";
@@ -33,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "User does not exist.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
