@@ -82,6 +82,7 @@ try {
             <li><a href="About.php">About</a></li>
             <li><a href="admin_dashboard.php" class="Current">Dashboard</a></li>
             <li><a href="user_register.php">Register</a></li>
+            <li><a href="admin_dashboard_approve.php">Users</a></li>
         </ul>
     </nav>
 </header>
