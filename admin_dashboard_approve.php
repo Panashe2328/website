@@ -8,12 +8,13 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['role']) || $_SESSION['rol
     exit();
 }
 
-// Fetch pending and approved users from the database
+// Fetch pending users from the database
 try {
-    $stmt_pending = $db->prepare("SELECT * FROM tblUser WHERE status = 'pending'");
-    $stmt_pending->execute();
-    $pending_users = $stmt_pending->fetchAll(PDO::FETCH_ASSOC);
-
+    $stmt = $db->prepare("SELECT * FROM tblUser WHERE status = 'pending'");
+    $stmt->execute();
+    $pending_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Fetch approved users as well
     $stmt_approved = $db->prepare("SELECT * FROM tblUser WHERE status = 'active'");
     $stmt_approved->execute();
     $approved_users = $stmt_approved->fetchAll(PDO::FETCH_ASSOC);
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <header>
     <div class="logo">
-        <img src="Pastimes" alt="Logo">
+        <img src="Pastimes" alt="">
     </div>
 
     <nav>
@@ -139,14 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
     <?php endif; ?>
 
-    <h3>Pending User waiting for Approval</h3>
+    <h3>Pending User Approvals</h3>
     <table class="user-list">
         <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
-                <th>Email</th>
+                <th>City</th> <!-- Replaced email with city -->
                 <th>Action</th>
             </tr>
         </thead>
@@ -157,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><?php echo htmlspecialchars($user['first_name']); ?></td>
                         <td><?php echo htmlspecialchars($user['last_name']); ?></td>
                         <td><?php echo htmlspecialchars($user['username']); ?></td>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
+                        <td><?php echo htmlspecialchars($user['city']); ?></td> <!-- Display city instead of email -->
                         <td>
                             <form method="post" action="admin_dashboard_approve.php" style="display:inline;">
                                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
@@ -185,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
-                <th>Email</th>
+                <th>City</th> <!-- Replaced email with city -->
                 <th>Status</th>
             </tr>
         </thead>
@@ -196,18 +197,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td><?php echo htmlspecialchars($user['first_name']); ?></td>
                         <td><?php echo htmlspecialchars($user['last_name']); ?></td>
                         <td><?php echo htmlspecialchars($user['username']); ?></td>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                        <td><?php echo htmlspecialchars($user['status']); ?></td>
+                        <td><?php echo htmlspecialchars($user['city']); ?></td> <!-- Display city instead of email -->
+                        <td><?php echo ucfirst($user['status']); ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="5">No approved users found.</td>
+                    <td colspan="5">No approved users.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
-
 </main>
 </body>
 </html>
