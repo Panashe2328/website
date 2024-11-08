@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
 
     foreach ($cartItems as $item) {
         // Prepare and execute statement to insert each item in the order
-        $stmt = $dbconn->prepare("INSERT INTO tblOrder (order_number, user_id, clothes_id, clothes_purchased, order_date, status, quantity, total_price) VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)");
+        $stmt = $db->prepare("INSERT INTO tblOrder (order_number, user_id, clothes_id, clothes_purchased, order_date, status, quantity, total_price) VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)");
         $stmt->bind_param(
             'siissid',
             $orderNum,
