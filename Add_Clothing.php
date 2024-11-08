@@ -279,7 +279,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
                 'clothes_category' => $item['name'], // Using category as name
                 'quantity' => 1,
                 'unit_price' => $price,
-                'total_price' => $price
+                'total_price' => $price,
+                'description' => $item['description'], // Add description here
+                'image' => $item['image'] // Add image here
             ]);
         }
 
