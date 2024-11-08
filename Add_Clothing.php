@@ -259,6 +259,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         $item = $clothing_items[$item_index];
         $clothes_id = $item_index; // Use item index as product_id
         $price = $item['price']; // Use item price as product price
+        $description = $item['description']; // Get the description
+        $image_url = $item['image']; // Get the image URL
 
         // Check if item already exists in the cart
         $found = false; // Flag to check if item is already in the cart
