@@ -29,23 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     $stmt = $db->prepare($sql);
 
     foreach ($cartItems as $item) {
-    // Bind the values for each iteration
-    $stmt->bindValue(':order_number', $orderNum);
-    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
-    $stmt->bindValue(':clothes_id', $item['clothes_id'], PDO::PARAM_INT); // This line retrieves the actual clothes_id from the cart
-    $stmt->bindValue(':clothes_purchased', $item['clothes_category'], PDO::PARAM_STR); // Assuming 'clothes_category' is item name
-    $stmt->bindValue(':order_date', $orderDate);
-    $stmt->bindValue(':quantity', $item['quantity'], PDO::PARAM_INT);
-    $stmt->bindValue(':total_price', $item['unit_price'] * $item['quantity'], PDO::PARAM_STR);
+        // Bind the values for each iteration
+        $stmt->bindValue(':order_number', $orderNum);
+        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':clothes_id', $item['clothes_id'], PDO::PARAM_INT); // This line retrieves the actual clothes_id from the cart
+        $stmt->bindValue(':clothes_purchased', $item['clothes_category'], PDO::PARAM_STR); // Assuming 'clothes_category' is item name
+        $stmt->bindValue(':order_date', $orderDate);
+        $stmt->bindValue(':quantity', $item['quantity'], PDO::PARAM_INT);
+        $stmt->bindValue(':total_price', $item['unit_price'] * $item['quantity'], PDO::PARAM_STR);
 
-    // Execute the statement
-    $stmt->execute();
+        // Execute the statement
+        $stmt->execute();
     }
 
     // Clear cart after checkout
     unset($_SESSION['cart']);
     $checkout_success = "Checkout successful! Your order number is: " . $orderNum;
-
 }
 
 // Handle "Finished" button click
@@ -53,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finished'])) {
     // Redirect to login page when the "Finished" button is pressed
     header("Location: login.php");
     exit(); // Ensure no further code is executed after the redirect
+}
+
+// Handle Show Report action
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
+    // Fetch user's purchase history
+    $userId = $_SESSION['user_id']; // Assuming user_id is stored in session after login
+    $sql = "SELECT * FROM tblOrder WHERE user_id = :user_id ORDER BY order_date DESC";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    $purchaseHistory = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -153,6 +163,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finished'])) {
         <button type="submit" name="finished" class="button-style">Finished</button>
     </form>
 <?php endif; ?>
+
+<!-- Show Report Button -->
+<form method="post">
+    <button type="submit" name="show_report" class="button-style">Show Report</button>
+</form>
+
+<?php if (isset($purchaseHistory)): ?>
+    <h2>Your Purchase History</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Clothes Purchased</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Order Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($purchaseHistory as $history): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($history['order_number']); ?></td>
+                    <td><?php echo htmlspecialchars($history['clothes_purchased']); ?></td>
+                    <td><?php echo $history['quantity']; ?></td>
+                    <td>R <?php echo number_format($history['total_price'], 2); ?></td>
+                    <td><?php echo $history['order_date']; ?></td>
+                    <td><?php echo ucfirst($history['status']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
 </main>
 
 <footer>
