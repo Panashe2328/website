@@ -79,14 +79,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
             <?php
                 $total = 0;
                 foreach ($_SESSION['cart'] as $index => $item): 
-                    $new_price = $item['price'] * $item['quantity']; // Calculate new price using 'price' from add_clothing
+                    $new_price = $item['unit_price'] * $item['quantity']; // Calculate new price using 'price' from add_clothing
                     $total += $new_price;  // Add the new price to total
                 ?>
                     <tr>
                         <td><img src="_images/<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['clothes_category']); ?>" width="150" height="150"></td>
                         <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
                         <td><?php echo isset($item['description']) ? htmlspecialchars($item['description']) : 'No description available'; ?></td>
-                        <td>R <?php echo number_format($item['price'], 2); ?></td> <!-- Updated to use 'price' -->
+                        <td>R <?php echo number_format($item['unit_price'], 2); ?></td> <!-- Updated to use 'price' -->
                         <td>
                             <?php echo $item['quantity']; ?>  <!-- Display current quantity -->
                         </td>
