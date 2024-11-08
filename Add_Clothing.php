@@ -307,7 +307,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         // If item doesn't exist, use array_push to add it
         if (!$found) {
             array_push($_SESSION['cart'], [
-                'clothes_id' => $clothes_id,
+                'clothes_id' => $item['clothes_id'],
                 'clothes_category' => $item['name'], // Using category as name
                 'quantity' => 1,
                 'unit_price' => $price,
