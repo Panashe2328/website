@@ -12,7 +12,7 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         window.onload = function() {
             let popup = confirm("I want to");
             if (popup) {
-                let action = confirm("Choose an action:\nBuy / Sell");
+                let action = confirm("Choose an action:\nOK to buy / Cancel to sell");
                 if (action) {
                     window.location.href = "add_clothing.php";  // Redirect to buy page
                 } else {
