@@ -69,24 +69,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_item'])) {
                     <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Price</th>
+                    <th>Price Per Item</th>
                     <th>Quantity</th>
+                    <th>New Price</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
+            <?php
                 $total = 0;
                 foreach ($_SESSION['cart'] as $index => $item): 
-                    $total += $item['unit_price'] * $item['quantity'];  // Assuming 'quantity' is now set
+                    $new_price = $item['price'] * $item['quantity']; // Calculate new price using 'price' from add_clothing
+                    $total += $new_price;  // Add the new price to total
                 ?>
                     <tr>
                         <td><img src="_images/<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['clothes_category']); ?>" width="150" height="150"></td>
                         <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
                         <td><?php echo isset($item['description']) ? htmlspecialchars($item['description']) : 'No description available'; ?></td>
-                        <td>R <?php echo number_format($item['unit_price'], 2); ?></td>
+                        <td>R <?php echo number_format($item['price'], 2); ?></td> <!-- Updated to use 'price' -->
                         <td>
                             <?php echo $item['quantity']; ?>  <!-- Display current quantity -->
+                        </td>
+                        <td>R <?php echo number_format($new_price, 2); ?>  <!-- Display new price (price * quantity) -->
                         </td>
                         <td>
                             <form method="post" action="cart.php">
