@@ -22,19 +22,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     $userId = $_SESSION['user_id']; // Assuming user_id is stored in session after login
     $orderDate = date('Y-m-d'); // Current date as order date
 
+    // Prepare the SQL statement once outside the loop
+    $sql = "INSERT INTO tblOrder (order_number, user_id, clothes_id, clothes_purchased, order_date, status, quantity, total_price) 
+            VALUES (:order_number, :user_id, :clothes_id, :clothes_purchased, :order_date, 'pending', :quantity, :total_price)";
+
+    $stmt = $db->prepare($sql);
+
     foreach ($cartItems as $item) {
-        // Prepare and execute statement to insert each item in the order
-        $stmt = $db->prepare("INSERT INTO tblOrder (order_number, user_id, clothes_id, clothes_purchased, order_date, status, quantity, total_price) VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)");
-        $stmt->bind_param(
-            'siissid',
-            $orderNum,
-            $userId,
-            $item['clothes_id'], // Make sure 'clothes_id' is in the cart array
-            $item['clothes_category'], // Assuming 'clothes_category' is the item name
-            $orderDate,
-            $item['quantity'],
-            $item['unit_price'] * $item['quantity']
-        );
+        // Bind the values for each iteration
+        $stmt->bindValue(':order_number', $orderNum);
+        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindValue(':clothes_id', $item['clothes_id'], PDO::PARAM_INT); // Make sure 'clothes_id' exists in your cart
+        $stmt->bindValue(':clothes_purchased', $item['clothes_category'], PDO::PARAM_STR); // Assuming 'clothes_category' is item name
+        $stmt->bindValue(':order_date', $orderDate);
+        $stmt->bindValue(':quantity', $item['quantity'], PDO::PARAM_INT);
+        $stmt->bindValue(':total_price', $item['unit_price'] * $item['quantity'], PDO::PARAM_STR);
+
+        // Execute the statement
         $stmt->execute();
     }
 
