@@ -251,22 +251,52 @@ $clothing_items = [
     ]
 ];
 
-//add an item to the cart using array_push() function
+// Add an item to the cart when the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     $item_index = $_POST['item_index'];
     
     if (isset($clothing_items[$item_index])) {
         $item = $clothing_items[$item_index];
+        $clothes_id = $item_index; // Use item index as product_id
+        $price = $item['price']; // Use item price as product price
 
-        // Add the item to the cart
-        array_push($_SESSION['cart'], $item);
+        // Check if item already exists in the cart
+        $found = false; // Flag to check if item is already in the cart
+        foreach ($_SESSION['cart'] as &$cart_item) {
+            if ($cart_item['clothes_id'] == $clothes_id) {
+                // Item exists, increase quantity
+                $cart_item['quantity'] += 1;
+                $cart_item['total_price'] = $cart_item['quantity'] * $price;
+                $found = true;
+                break;
+            }
+        }
+
+        // If item doesn't exist, use array_push to add it
+        if (!$found) {
+            array_push($_SESSION['cart'], [
+                'clothes_id' => $clothes_id,
+                'clothes_category' => $item['name'], // Using category as name
+                'quantity' => 1,
+                'unit_price' => $price,
+                'total_price' => $product_price
+            ]);
+        }
 
         // Redirect to avoid form re-submission
         header("Location: add_clothing.php");
         exit();
     }
 }
+
+// Calculate total cart value (optional)
+$total_cart_price = 0;
+foreach ($_SESSION['cart'] as $item) {
+    $total_cart_price += $item['total_price'];
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -337,22 +367,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 
     <!-- Clothing Items Display -->
     <div class="clothing-container">
-        <?php foreach ($clothing_items as $index => $item): ?>
-            <div class="clothing-item">
-                <img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" height="160" width="140">
-                <h2><?php echo htmlspecialchars($item['name']); ?></h2>
-                <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
-                <p><?php echo htmlspecialchars($item['description']); ?></p>
-                <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
-                <p>Condition: <?php echo htmlspecialchars($item['condition']); ?></p>
-
-                <form method="post" action="add_clothing.php" onsubmit="showPrice(<?php echo $item['price']; ?>);">
-                    <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-                    <input type="submit" name="add_to_cart" value="Add to Cart" class="button-style">
-                </form>
-            </div>
-        <?php endforeach; ?>
+    <?php foreach ($clothing_items as $index => $item): ?>
+    <div class="clothing-item">
+        <img src="images/<?php echo $item['image']; ?>" alt="<?php echo $item['description']; ?>">
+        <h3><?php echo $item['description']; ?></h3>
+        <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
+        <form action="add_clothing.php" method="POST">
+            <input type="hidden" name="item_index" value="<?php echo $index; ?>">
+            <button type="submit" name="add_to_cart">Add to Cart</button>
+        </form>
     </div>
+    <?php endforeach; ?>
+</div>
+
 </main>
 
 <footer>
