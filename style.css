@@ -97,8 +97,8 @@ main {
 .business-goals-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); 
-    gap: 15px;
-    padding: 15px;
+    gap: 20px;
+    padding: 20px;
     text-align: center;
     background-color: #f0f0f0;
     border-radius: 8px;
