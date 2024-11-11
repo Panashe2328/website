@@ -27,6 +27,12 @@ try {
     <link rel="stylesheet" href="style.css">
     <title>Admin Dashboard</title>
     <style>
+        .clothes-list {
+            width: 80%; 
+            margin: 0 auto; 
+            border-collapse: collapse; 
+        }
+
         .clothes-list th, .clothes-list td {
             border: 1px solid #ccc;
             padding: 10px;
@@ -41,7 +47,7 @@ try {
         .edit-button,
         .delete-button,
         .add-button {
-            background-color: green;
+            background-color: lightskyblue;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -50,7 +56,7 @@ try {
         }
 
         .delete-button {
-            background-color: red;
+            background-color: salmon;
         }
 
         .approve-button:hover,
@@ -61,8 +67,8 @@ try {
         }
 
         .success-message {
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
+            background-color: #4CAF50; 
+            color: white; 
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;

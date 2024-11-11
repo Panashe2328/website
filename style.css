@@ -93,13 +93,23 @@ main {
 }
 
 .slideshow-paragraph {
+<<<<<<< HEAD
+=======
+    display: flex;
+    justify-content: center; /*center*/
+    align-items: center; /*center*/
+>>>>>>> e2a5b356d9f4de21eb6457b8b99d61a34d2f70a2
     position: relative;
-    font-size:medium;
+    font-size: medium;
     font-weight: bold;
-    color: #333; /* Adjust color as needed */
-    height: 2em; /* Adjust the height to fit text */
+    color: #333; 
+    height: 2em; 
     overflow: hidden;
+    text-align: center;
+    margin: 0 auto; 
+    width: 100%; 
 }
+
 
 .slideshow-paragraph span {
     position: absolute;
@@ -138,6 +148,7 @@ main {
 .slideshow-paragraph span:nth-child(5) {
     animation-delay: 8s;
 }
+
 
 
 

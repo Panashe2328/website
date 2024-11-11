@@ -2,7 +2,6 @@
 session_start();
 include 'DBConn.php'; // Include the database connection file
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST['email']; // Can be username or email
     $password = $_POST['password'];
@@ -24,33 +23,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if the user exists
     if ($result) {
-        // Verify the password
-        if (password_verify($password, $result['password'])) {
-            // Check role and set appropriate session variables and redirect
-            if (isset($result['admin_email'])) {  // This indicates it's an Admin
-                $_SESSION['admin_id'] = $result['admin_id']; // Assuming 'admin_id' is the column in tblAdmin
-                $_SESSION['role'] = 'Admin';
-                header("Location: admin_dashboard.php");
-            } else {
-                // Regular user login
-                $_SESSION['user_id'] = $result['user_id']; // Assuming 'user_id' is the column in tblUser
-                $_SESSION['first_name'] = $result['first_name'];
-                $_SESSION['role'] = 'User';
-                $_SESSION['show_popup'] = true;  // Set session variable to show the pop-up
-                header("Location: index.php");
-            }
-            exit();
+        // Check if the account is approved
+        if ($result['status'] === 'pending') {
+            $message = "Your account is pending approval. Please wait for an admin to approve your registration.";
         } else {
-            $message = "Invalid password. Please try again.";
+            // Verify the password
+            if (password_verify($password, $result['password'])) {
+                // Check role and set appropriate session variables and redirect
+                if (isset($result['admin_email'])) {  // This indicates it's an Admin
+                    $_SESSION['admin_id'] = $result['admin_id']; // Assuming 'admin_id' is the column in tblAdmin
+                    $_SESSION['role'] = 'Admin';
+                    header("Location: admin_dashboard.php");
+                } else {
+                    // Regular user login
+                    $_SESSION['user_id'] = $result['user_id']; // Assuming 'user_id' is the column in tblUser
+                    $_SESSION['first_name'] = $result['first_name'];
+                    $_SESSION['role'] = 'User';
+                    $_SESSION['show_popup'] = true;  // Set session variable to show the pop-up
+                    header("Location: index.php");
+                }
+                exit();
+            } else {
+                $message = "Invalid password. Please try again.";
+            }
         }
     } else {
         $message = "User does not exist.";
     }
 }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
