@@ -123,6 +123,18 @@ main {
     color: #333;
 }
 
+.images-container {
+    display: flex;            
+    gap: 20px;                
+    justify-content: center;  
+    align-items: center;      
+    margin: 20px 0;          
+}
+
+.images-container img {
+    max-width: 45%;          
+    height: auto;           
+}
 
 
 
