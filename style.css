@@ -96,9 +96,9 @@ main {
 
 .business-goals-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); 
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
+    gap: 25px;
+    padding: 25px;
     text-align: center;
     background-color: #f0f0f0;
     border-radius: 8px;
