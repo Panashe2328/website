@@ -116,7 +116,7 @@ main {
     position: absolute;
     opacity: 0;
     animation: fadeSlideShow 10s linear infinite;
-    width: 100%; /* Ensures text spans take full width */
+    width: 50%; /* Ensures text spans take full width */
     text-align: center;
 }
 
