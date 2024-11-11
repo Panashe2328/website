@@ -73,10 +73,11 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
     </div>
     <div class="business-goals-grid">
         <h2>Our Goals</h2>
-        <div class="goal-item">Easily sell or buy clothing items</div>
+        <div class="goal-item">Experience Easy Shopping Online</div>
         <div class="goal-item">Promote Sustainable Shopping</div>
         <div class="goal-item">Offer Unique, Affordable Styles</div>
         <div class="goal-item">Reduce Fashion Waste</div>
+        <div class="goal-item">Allow Buyers and Sellers to Grow</div>
         <div class="goal-item">Support a Circular Economy</div>
         <div class="goal-item">Build an Eco-Conscious Community</div>
     </div>
