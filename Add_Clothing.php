@@ -345,24 +345,34 @@ foreach ($_SESSION['cart'] as $item) {
         }
 
         function searchFunction() {
-    let input = document.getElementById("searchInput").value.toLowerCase();
-    let results = document.getElementById("results");
-    results.innerHTML = ""; // Clear previous results
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let results = document.getElementById("results");
+        results.innerHTML = ""; // Clear previous results
 
-    // If the input is empty, show all clothing items
-    const itemsToDisplay = input 
-        ? clothing_items.filter(item =>
+        if (input === "") {
+            return; // Do nothing when the input is empty
+        }
+
+        // Filter the items based on the input and display them
+        const filteredItems = clothing_items.filter(item =>
             item.name.toLowerCase().includes(input) ||
             item.description.toLowerCase().includes(input)
-          )
-        : clothing_items; // Show all items when input is empty
+        );
 
-    itemsToDisplay.forEach(item => {
-        let li = document.createElement("li");
-        li.textContent = `${item.name} - ${item.description} - R ${item.price.toFixed(2)}`;
-        results.appendChild(li);
-    });
-}
+        // Display the filtered items
+        filteredItems.forEach(item => {
+            let itemDiv = document.createElement("div");
+            itemDiv.classList.add("item");
+
+            itemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <p>${item.name}</p>
+                <p>${item.description}</p>
+                <p>Price: R${item.price}</p>`;
+            results.appendChild(itemDiv);
+        });
+    }
+
 
         // Sample clothing items data (can be dynamically generated from PHP)
         const clothing_items = <?php echo json_encode($clothing_items); ?>;
