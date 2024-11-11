@@ -99,7 +99,7 @@ main {
 
     position: fixed;
     top: 50%;
-    left: 10%;
+    left: -50%;
     transform: translate(-50%, -50%);
     font-size: medium;
     font-weight: bold;
