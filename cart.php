@@ -79,14 +79,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th> Description</th>
-                    <th> Price Per Item</th>
-                    <th> Quantity</th>
-                    <th> New Price</th>
-                    <th>Action</th>
+                    <th>_ID_</th>
+                    <th>_Image_</th>
+                    <th>_Name_</th>
+                    <th>_Description_</th>
+                    <th>_Single Price_</th>
+                    <th>_Quantity_</th>
+                    <th>_New Price_</th>
+                    <th>_Action_</th>
                 </tr>
             </thead>
             <tbody>

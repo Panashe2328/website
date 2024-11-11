@@ -94,30 +94,26 @@ main {
 
 .slideshow-paragraph {
     display: flex;
-    justify-content: left; /*center*/
-    align-items: center; /*center*/
-
-    position: relative;
-   
-    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
     font-size: medium;
     font-weight: bold;
-    color: #333; 
-    height: auto; 
-    overflow: hidden;
+    color: #333;
     text-align: center;
-    margin: 0 auto; 
-    width: 50%; 
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
 }
-
 
 .slideshow-paragraph span {
     position: absolute;
-    opacity: 0;
-    animation: fadeSlideShow 10s linear infinite;
-    width: 50%; /* Ensures text spans take full width */
+    opacity: 1; /* Set to 1 to check visibility without animation */
+    width: 100%;  /* Full width of container */
     text-align: center;
 }
+
 
 /* Keyframe animation for fading in and out */
 @keyframes fadeSlideShow {

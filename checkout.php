@@ -140,10 +140,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
     <table>
         <thead>
             <tr>
-                <th>|Name|</th>
-                <th>|Quantity|</th>
-                <th>|Price Per Item|</th>
-                <th>|Total Price|</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price Per Item</th>
+                <th>Total Price</th>
             </tr>
         </thead>
         <tbody>
