@@ -366,7 +366,7 @@ foreach ($_SESSION['cart'] as $item) {
             itemDiv.classList.add("item");
 
             itemDiv.innerHTML = `
-                <img src="${item.image_url}">
+                <img src="_images/${item.image_url}" alt="${item.name}">
                 <p>${item.name}</p>
                 <p>${item.description}</p>
                 <p>Price: R${item.price}</p>`;
