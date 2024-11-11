@@ -367,6 +367,19 @@ foreach ($_SESSION['cart'] as $item) {
         // Sample clothing items data (can be dynamically generated from PHP)
         const clothing_items = <?php echo json_encode($clothing_items); ?>;
     </script>
+
+    <style>
+        .add-to-cart {
+            background-color: salmon; 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+
 </head>
 <body>
 <header>
