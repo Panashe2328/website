@@ -146,17 +146,6 @@ main {
     animation-delay: 8s;
 }
 
-.clothes-list {
-    width: 80%; 
-    margin: 0 auto; 
-    border-collapse: collapse; /* Optional: removes spacing between table borders */
-}
-
-.user-list {
-    width: 80%; 
-    margin: 0 auto;
-    border-collapse: collapse; /* Optional: removes spacing between table borders */
-}
 
 
 

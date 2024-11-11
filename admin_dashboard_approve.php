@@ -66,6 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="style.css">
     <title>Admin Dashboard - User Approval</title>
     <style>
+        .user-list {
+            width: 80%; 
+            margin: 0 auto;
+            border-collapse: collapse; 
+        }
+
         .user-list th, .user-list td {
             border: 1px solid #ccc;
             padding: 10px;
@@ -87,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .reject-button {
-            background-color: red;
+            background-color: pink;
         }
 
         .approve-button:hover,
@@ -96,8 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .success-message {
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
+            background-color: #4CAF50; 
+            color: white; 
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
