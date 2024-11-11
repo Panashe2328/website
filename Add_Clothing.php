@@ -366,7 +366,7 @@ foreach ($_SESSION['cart'] as $item) {
             itemDiv.classList.add("item");
 
             itemDiv.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${item.image_url}">
                 <p>${item.name}</p>
                 <p>${item.description}</p>
                 <p>Price: R${item.price}</p>`;
@@ -420,7 +420,7 @@ foreach ($_SESSION['cart'] as $item) {
 
     <!-- Search Bar -->
     <div>
-        <input type="text" id="searchInput" placeholder="Search clothing..." oninput="searchFunction()">
+        <input type="text" id="searchInput" placeholder="Can't find what you are looking for, search clothing..." oninput="searchFunction()">
         <ul id="results"></ul>
     </div>
 

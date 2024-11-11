@@ -94,12 +94,11 @@ main {
 
 .slideshow-paragraph {
     display: flex;
-    justify-content: center; /*center*/
+    justify-content: left; /*center*/
     align-items: center; /*center*/
 
-    position: fixed;
-    top: 50%;
-    right: -50%;
+    position: relative;
+   
     transform: translate(-50%, -50%);
     font-size: medium;
     font-weight: bold;
