@@ -16,7 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
     // Only for admin role
     $adminNumber = ($role == 'admin') ? $_POST['admin_num'] : null;
 
-    $status = ($role == 'admin') ? 'pending_admin' : 'pending'; // Admin verification status
+    // For user role, set status to pending by default
+    $status = 'pending'; 
+
 
     // Hash the password for security
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -61,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
             header("Location: http://localhost//admin_dashboard.php");
         } else {
             echo "<script>alert('Successful registration, waiting for approval.');</script>";
-            header("Location: index.php");
+            header("Location: login.php");
         }
         exit();
     
