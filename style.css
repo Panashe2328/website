@@ -93,9 +93,15 @@ main {
 }
 
 .slideshow-paragraph {
+
     display: block;
+
+
+    display: flex;
+
     justify-content: center; /*center*/
     align-items: center; /*center*/
+
     position: relative;
     font-size: medium;
     font-weight: bold;
