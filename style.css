@@ -92,58 +92,36 @@ main {
     padding: 15px;
 }
 
-.slideshow-paragraph {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: medium;
+
+
+.business-goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.business-goals-grid h2 {
+    grid-column: span 2;
+    font-size: 24px;
     font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.goal-item {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
     color: #333;
-    text-align: center;
-    margin: 0 auto;
-    width: 50%;
-    height: auto;
-    overflow: hidden;
-    position: relative;
-}
-
-.slideshow-paragraph span {
-    position: absolute;
-    opacity: 1; /* Set to 1 to check visibility without animation */
-    width: 100%;  /* Full width of container */
-    text-align: center;
 }
 
 
-/* Keyframe animation for fading in and out */
-@keyframes fadeSlideShow {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    20% { opacity: 1; }
-    30% { opacity: 0; }
-    100% { opacity: 0; }
-}
-
-/* Specific animations to stagger each span */
-.slideshow-paragraph span:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.slideshow-paragraph span:nth-child(2) {
-    animation-delay: 2s;
-}
-
-.slideshow-paragraph span:nth-child(3) {
-    animation-delay: 4s;
-}
-
-.slideshow-paragraph span:nth-child(4) {
-    animation-delay: 6s;
-}
-
-.slideshow-paragraph span:nth-child(5) {
-    animation-delay: 8s;
-}
 
 
 .categories {

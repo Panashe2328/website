@@ -58,6 +58,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart - Pastimes Clothing Store</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #333; 
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+    </style>
+
 </head>
 <body>
 <header>
@@ -79,14 +100,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
         <table>
             <thead>
                 <tr>
-                    <th>_ID_</th>
-                    <th>_Image_</th>
-                    <th>_Name_</th>
-                    <th>_Description_</th>
-                    <th>_Single Price_</th>
-                    <th>_Quantity_</th>
-                    <th>_New Price_</th>
-                    <th>_Action_</th>
+                    <th>ID</th>
+                    <th>_Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Single Price</th>
+                    <th>Quantity</th>
+                    <th>New Price</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

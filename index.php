@@ -71,13 +71,16 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         <h1>Welcome to our Sustainable Fashion eShop</h1>
         <h1>Where we believe in Giving Clothing a Second Chance.</h1>
     </div>
-    <div class="slideshow-paragraph">
-        <span>We want to promote Sustainable Shopping</span>
-        <span>Offer Unique, Affordable Styles</span>
-        <span>Reduce Fashion Waste</span>
-        <span>Support a Circular Economy</span>
-        <span>Build an Eco-Conscious Community</span>
+    <div class="business-goals-grid">
+        <h2>Our Goals</h2>
+        <div class="goal-item">Promote Sustainable Shopping</div>
+        <div class="goal-item">Offer Unique, Affordable Styles</div>
+        <div class="goal-item">Reduce Fashion Waste</div>
+        <div class="goal-item">Support a Circular Economy</div>
+        <div class="goal-item">Build an Eco-Conscious Community</div>
     </div>
+
+
 
     <div class="categories">
         <div class="category">
