@@ -71,7 +71,7 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         <h1>Welcome to our Sustainable Fashion eShop</h1>
         <h1>Where we believe in Giving Clothing a Second Chance.</h1>
     </div>
-    <img src="_images/Screenshot 2024-11-11 204617.png" width="50%" height="auto">
+    <img src="_images/Screenshot 2024-11-11 204617.png" width="30%" height="auto">
     <div class="business-goals-grid">
         <h2>Our Goals</h2>
         <div class="goal-item">Experience Easy Shopping Online</div>
