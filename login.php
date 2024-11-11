@@ -1,45 +1,45 @@
 <?php
 session_start();
-include 'DBConn.php'; // Include the database connection file
+include 'DBConn.php'; //include the database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $_POST['email']; // Can be username or email
+    $login = $_POST['email']; //can be username or email
     $password = $_POST['password'];
 
-    // Check if the input looks like an email (basic email validation using regex)
+    //check if the input looks like an email (basic email validation using regex)
     if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-        // It's an email, so check the Admin table
+        //its an email, so check the Admin table
         $stmt = $db->prepare("SELECT * FROM tblAdmin WHERE admin_email = ?");
     } else {
-        // It's a username, so check the User table
+        //its an username, so check the User table
         $stmt = $db->prepare("SELECT * FROM tblUser WHERE username = ?");
     }
 
-    // Execute the query with the login (email or username)
+    //execute the query with the login (email or username)
     $stmt->execute([$login]);
 
-    // Fetch the result
+    //fetch the result
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Check if the user exists
+    //check if the user exists
     if ($result) {
-        // Check if the account is approved
+        //check if the account is approved
         if ($result['status'] === 'pending') {
             $message = "Your account is pending approval. Please wait for an admin to approve your registration.";
         } else {
-            // Verify the password
+            //verify the password
             if (password_verify($password, $result['password'])) {
-                // Check role and set appropriate session variables and redirect
+                //check role and set appropriate session variables and redirect
                 if (isset($result['admin_email'])) {  // This indicates it's an Admin
-                    $_SESSION['admin_id'] = $result['admin_id']; // Assuming 'admin_id' is the column in tblAdmin
+                    $_SESSION['admin_id'] = $result['admin_id']; 
                     $_SESSION['role'] = 'Admin';
                     header("Location: admin_dashboard.php");
                 } else {
-                    // Regular user login
-                    $_SESSION['user_id'] = $result['user_id']; // Assuming 'user_id' is the column in tblUser
+                    //regular user login
+                    $_SESSION['user_id'] = $result['user_id']; 
                     $_SESSION['first_name'] = $result['first_name'];
                     $_SESSION['role'] = 'User';
-                    $_SESSION['show_popup'] = true;  // Set session variable to show the pop-up
+                    $_SESSION['show_popup'] = true;  //show the pop-up
                     header("Location: index.php");
                 }
                 exit();

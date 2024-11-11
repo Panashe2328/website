@@ -308,22 +308,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         if (!$found) {
             array_push($_SESSION['cart'], [
                 'clothes_id' => $item['clothes_id'],
-                'clothes_category' => $item['name'], // Using category as name
+                'clothes_category' => $item['name'], //using category as name
                 'quantity' => 1,
                 'unit_price' => $price,
                 'total_price' => $price,
-                'description' => $description, // Add description here
-                'image' => $image_url // Add image here
+                'description' => $description, 
+                'image' => $image_url 
             ]);
         }
 
-        // Redirect to avoid form re-submission
+        //redirect to avoid form re-submission
         header("Location: add_clothing.php");
         exit();
     }
 }
 
-// Calculate total cart value (optional)
+//calculate total cart value (optional)
 $total_cart_price = 0;
 foreach ($_SESSION['cart'] as $item) {
     $total_cart_price += $item['total_price'];
@@ -339,27 +339,28 @@ foreach ($_SESSION['cart'] as $item) {
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        // Show pop up message of price item
+        //pop up message of price item
         function showPrice(price) {
             alert('Price: R ' + price.toFixed(2));
         }
 
+        //search function
         function searchFunction() {
         let input = document.getElementById("searchInput").value.toLowerCase();
         let results = document.getElementById("results");
-        results.innerHTML = ""; // Clear previous results
+        results.innerHTML = ""; //clear previous results
 
         if (input === "") {
-            return; // Do nothing when the input is empty
+            return; //return empty if search bar is empty
         }
 
-        // Filter the items based on the input and display them
+        //filter the items based on the input and display them
         const filteredItems = clothing_items.filter(item =>
             item.name.toLowerCase().includes(input) ||
             item.description.toLowerCase().includes(input)
         );
 
-        // Display the filtered items
+        //filtered items
         filteredItems.forEach(item => {
             let itemDiv = document.createElement("div");
             itemDiv.classList.add("item");

@@ -79,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
