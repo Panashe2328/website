@@ -92,14 +92,21 @@ main {
     padding: 15px;
 }
 
-/.slideshow-paragraph {
+.slideshow-paragraph {
+    display: flex;
+    justify-content: center; /*center*/
+    align-items: center; /*center*/
     position: relative;
-    font-size:medium;
+    font-size: medium;
     font-weight: bold;
-    color: #333; /* Adjust color as needed */
-    height: 2em; /* Adjust the height to fit text */
+    color: #333; 
+    height: 2em; 
     overflow: hidden;
+    text-align: center;
+    margin: 0 auto; 
+    width: 100%; 
 }
+
 
 .slideshow-paragraph span {
     position: absolute;
@@ -137,6 +144,18 @@ main {
 
 .slideshow-paragraph span:nth-child(5) {
     animation-delay: 8s;
+}
+
+.clothes-list {
+    width: 80%; 
+    margin: 0 auto; 
+    border-collapse: collapse; /* Optional: removes spacing between table borders */
+}
+
+.user-list {
+    width: 80%; 
+    margin: 0 auto;
+    border-collapse: collapse; /* Optional: removes spacing between table borders */
 }
 
 
