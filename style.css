@@ -116,8 +116,6 @@ main {
 
 .goal-item {
     display: flex;  
-    justify-content: center;
-    align-items: center;  
     padding: 15px;
     background-color: #fff;
     border-radius: 8px;
@@ -136,7 +134,7 @@ main {
 }
 
 .images-container img {
-    max-width: 10%;          
+    max-width: 11%;          
     height: auto;           
 }
 
