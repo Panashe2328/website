@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
 
         .button-style[name="checkout"] {
             background-color: salmon;
-            color: white;
+            color: black;
         }
 
         .button-style[name="finished"] {
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
         }
 
         .button-style[name="show_report"] {
-            background-color: grey;
+            background-color: black;
             color: white;
         }
 
