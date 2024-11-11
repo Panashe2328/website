@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .approve-button,
         .reject-button {
-            background-color: green;
+            background-color: lightskyblue;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .reject-button {
-            background-color: pink;
+            background-color: salmon;
         }
 
         .approve-button:hover,

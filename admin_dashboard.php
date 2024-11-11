@@ -47,7 +47,7 @@ try {
         .edit-button,
         .delete-button,
         .add-button {
-            background-color: green;
+            background-color: lightskyblue;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -56,7 +56,7 @@ try {
         }
 
         .delete-button {
-            background-color: pink;
+            background-color: salmon;
         }
 
         .approve-button:hover,
