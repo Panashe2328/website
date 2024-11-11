@@ -94,10 +94,10 @@ main {
 
 .slideshow-paragraph {
 
-    display: inline;
+    
 
 
-    display: flex;
+    
 
     justify-content: center; /*center*/
     align-items: center; /*center*/
