@@ -93,7 +93,7 @@ main {
 }
 
 .slideshow-paragraph {
-    display: flex;
+    display: block;
     justify-content: center; /*center*/
     align-items: center; /*center*/
     position: relative;

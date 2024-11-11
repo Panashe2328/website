@@ -73,6 +73,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Pastimes Clothing Store</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .button-style {
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-style[name="checkout"] {
+            background-color: salmon;
+            color: white;
+        }
+
+        .button-style[name="finished"] {
+            background-color: lightskyblue;
+            color: black;
+        }
+
+        .button-style[name="show_report"] {
+            background-color: grey;
+            color: white;
+        }
+
+        .button-style:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+
 </head>
 <body>
 <header>
