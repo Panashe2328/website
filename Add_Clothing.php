@@ -371,7 +371,7 @@ foreach ($_SESSION['cart'] as $item) {
     <style>
         .add-to-cart {
             background-color: salmon; 
-            color: white; 
+            color: black; 
             border: none;
             padding: 10px 20px;
             border-radius: 5px;

@@ -94,7 +94,7 @@ main {
 
 .slideshow-paragraph {
 
-    display: block;
+    display: inline;
 
 
     display: flex;
