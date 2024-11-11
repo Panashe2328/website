@@ -367,6 +367,19 @@ foreach ($_SESSION['cart'] as $item) {
         // Sample clothing items data (can be dynamically generated from PHP)
         const clothing_items = <?php echo json_encode($clothing_items); ?>;
     </script>
+
+    <style>
+        .add-to-cart {
+            background-color: salmon; 
+            color: white; 
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+
 </head>
 <body>
 <header>
@@ -409,7 +422,7 @@ foreach ($_SESSION['cart'] as $item) {
         <p>Price: R <?php echo number_format($item['price'], 2); ?></p>
         <form action="add_clothing.php" method="POST">
             <input type="hidden" name="item_index" value="<?php echo $index; ?>">
-            <button type="submit" name="add_to_cart">Add to Cart</button>
+            <button class="add-to-cart" type="submit" name="add_to_cart">Add to Cart</button>
         </form>
     </div>
     <?php endforeach; ?>

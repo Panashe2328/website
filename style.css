@@ -93,6 +93,12 @@ main {
 }
 
 .slideshow-paragraph {
+<<<<<<< HEAD
+=======
+    display: flex;
+    justify-content: center; /*center*/
+    align-items: center; /*center*/
+>>>>>>> b83cda1d66791f1f4b380bdc7edf475134a370a6
     position: relative;
     font-size: medium;
     font-weight: bold;
@@ -142,8 +148,6 @@ main {
 .slideshow-paragraph span:nth-child(5) {
     animation-delay: 8s;
 }
-
-
 
 
 .categories {
