@@ -319,10 +319,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
             ]);
         }
 
+        $_SESSION['message'] = 'Item added to cart!';
+
         //redirect to avoid form re-submission
         header("Location: add_clothing.php");
         exit();
 
+        
         
     }
 }
@@ -436,6 +439,16 @@ foreach ($_SESSION['cart'] as $item) {
             font-style: italic;
             color: #555;
         }
+
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
     </style>
 
 </head>
@@ -470,6 +483,13 @@ foreach ($_SESSION['cart'] as $item) {
         <input type="text" id="searchInput" placeholder="Can't find what you are looking for, search clothing..." oninput="searchFunction()">
         <ul id="results"></ul>
     </div>
+
+    <?php
+    if (isset($_SESSION['message'])) {
+        echo '<div class="success-message">' . $_SESSION['message'] . '</div>';
+        unset($_SESSION['message']); // Clear the message after displaying
+    }
+    ?>
 
     <!-- Clothing Items Display -->
     <div class="clothing-container">
