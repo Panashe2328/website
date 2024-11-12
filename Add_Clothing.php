@@ -320,12 +320,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         }
 
         //redirect to avoid form re-submission
-        //header("Location: add_clothing.php");
-        //exit();
+        header("Location: add_clothing.php");
+        exit();
 
         // Respond back with success
-        echo json_encode(['success' => true]);
-        exit();
+        //echo json_encode(['success' => true]);
+        //exit();
     }
 }
 
