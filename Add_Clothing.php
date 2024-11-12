@@ -333,9 +333,7 @@ foreach ($_SESSION['cart'] as $item) {
     $total_cart_price += $item['total_price'];
 }
 
-// Respond back with success
-echo json_encode(['success' => true]);
-exit();
+
 
 ?>
 
