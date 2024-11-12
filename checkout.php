@@ -64,7 +64,7 @@ if (isset($_SESSION['login_message'])) {
 // Handle "AddMoreItems" button click
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['more'])) {
     // Redirect to add clothing page when the "AddMoreItems" button is pressed
-    header("Location: add_clothig.php");
+    header("Location: add_clothing.php");
     exit();
 }
 
