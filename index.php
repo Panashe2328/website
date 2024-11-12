@@ -87,7 +87,7 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         <div class="goal-item">Build an Eco-Conscious Community</div>
         <div class="goal-item">Give second-hand clothes a new home</div>
         <div class="goal-item">Allow easy Buying and selling of clothing</div>
-          <div class="goal-item">Giving people access to affordable clothes</div>
+          
     </div>
 
 
