@@ -96,7 +96,7 @@ main {
 
 .business-goals-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
     gap: 20px;
     padding: 20px;
     text-align: center;
@@ -107,7 +107,7 @@ main {
 }
 
 .business-goals-grid h2 {
-    grid-column: span 10;
+    grid-column: span 9;
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 15px; 
