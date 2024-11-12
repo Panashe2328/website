@@ -339,56 +339,55 @@ foreach ($_SESSION['cart'] as $item) {
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        //pop up message of price item
-        function showPrice(price) {
-            alert('Price: R ' + price.toFixed(2));
-        }
+        let debounceTimer;
 
         //search function
         function searchFunction() {
-        let input = document.getElementById("searchInput").value.toLowerCase();
-        let results = document.getElementById("results");
-        results.innerHTML = ""; //clear previous results
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let results = document.getElementById("results");
+            let clothingItems = <?php echo json_encode($clothing_items); ?>; // PHP to JS conversion
 
-        if (input === "") {
-            return; //return empty if search bar is empty
+            //clear previous results
+            results.innerHTML = '';
+
+            //if the search input is empty, don't display any results
+            if (input.trim() === '') {
+                return;
+            }
+
+            //debounce the search to prevent constant function calls while typing
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                let matches = clothingItems.filter(item => {
+                    return item.name.toLowerCase().includes(input) || item.description.toLowerCase().includes(input);
+                });
+
+                //display results
+                if (matches.length > 0) {
+                    matches.forEach(item => {
+                        let itemElement = document.createElement("div");
+                        itemElement.classList.add("result-item");
+
+                        //display item details (image, name, price)
+                        itemElement.innerHTML = `
+                            <img src="_images/${item.image}" alt="${item.name}" class="result-image" />
+                            <p class="result-name">${item.name} - R${item.price.toFixed(2)}</p>
+                            <p class="result-description">${item.description}</p>
+                            <button onclick="addToCart(${item.clothes_id})">Add to Cart</button>
+                        `;
+
+                        results.appendChild(itemElement);
+                    });
+                } else {
+                    results.innerHTML = "<p>No items found</p>";
+                }
+            }, 300); // 300ms debounce delay
         }
 
-        //filter the items based on the input and display them
-        const filteredItems = clothing_items.filter(item =>
-            item.name.toLowerCase().includes(input) ||
-            item.description.toLowerCase().includes(input)
-        );
-
-        // Check if there are any filtered items
-    if (filteredItems.length > 0) {
-        filteredItems.forEach(item => {
-            let itemDiv = document.createElement("div");
-            itemDiv.classList.add("clothing-item");
-
-            //display each item
-            itemDiv.innerHTML = `
-                <img src="_images/${item.image}" alt="${item.description}" />
-                <h3>${item.name}</h3>
-                <p>${item.description}</p>
-                <p>Price: R ${item.price.toFixed(2)}</p>
-                <form method="POST" action="">
-                    <input type="hidden" name="item_index" value="${item.clothes_id}" />
-                    <button type="submit" name="add_to_cart">Add to Cart</button>
-                </form>
-            `;
-
-            // Append the item to the results div
-            results.appendChild(itemDiv);
-        });
-    } else {
-        results.innerHTML = "<p>No items found</p>";
-    }
-}
-        
-
-        // Sample clothing items data (can be dynamically generated from PHP)
-        //const clothing_items = <?php echo json_encode($clothing_items); ?>;
+        //function to add item to cart 
+        function addToCart(itemId) {
+            alert('Item added to cart with ID: ' + itemId);
+        }
     </script>
 
     <style>
@@ -400,6 +399,26 @@ foreach ($_SESSION['cart'] as $item) {
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .result-image {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .result-name {
+            font-weight: bold;
+        }
+        .result-description {
+            font-style: italic;
+            color: #555;
         }
     </style>
 
