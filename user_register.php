@@ -56,11 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         // Execute the query
         $stmt->execute();
 
-        $_SESSION['registration_success'] = "Registration successful. Please wait until approval.";
+        $_SESSION['registration_success'] = "Registration successful. Log in to view the dashboard.";
         if ($role == 'admin') {
             $_SESSION['admin_id'] = $email;
             $_SESSION['role'] = 'Admin';
-            header("Location: admin_dashboard.php");
+            header("Location: login.php");
         } else {
             echo "<script>alert('Successful registration, waiting for approval.');</script>";
             header("Location: login.php");
