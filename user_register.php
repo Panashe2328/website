@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
         if ($role == 'admin') {
             $_SESSION['admin_id'] = $email;
             $_SESSION['role'] = 'Admin';
-            header("Location: http://localhost//admin_dashboard.php");
+            header("Location: admin_dashboard.php");
         } else {
             echo "<script>alert('Successful registration, waiting for approval.');</script>";
             header("Location: login.php");

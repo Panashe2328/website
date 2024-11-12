@@ -52,7 +52,7 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="About.php">About</a></li>
-            <li><a href="admin_dashboard.php" class= "Current"> Dashboard</a></li>
+            <li><a href="login.php" class= "Current">Admin</a></li>
             <li><a href="user_register.php">Register</a></li>
             <li><a href="login.php">Login</a></li>
         </ul>
