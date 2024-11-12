@@ -309,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
             array_push($_SESSION['cart'], [
                 'clothes_id' => $item['clothes_id'],
                 'clothes_category' => $item['name'], //using category as name
-                'quantity' => 1,
+                'quantity' => 1,    //default quanitity is 1
                 'unit_price' => $price,
                 'total_price' => $price,
                 'description' => $description, 

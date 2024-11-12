@@ -18,7 +18,7 @@ foreach ($cartItems as $item) {
 // Handle checkout action when the "Checkout" button is pressed
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     // Check if the user is logged in
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
         // If not logged in, set a message and redirect to the login page
         $_SESSION['login_message'] = "You must first log in to checkout your items.";
         header("Location: login.php");
