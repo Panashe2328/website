@@ -322,7 +322,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         $_SESSION['message'] = 'Item added to cart!';
 
         //redirect to avoid form re-submission
-        header("Location: add_clothing.php");
+        header("Location: cart.php");
         exit();
 
         
