@@ -92,7 +92,7 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
     <div class="categories">
         <div class="category">
             <a href="Add_Clothing.php">
-                <h2>Shop</h2>
+                <h2>eShop</h2>
                 <img src="path_to_image.jpg" alt="">
             </a>
         </div>

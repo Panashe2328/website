@@ -17,47 +17,68 @@ foreach ($cartItems as $item) {
 
 // Handle checkout action when the "Checkout" button is pressed
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
-    // Generate unique order number
-    $orderNum = uniqid('ORD-');
-    $userId = $_SESSION['user_id']; // Assuming user_id is stored in session after login
-    $orderDate = date('Y-m-d'); // Current date as order date
+    // Check if the user is logged in
+    if (!isset($_SESSION['user_id'])) {
+        // If not logged in, set a message and redirect to the login page
+        $_SESSION['login_message'] = "You must first log in to checkout your items.";
+        header("Location: login.php");
+        exit();
+    }
 
-    // Prepare the SQL statement once outside the loop
+    //generate unique order number starting with ORD
+    $orderNum = uniqid('ORD-');
+    $userId = $_SESSION['user_id']; 
+    $orderDate = date('Y-m-d'); 
+
+    //prepare the SQL statement once outside the loop
     $sql = "INSERT INTO tblOrder (order_number, user_id, clothes_id, clothes_purchased, order_date, status, quantity, total_price) 
     VALUES (:order_number, :user_id, :clothes_id, :clothes_purchased, :order_date, 'pending', :quantity, :total_price)";
 
     $stmt = $db->prepare($sql);
 
     foreach ($cartItems as $item) {
-        // Bind the values for each iteration
+        //bind the values for each iteration
         $stmt->bindValue(':order_number', $orderNum);
         $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
-        $stmt->bindValue(':clothes_id', $item['clothes_id'], PDO::PARAM_INT); // This line retrieves the actual clothes_id from the cart
-        $stmt->bindValue(':clothes_purchased', $item['clothes_category'], PDO::PARAM_STR); // Assuming 'clothes_category' is item name
+        $stmt->bindValue(':clothes_id', $item['clothes_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':clothes_purchased', $item['clothes_category'], PDO::PARAM_STR);
         $stmt->bindValue(':order_date', $orderDate);
         $stmt->bindValue(':quantity', $item['quantity'], PDO::PARAM_INT);
         $stmt->bindValue(':total_price', $item['unit_price'] * $item['quantity'], PDO::PARAM_STR);
 
-        // Execute the statement
+        //execute the statement
         $stmt->execute();
     }
 
-    // Clear cart after checkout
+    //clear cart after checkout (zeroed)
     unset($_SESSION['cart']);
     $checkout_success = "Checkout successful! Your order number is: " . $orderNum;
+}
+
+//show login message required
+if (isset($_SESSION['login_message'])) {
+    echo "<script>alert('" . $_SESSION['login_message'] . "');</script>";
+    unset($_SESSION['login_message']); 
+}
+
+// Handle "AddMoreItems" button click
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['more'])) {
+    // Redirect to add clothing page when the "AddMoreItems" button is pressed
+    header("Location: Add_Clothig.php");
+    exit();
 }
 
 // Handle "Finished" button click
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['finished'])) {
     // Redirect to login page when the "Finished" button is pressed
     header("Location: login.php");
-    exit(); // Ensure no further code is executed after the redirect
+    exit(); 
 }
 
 // Handle Show Report action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
     // Fetch user's purchase history
-    $userId = $_SESSION['user_id']; // Assuming user_id is stored in session after login
+    $userId = $_SESSION['user_id']; 
     $sql = "SELECT * FROM tblOrder WHERE user_id = :user_id ORDER BY order_date DESC";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
@@ -86,6 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
 
         .button-style[name="checkout"] {
             background-color: salmon;
+            color: black;
+        }
+
+        .button-style[name="more"] {
+            background-color: lightgreen;
             color: black;
         }
 
@@ -192,6 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
     <!-- Checkout and Finished Buttons -->
     <form method="post">
         <button type="submit" name="checkout" class="button-style">Checkout</button>
+        <button type="submit" name="more" class="button-style">AddMoreItems</button>
         <button type="submit" name="finished" class="button-style">Finished</button>
     </form>
 <?php endif; ?>
