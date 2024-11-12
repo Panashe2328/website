@@ -296,11 +296,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         $found = false; // Flag to check if item is already in the cart
         foreach ($_SESSION['cart'] as &$cart_item) {
             if ($cart_item['clothes_id'] == $clothes_id) {
-                // If quantity is 1, increase the quantity
-                if ($cart_item['quantity'] == 1) {
-                    $cart_item['quantity'] += 1; // Increase the quantity
+                // Increase the quantity and update total price if the item is already in the cart
+                $cart_item['quantity'] += 1;
+                    
                     $cart_item['total_price'] = $cart_item['quantity'] * $price; // Update total price
-                }
+                
                 $found = true; // Mark the item as found
                 break;
             }
@@ -308,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 
         // If item doesn't exist, use array_push to add it
         if (!$found) {
-            array_push($_SESSION['cart'], [
+            $_SESSION['cart'][] = [
                 'clothes_id' => $item['clothes_id'],
                 'clothes_category' => $item['name'], //using category as name
                 'quantity' => 1,    //default quanitity is 1
@@ -316,13 +316,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
                 'total_price' => $price,
                 'description' => $description, 
                 'image' => $image_url 
-            ]);
+            ];
         }
 
         $_SESSION['message'] = 'Item added to cart!';
 
         //redirect to avoid form re-submission
-        header("Location: cart.php");
+        header("Location: add_clothing.php");
         exit();
 
         
