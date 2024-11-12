@@ -159,6 +159,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_report'])) {
 <main>
 <h1>Checkout</h1>
 
+<?php
+//login required message 
+if (isset($_SESSION['login_message'])) {
+    echo "<div class='alert-message'>" . $_SESSION['login_message'] . "</div>";
+    unset($_SESSION['login_message']); // Clear the session variable after showing the message
+}
+?>
+
 <?php if (isset($checkout_success)): ?>
     <p class="success"><?php echo $checkout_success; ?></p>
     <h2>Order Summary</h2>

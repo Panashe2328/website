@@ -345,38 +345,63 @@ foreach ($_SESSION['cart'] as $item) {
         }
 
         //search function
-        function searchFunction() {
-        let input = document.getElementById("searchInput").value.toLowerCase();
-        let results = document.getElementById("results");
-        results.innerHTML = ""; //clear previous results
+function searchFunction() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let results = document.getElementById("results");
+    results.innerHTML = ""; //clear previous results
 
-        if (input === "") {
-            return; //return empty if search bar is empty
-        }
-
-        //filter the items based on the input and display them
-        const filteredItems = clothing_items.filter(item =>
-            item.name.toLowerCase().includes(input) ||
-            item.description.toLowerCase().includes(input)
-        );
-
-        //filtered items
-        filteredItems.forEach(item => {
-            let itemDiv = document.createElement("div");
-            itemDiv.classList.add("item");
-
-            itemDiv.innerHTML = `
-                <img src="_images/${item.image}" style="width: 100px; height: auto;">
-                <p>${item.name}</p>
-                <p>${item.description}</p>
-                <p>Price: R${item.price}</p>`;
-            results.appendChild(itemDiv);
-        });
+    if (input === "") {
+        return; //return empty if search bar is empty
     }
-        
 
-        // Sample clothing items data (can be dynamically generated from PHP)
-        const clothing_items = <?php echo json_encode($clothing_items); ?>;
+    //filter the items based on the input and display them
+    const filteredItems = <?php echo json_encode($clothing_items); ?>.filter(item => {
+        return item.name.toLowerCase().includes(input) || item.description.toLowerCase().includes(input);
+    });
+
+    // Check if filtered items are found
+    if (filteredItems.length > 0) {
+        filteredItems.forEach(item => {
+            let itemElement = document.createElement("div");
+            itemElement.classList.add("item");
+
+            itemElement.innerHTML = `
+                <img src="${item.image}" alt="${item.description}" class="item-image">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <p>Price: R ${item.price.toFixed(2)}</p>
+                <button onclick="addToCart(${item.clothes_id})">Add to Cart</button>
+            `;
+
+            results.appendChild(itemElement);
+        });
+    } else {
+        results.innerHTML = "<p>No results found</p>";
+    }
+}
+
+// Add item to cart
+function addToCart(clothes_id) {
+    // Code to add item to cart (you can reuse the logic from your PHP code)
+    let form = document.createElement("form");
+    form.method = "POST";
+    form.action = "add_clothing.php";
+    let itemIndex = document.createElement("input");
+    itemIndex.type = "hidden";
+    itemIndex.name = "item_index";
+    itemIndex.value = clothes_id;
+    form.appendChild(itemIndex);
+
+    let submitButton = document.createElement("input");
+    submitButton.type = "hidden";
+    submitButton.name = "add_to_cart";
+    submitButton.value = "true";
+    form.appendChild(submitButton);
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
     </script>
 
     <style>
