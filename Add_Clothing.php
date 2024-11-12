@@ -373,7 +373,7 @@ foreach ($_SESSION['cart'] as $item) {
             results.appendChild(itemDiv);
         });
     }
-
+        
 
         // Sample clothing items data (can be dynamically generated from PHP)
         const clothing_items = <?php echo json_encode($clothing_items); ?>;
