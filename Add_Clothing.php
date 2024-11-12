@@ -322,6 +322,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         //redirect to avoid form re-submission
         header("Location: add_clothing.php");
         exit();
+
+        // Respond back with success
+        echo json_encode(['success' => true]);
+        exit();
     }
 }
 
@@ -341,7 +345,7 @@ foreach ($_SESSION['cart'] as $item) {
     <title>Clothing Store - Add Clothing</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        let debounceTimer;
+        //let debounceTimer;
 
         //search function
         function searchFunction() {
@@ -357,38 +361,47 @@ foreach ($_SESSION['cart'] as $item) {
                 return;
             }
 
-            //debounce the search to prevent constant function calls while typing
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                let matches = clothingItems.filter(item => {
-                    return item.name.toLowerCase().includes(input) || item.description.toLowerCase().includes(input);
-                });
+            // Loop through the clothing items and filter based on the search input
+            clothingItems.forEach((item, index) => {
+                if (item.name.toLowerCase().includes(input) || item.description.toLowerCase().includes(input)) {
+                    // Create an HTML element to display the item
+                    let itemDiv = document.createElement("div");
+                    itemDiv.classList.add("item");
 
-                //display results
-                if (matches.length > 0) {
-                    matches.forEach(item => {
-                        let itemElement = document.createElement("div");
-                        itemElement.classList.add("result-item");
-
-                        //display item details (image, name, price)
-                        itemElement.innerHTML = `
-                            <img src="_images/${item.image}" alt="${item.name}" class="result-image" />
-                            <p class="result-name">${item.name} - R${item.price.toFixed(2)}</p>
-                            <p class="result-description">${item.description}</p>
-                            <button onclick="addToCart(${item.clothes_id})">Add to Cart</button>
-                        `;
-
-                        results.appendChild(itemElement);
-                    });
-                } else {
-                    results.innerHTML = "<p>No items found</p>";
+                    itemDiv.innerHTML = `
+                        <img src="_images/${item.image}" alt="${item.description}">
+                        <p>${item.name} - ${item.description}</p>
+                        <p>$${item.price}</p>
+                        <button onclick="addToCart(${index})">Add to Cart</button>
+                    `;
+                    results.appendChild(itemDiv);
                 }
-            }, 300); // 300ms debounce delay
+            });
         }
 
-        //function to add item to cart 
-        function addToCart(itemId) {
-            alert('Item added to cart with ID: ' + itemId);
+        // Add item to cart via AJAX
+        function addToCart(itemIndex) {
+            const formData = new FormData();
+            formData.append('add_to_cart', true);
+            formData.append('item_index', itemIndex);
+
+            // Send an AJAX request to add the item to the cart
+            fetch('add_clothing.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Item added to cart!");
+                    // Optionally, update cart display or total
+                } else {
+                    alert("Failed to add item to cart.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
     </script>
 
