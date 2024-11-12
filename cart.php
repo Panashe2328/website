@@ -59,25 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
     <title>Cart - Pastimes Clothing Store</title>
     <link rel="stylesheet" href="style.css">
 
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 2px solid #333; 
-        }
-
-        td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-    </style>
+    
 
 </head>
 <body>
@@ -101,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Image</th>
+                    <th>_Image</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Single Price</th>
