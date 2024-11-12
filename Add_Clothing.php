@@ -287,7 +287,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     
     if (isset($clothing_items[$item_index])) {
         $item = $clothing_items[$item_index];
-        $clothes_id = $item_index; // Use item index as product_id
+        $clothes_id = $item_index; // Use item index as clothes_id
         $price = $item['price']; // Use item price as product price
         $description = $item['description']; // Get the description
         $image_url = $item['image']; // Get the image URL
@@ -296,10 +296,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         $found = false; // Flag to check if item is already in the cart
         foreach ($_SESSION['cart'] as &$cart_item) {
             if ($cart_item['clothes_id'] == $clothes_id) {
-                // Item exists, increase quantity
-                $cart_item['quantity'] += 1;
-                $cart_item['total_price'] = $cart_item['quantity'] * $price;
-                $found = true;
+                // If quantity is 1, increase the quantity
+                if ($cart_item['quantity'] == 1) {
+                    $cart_item['quantity'] += 1; // Increase the quantity
+                    $cart_item['total_price'] = $cart_item['quantity'] * $price; // Update total price
+                }
+                $found = true; // Mark the item as found
                 break;
             }
         }

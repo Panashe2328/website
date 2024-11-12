@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
         <table>
             <thead>
                 <tr>
-                    
+                    <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
                     $total += $new_price;  // Add the new price to total
                 ?>
                     <tr>
-                        
+                        <td>Item ID: <?= $item['clothes_id'] ?></td>
                         <td><img src="_images/<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['clothes_category']); ?>" width="150" height="150"></td>
                         <td><?php echo htmlspecialchars($item['clothes_category']); ?></td>
                         <td><?php echo isset($item['description']) ? htmlspecialchars($item['description']) : 'No description available'; ?></td>
