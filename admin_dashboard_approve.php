@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['reject_user'])) {
         $user_id = $_POST['user_id'];
-        $status = 'inactive'; // Rejected users can be set to inactive if needed
+        $status = 'pending'; 
 
         try {
             $updateStmt = $db->prepare("UPDATE tblUser SET status = :status WHERE user_id = :user_id");
