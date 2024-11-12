@@ -375,7 +375,7 @@ foreach ($_SESSION['cart'] as $item) {
                     itemDiv.innerHTML = `
                         <img src="_images/${item.image}" alt="${item.description}" height="160" width="140">
                         <p>${item.name} - ${item.description}</p>
-                        <p>$${item.price}</p>
+                        <p>R${item.price}</p>
                         <button onclick="addToCart(${index})">Add to Cart</button>
                     `;
                     results.appendChild(itemDiv);
