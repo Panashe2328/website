@@ -72,8 +72,8 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         <h1>Where we believe in Giving Clothing a Second Chance.</h1>
     </div>
     <div class="images-container">
-        <img src="_images/Screenshot 2024-11-11 204617.png" alt="clothes on hangers">
-        <img src="_images/Screenshot 2024-11-11 205306.png" alt="people in a field">
+        <img src="_images/Screenshot 2024-11-11 204617.png" alt="clothes on hangers" height="350" width="350">
+        <img src="_images/Screenshot 2024-11-11 205306.png" alt="people in a field" height="350" width="350">
     </div>
 
     <div class="business-goals-grid">
@@ -85,6 +85,9 @@ if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
         <div class="goal-item">Allow Buyers and Sellers to Grow</div>
         <div class="goal-item">Support a Circular Economy</div>
         <div class="goal-item">Build an Eco-Conscious Community</div>
+        <div class="goal-item">Give second-hand clothes a new home</div>
+        <div class="goal-item">Allow easy Buying and selling of clothing</div>
+          <div class="goal-item">Giving people access to affordable clothes</div>
     </div>
 
 
