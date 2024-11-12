@@ -319,11 +319,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
             ]);
         }
 
-        
-
-        // Respond back with success
-        echo json_encode(['success' => true]);
+        //redirect to avoid form re-submission
+        header("Location: add_clothing.php");
         exit();
+
+        
     }
 }
 
@@ -333,9 +333,10 @@ foreach ($_SESSION['cart'] as $item) {
     $total_cart_price += $item['total_price'];
 }
 
-//redirect to avoid form re-submission
-header("Location: add_clothing.php");
+// Respond back with success
+echo json_encode(['success' => true]);
 exit();
+
 ?>
 
 
