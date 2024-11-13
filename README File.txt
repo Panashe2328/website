@@ -10,7 +10,6 @@ Welcome to Pastimes, an Online Clothing Store Web Application! Pastimes enables 
 
 Key Features
 This application is designed with a user-friendly interface and essential features for both users and admins:
-
 Home Page Navigation: Users can navigate between Home, About, and Register pages.
 Product Listings: Users can view items with detailed descriptions and prices.
 Shopping Cart: Users can add items to their cart by clicking "Add to Cart," triggering a pop-up with item pricing, with items stored in the cart using the array_push() function.
@@ -40,7 +39,7 @@ php
 Copy code
 $hostname = "localhost";
 $username = "root";
-$password = ""; // Add your MySQL password if applicable
+$password = ""; 
 $database = "clothingstore";
 
 Step 4: Move Files to the htdocs Directory
