@@ -2,27 +2,6 @@
 session_start(); // Start the session
 include 'DBConn.php';
 
-// Show the popup only once
-if (isset($_SESSION['show_popup']) && $_SESSION['show_popup'] === true) {
-    // Unset the session variable so the pop-up shows only once
-    unset($_SESSION['show_popup']);
-?>
-    <script>
-        // Show the popup
-        window.onload = function() {
-            let popup = confirm("I want to...");
-            if (popup) {
-                let action = confirm("Choose an action:\nOK to buy / Cancel to sell");
-                if (action) {
-                    window.location.href = "add_clothing.php";  // Redirect to buy page
-                } else {
-                    window.location.href = "sell.php";  // Redirect to sell page
-                }
-            }
-        }
-    </script>
-<?php
-}
 ?>
 
 <!DOCTYPE html>

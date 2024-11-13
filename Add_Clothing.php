@@ -465,6 +465,7 @@ foreach ($_SESSION['cart'] as $item) {
             <li><a href="cart.php">Show Cart (<?php echo count($_SESSION['cart']); ?>)</a></li>
             <li><a href="user_register.php">Register</a></li>
             <li><a href="login.php">Admin</a></li>
+            <li><a href="sell.php">Sell</a></li>
         </ul>
     </nav>
     <div class="header-icons">
