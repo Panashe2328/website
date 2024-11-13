@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['decreaseQuantity'])) {
 
         <div class="cart-summary">
             <h3>Total: R <?php echo number_format($total, 2); ?></h3>
-            <a href="checkout.php" class="button-style">Proceed to Checkout</a>
+            <a href="checkout_redirect.php" class="button-style">Proceed to Checkout</a>
         </div>
     <?php endif; ?>
 </main>
