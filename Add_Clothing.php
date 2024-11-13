@@ -295,7 +295,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         // Check if item already exists in the cart
         $found = false; // Flag to check if item is already in the cart
         foreach ($_SESSION['cart'] as &$cart_item) {
-            if ($cart_item['clothes_id'] == $clothes_id) {
+            if ($cart_item['clothes_id'] == $item['clothes_id']) {
                 // Increase the quantity and update total price if the item is already in the cart
                 $cart_item['quantity'] += 1;
                     
