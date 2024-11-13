@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['first_name'] = $result['first_name'];
                     $_SESSION['role'] = 'User';
                     $_SESSION['show_popup'] = true;  //show the pop-up
-                    header("Location: add_clothing.php");
+                    header("Location: checkout_redirect.php");
                 }
                 exit();
             } else {
