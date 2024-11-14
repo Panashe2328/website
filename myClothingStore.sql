@@ -4,7 +4,7 @@ USE ClothingStore;
 
 
 CREATE TABLE IF NOT EXISTS tblUser (
-    user_id INT PRIMARY KEY, 
+    user_id INT  PRIMARY KEY sAUTO_INCREMENT, 
     first_name VARCHAR(50) NOT NULL, 
     last_name VARCHAR(50) NOT NULL,  
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS tblClothes (
 
 CREATE TABLE IF NOT EXISTS tblOrder (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_number  INT NOT NULL,
     user_id INT NOT NULL,
     clothes_id INT NOT NULL,
     clothes_purchased VARCHAR(255) NOT NULL,
