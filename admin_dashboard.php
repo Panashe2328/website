@@ -122,7 +122,7 @@ try {
         <thead>
             <tr>
                 <th>Image</th>
-                <th>Category</th> <!-- This will display the category instead of name -->
+                <th>Category</th> 
                 <th>Description</th>
                 <th>Price</th>
                 <th>Size</th>
@@ -135,7 +135,7 @@ try {
                 <?php foreach ($clothes_items as $item): ?>
                     <tr>
                         <td><img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="Clothing Image" style="width: 50px;"></td>
-                        <td><?php echo htmlspecialchars($item['clothes_category']); ?></td> <!-- Display category here -->
+                        <td><?php echo htmlspecialchars($item['clothes_category']); ?></td> 
                         <td><?php echo htmlspecialchars($item['clothes_description']); ?></td>
                         <td><?php echo htmlspecialchars($item['price']); ?></td>
                         <td><?php echo htmlspecialchars($item['size']); ?></td>
