@@ -18,7 +18,7 @@ User Status: Registered users remain on a "waiting list" until approved by an ad
 1-> register as a user  and an admin
 * An example of credentials you can use 
 Admin Credentials:
-Username: laras@gmail.com
+Email: laras@gmail.com
 Password: 1234
 Admin number: 11016
 2-> once you have registered as the user and  approved the user as the admin navigate to the home page and logout  as the user 
