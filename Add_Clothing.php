@@ -288,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     if (isset($clothing_items[$item_index])) {
         $item = $clothing_items[$item_index];
         $clothes_id = $item_index; // Use item index as clothes_id
-        $price = $item['price']; // Use item price as product price
+        $price = $item['price']; 
         $description = $item['description']; // Get the description
         $image_url = $item['image']; // Get the image URL
 
