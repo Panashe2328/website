@@ -4,7 +4,7 @@ USE ClothingStore;
 
 
 CREATE TABLE IF NOT EXISTS tblUser (
-    user_id INT  PRIMARY KEY sAUTO_INCREMENT, 
+    user_id INT  PRIMARY KEY AUTO_INCREMENT, 
     first_name VARCHAR(50) NOT NULL, 
     last_name VARCHAR(50) NOT NULL,  
     username VARCHAR(50) NOT NULL UNIQUE,
