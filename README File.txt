@@ -73,3 +73,31 @@ Ensure the MySQL service is running in XAMPP.
 
 Path Issues
 Verify that the URL path in your browser matches the project’s location within the htdocs directory.
+ 
+ Here are all the files we have:
+ _images _resources
+  About.php 
+  Add_Clothing.php 
+  addItem.php
+  admin_dashboard_approve.php 
+  admin_dashboard.php admin.php 
+   approve_user.php 
+   cart.php
+   checkout_redirect.php 
+   checkout.php 
+   createTable.php
+    DBConn.php 
+    delete_user.php 
+    edit_user.php
+   editItem.php 
+  index.php 
+  login.php 
+  Logout.php 
+  myClothingStore.sql
+  myClothingStoreDB.mwb 
+  README File.txt 
+  removeItem.php script.js 
+  sell.php 
+  style.css 
+  updateItem.php 
+user_register.php
